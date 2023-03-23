@@ -21,7 +21,7 @@ public class Database {
     public static final String INSERT = "";
     public static final String DELETE = "";
     public static final String UPDATE = "";
-    public static final String SHOW = "SELECT * FROM Boyanan_Malzeme";
+    public static final String SHOW = "SELECT * FROM main.Boyanan_Malzeme";
 
     private static Connection connection;
 

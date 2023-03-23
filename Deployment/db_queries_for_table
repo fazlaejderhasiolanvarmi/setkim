@@ -1,29 +1,29 @@
 CREATE TABLE "Boyanan_Malzeme" (
-	"index"	INTEGER,
+	"idx"	INTEGER,
 	"Name"	TEXT,
 	PRIMARY KEY("index" AUTOINCREMENT)
 );
 
 CREATE TABLE "Malzeme_Cinsi" (
-	"index"	INTEGER,
+	"idx"	INTEGER,
 	"Name"	TEXT,
 	PRIMARY KEY("index" AUTOINCREMENT)
 );
 
 CREATE TABLE "Yuzey_Islem" (
-	"index"	INTEGER,
+	"idx"	INTEGER,
 	"Name"	TEXT,
 	PRIMARY KEY("index" AUTOINCREMENT)
 );
 
 CREATE TABLE "Renk_Kodu" (
-	"index"	INTEGER,
+	"idx"	INTEGER,
 	"Name"	TEXT,
 	PRIMARY KEY("index" AUTOINCREMENT)
 );
 
 CREATE TABLE "Setkim_Main" (
-	"index"	INTEGER,
+	"idx"	INTEGER,
 	"Boyanan_Malzeme"	INTEGER,
 	"Malzeme_Cinsi"	INTEGER,
 	"Yuzey_Islem"	INTEGER,
@@ -43,7 +43,7 @@ CREATE TABLE "Setkim_Main" (
 );
 
 CREATE TABLE "Test" (
-	"index"	INTEGER,
+	"idx"	INTEGER,
 	"Name"	TEXT,
 	"Value"	NUMERIC,
 	"Amount"	INTEGER,
