@@ -1,4 +1,9 @@
 package com.setkim.ui;
 
-public class MainPanel {
+import javax.swing.*;
+
+public class MainPanel extends JPanel {
+
+    //TODO: Bu yapıldı ama eklenecek
+
 }

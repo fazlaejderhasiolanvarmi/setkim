@@ -1,0 +1,44 @@
+CREATE TABLE "Boyanan_Malzeme" (
+	"index"	INTEGER,
+	"Name"	TEXT,
+	PRIMARY KEY("index" AUTOINCREMENT)
+);
+
+CREATE TABLE "Malzeme_Cinsi" (
+	"index"	INTEGER,
+	"Name"	TEXT,
+	PRIMARY KEY("index" AUTOINCREMENT)
+);
+
+CREATE TABLE "Yuzey_Islem" (
+	"index"	INTEGER,
+	"Name"	TEXT,
+	PRIMARY KEY("index" AUTOINCREMENT)
+);
+
+CREATE TABLE "Renk_Kodu" (
+	"index"	INTEGER,
+	"Name"	TEXT,
+	PRIMARY KEY("index" AUTOINCREMENT)
+);
+
+CREATE TABLE "Setkim_Main" (
+	"index"	INTEGER,
+	"Boyanan_Malzeme"	INTEGER,
+	"Malzeme_Cinsi"	INTEGER,
+	"Yuzey_Islem"	INTEGER,
+	"Renk_Kodu"	INTEGER,
+	"Boya_Miktari"	REAL,
+	"Iscilik_Suresi"	REAL,
+	"Boyanan_Malzeme_Miktari"	REAL,
+	"Birimi"	TEXT,
+	"Hat"	INTEGER,
+	"Boyama_Fiyati"	REAL,
+	"Tutar"	REAL,
+	FOREIGN KEY("Boyanan_Malzeme") REFERENCES "Boyanan_Malzeme"("index"),
+	FOREIGN KEY("Malzeme_Cinsi") REFERENCES "Malzeme_Cinsi"("index"),
+	FOREIGN KEY("Yuzey_Islem") REFERENCES "Yuzey_Islem"("index"),
+	FOREIGN KEY("Renk_Kodu") REFERENCES "Renk_Kodu"("index"),
+	PRIMARY KEY("index" AUTOINCREMENT)
+);
+
