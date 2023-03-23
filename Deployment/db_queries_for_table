@@ -42,3 +42,11 @@ CREATE TABLE "Setkim_Main" (
 	PRIMARY KEY("index" AUTOINCREMENT)
 );
 
+CREATE TABLE "Test" (
+	"index"	INTEGER,
+	"Name"	TEXT,
+	"Value"	NUMERIC,
+	"Amount"	INTEGER,
+	PRIMARY KEY("index" AUTOINCREMENT)
+);
+
