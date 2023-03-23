@@ -18,7 +18,7 @@ public class Database {
                * Test
      */
 
-    public static final String INSERT = "";
+    public static final String INSERT = "INSERT INTO Setkim_Main(Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     public static final String DELETE = "";
     public static final String UPDATE = "";
     public static final String SHOW = "SELECT * FROM main.Boyanan_Malzeme";
@@ -48,6 +48,29 @@ public class Database {
 
     public static void insert(){
         //TODO: Insert Query gelecek
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(INSERT);
+
+            ps.setInt(1, 3);
+            ps.setInt(2, 2);
+            ps.setInt(3, 1);
+            ps.setInt(4, 2);
+            ps.setFloat(5, 300);
+            ps.setFloat(6, 56);
+            ps.setDouble(7, 4.8);
+            ps.setString(8, "metrekare");
+            ps.setInt(9, 1);
+            ps.setFloat(10, 700);
+            ps.setDouble(11, 3879.95);
+
+            ps.execute();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public static void delete(){
@@ -107,7 +130,7 @@ public class Database {
     //Bağlantı sağlanıyor mu kontrolleri, silinecek
     public static void main(String[] args){
         connect();
-        show();
+        insert();
         closeConnection();
     }
 

@@ -1,6 +1,7 @@
 package com.setkim.ui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class MainController {
 
@@ -10,11 +11,16 @@ public class MainController {
     public MainController(){
         view = new MainPanel();
         initListeners();
+        initTable();
         JFrame frame = new JFrame();
         frame.setBounds(100, 200, 800, 600);
         frame.add(view);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void initTable() {
+        JTable table = view.getTable();
     }
 
     private void initListeners() {
