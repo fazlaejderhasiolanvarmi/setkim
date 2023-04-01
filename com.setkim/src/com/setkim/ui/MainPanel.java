@@ -2,40 +2,12 @@ package com.setkim.ui;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 import java.awt.*;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel {
     private JTable table;
-
     private JButton btnEkleme;
-
     private JButton btnRaporlama;
-
-    public JTable getTable() {
-        return table;
-    }
-
-    public void setTable(JTable table) {
-        this.table = table;
-    }
-
-    public JButton getBtnEkleme() {
-        return btnEkleme;
-    }
-
-    public void setBtnEkleme(JButton btnEkleme) {
-        this.btnEkleme = btnEkleme;
-    }
-
-    public JButton getBtnRaporlama() {
-        return btnRaporlama;
-    }
-
-    public void setBtnRaporlama(JButton btnRaporlama) {
-        this.btnRaporlama = btnRaporlama;
-    }
 
     public MainPanel() {
         setLayout(new BorderLayout(0, 0));
@@ -98,6 +70,18 @@ public class MainPanel extends JPanel{
         gbc_btnNewButton_1.gridx = 2;
         gbc_btnNewButton_1.gridy = 0;
         buttonWrapper.add(btnRaporlama, gbc_btnNewButton_1);
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+
+    public JButton getBtnEkleme() {
+        return btnEkleme;
+    }
+
+    public JButton getBtnRaporlama() {
+        return btnRaporlama;
     }
 
 }

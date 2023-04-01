@@ -3,7 +3,6 @@ package com.setkim.ui;
 import com.setkim.ekleme.EklemeController;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class MainController {
 
@@ -12,7 +11,7 @@ public class MainController {
 
     private EklemeController eklemeController;
 
-    public MainController(){
+    public MainController() {
         view = new MainPanel();
 
         initListeners();
@@ -46,7 +45,7 @@ public class MainController {
         eklemeFrame.setBounds(100, 200, 800, 600);
         eklemeFrame.add(eklemeController.getView());
         eklemeFrame.setVisible(true);
-        eklemeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        eklemeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public static void main(String[] args) {
