@@ -49,7 +49,21 @@ public class MainPanel extends JPanel{
         gbl_panel.rowWeights = new double[]{0.95, 0.05};
         panel.setLayout(gbl_panel);
 
-        table = new JTable();
+        DefaultTableModel tableModel = new DefaultTableModel();
+
+        tableModel.addColumn("Boyanan Malzeme");
+        tableModel.addColumn("Malzeme Cinsi");
+        tableModel.addColumn("Yüzey İşlem");
+        tableModel.addColumn("Renk Kodu");
+        tableModel.addColumn("Boya Miktarı");
+        tableModel.addColumn("İşçilik Süresi");
+        tableModel.addColumn("Boyanan Malzeme Miktarı");
+        tableModel.addColumn("Birimi");
+        tableModel.addColumn("Hat");
+        tableModel.addColumn("Boyama Fiyatı");
+        tableModel.addColumn("Tutar");
+
+        table = new JTable(tableModel);
         GridBagConstraints gbc_table = new GridBagConstraints();
         gbc_table.insets = new Insets(0, 0, 5, 0);
         gbc_table.fill = GridBagConstraints.BOTH;
