@@ -3,7 +3,6 @@ package com.setkim.ui;
 import com.setkim.ekleme.EklemeController;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
 
 public class MainController {
 
