@@ -1,9 +1,12 @@
 package com.setkim.ui;
 
 import com.setkim.ekleme.EklemeController;
+import com.setkim.util.Database;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import java.util.Vector;
 
 public class MainController {
 
@@ -21,15 +24,24 @@ public class MainController {
         eklemeController = new EklemeController();
 
         JFrame frame = new JFrame();
-        frame.setBounds(100, 200, 800, 600);
+        frame.setBounds(0, 0, 1200, 1000);
         frame.add(view);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void initTable() {
-        JTable table = view.getTable();
 
+        JTable table = view.getTable();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        Database.connect();
+        List<Object> tableData = Database.showSetkimMain();
+        Database.closeConnection();
+
+        for (int i = 0; i < tableData.size(); i++) {
+            model.addRow(new Vector<>((List<Object>) tableData.get(i)));
+        }
     }
 
     private void initListeners() {

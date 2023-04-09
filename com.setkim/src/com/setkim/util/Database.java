@@ -2,27 +2,18 @@ package com.setkim.util;
 
 import com.setkim.config.CommonConfig;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
     /*
-    DB Tables: * Boyanan_Malzeme,
-               * Malzeme_Cinsi,
-               * Renk_Kodu,
-               * Yuzey_Islem,
+    DB Tables:
+               * Musteri
                * Setkim_Main
-               * Test
+               * Siparis_Detay
      */
-
-    public static final String INSERT = "INSERT INTO Setkim_Main(Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-    public static final String DELETE = "";
-    public static final String UPDATE = "";
-    public static final String SHOW = "SELECT * FROM main.Boyanan_Malzeme";
-
     private static Connection connection;
 
     private static boolean isConnected = false;
@@ -34,8 +25,6 @@ public class Database {
         try {
 
             connection = DriverManager.getConnection(path);
-
-            System.out.println("Connection established.");
 
             isConnected = true;
 
@@ -51,7 +40,7 @@ public class Database {
         PreparedStatement ps = null;
 
         try {
-            ps = connection.prepareStatement(INSERT);
+            ps = connection.prepareStatement("");
 
             ps.setInt(1, 3);
             ps.setInt(2, 2);
@@ -89,8 +78,10 @@ public class Database {
         //if(isConnected) sonradan eklenecek connection test
         //if(connection != null) 'da kullanılabilir
 
+        String query = "";
+
         try {
-            ps = connection.prepareStatement(SHOW);
+            ps = connection.prepareStatement(query);
 
             ResultSet resultSet = ps.executeQuery();
 
@@ -109,6 +100,76 @@ public class Database {
                 e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
             }
         }
+    }
+
+    public static List<Object> showSetkimMain(){
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT * FROM Setkim_Main";
+
+        List<Object> table = new ArrayList<>();
+
+        if (connection != null){
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()){
+                    List<Object> row = new ArrayList<>();
+
+                    for (int i = 2; i < 13; i++) {
+                        row.add(resultSet.getObject(i));
+                    }
+
+                    table.add(row);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
+            }
+
+        }
+
+        return table;
+
+    }
+
+    public static List<Object> showMusteri(){
+
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT * FROM Musteri";
+
+        List<Object> table = new ArrayList<>();
+
+        if (connection != null){
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()){
+                    List<Object> row = new ArrayList<>();
+
+                    for (int i = 2; i < 9; i++) {
+                        row.add(resultSet.getObject(i));
+                    }
+
+                    table.add(row);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
+            }
+
+        }
+
+        return table;
     }
 
     public static void closeConnection(){
@@ -130,7 +191,7 @@ public class Database {
     //Bağlantı sağlanıyor mu kontrolleri, silinecek
     public static void main(String[] args){
         connect();
-        insert();
+        showSetkimMain();
         closeConnection();
     }
 

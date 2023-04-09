@@ -1,0 +1,66 @@
+Index: com.setkim/src/com/setkim/enums/Birim.java
+===================================================================
+diff --git a/com.setkim/src/com/setkim/enums/Birim.java b/com.setkim/src/com/setkim/enums/Birim.java
+deleted file mode 100644
+--- a/com.setkim/src/com/setkim/enums/Birim.java	
++++ /dev/null	
+@@ -1,27 +0,0 @@
+-package com.setkim.enums;
+-
+-public enum Birim {
+-
+-    //Bu gerçekten gerekli bir enum mı konuşulsun
+-
+-    M2(0, "metrekare"),
+-    KG(1,"kilogram"),
+-    ADET(2, "adet"),
+-    TAKIM(3, "takım");
+-
+-    private int index;
+-    private String name;
+-
+-    private Birim(int index, String name){
+-        this.index = index;
+-        this.name = name;
+-    }
+-
+-    public int getIndex() {
+-        return index;
+-    }
+-
+-    public String getName() {
+-        return name;
+-    }
+-}
+Index: com.setkim/src/com/setkim/enums/Hat.java
+===================================================================
+diff --git a/com.setkim/src/com/setkim/enums/Hat.java b/com.setkim/src/com/setkim/enums/Hat.java
+deleted file mode 100644
+--- a/com.setkim/src/com/setkim/enums/Hat.java	
++++ /dev/null	
+@@ -1,25 +0,0 @@
+-package com.setkim.enums;
+-
+-public enum Hat {
+-
+-    //Bu gerçekten gerekli bir enum mı konuşulsun
+-
+-    HAT_1(0, "HAT-1"),
+-    HAT_2(1, "HAT-2");
+-
+-    private int index;
+-    private String name;
+-
+-    private Hat(int index, String name){
+-        this.index = index;
+-        this.name = name;
+-    }
+-
+-    public int getIndex() {
+-        return index;
+-    }
+-
+-    public String getName() {
+-        return name;
+-    }
+-}
