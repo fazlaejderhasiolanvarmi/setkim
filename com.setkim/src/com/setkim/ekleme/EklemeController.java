@@ -29,24 +29,18 @@ public class EklemeController {
 
                 view.getWrapperPanel().add(musteriController.getView());
 
-                view.getWrapperPanel().revalidate();
-                view.getWrapperPanel().repaint();
-
             } else if(selection.equals("Sipariş")) {
 
                 view.getWrapperPanel().add(new JPanel());
-
-                view.revalidate();
-                view.repaint();
 
             } else if (selection.equals("Sipariş Detayı")) {
 
                 view.getWrapperPanel().add(siparisDetayController.getView());
 
-                view.revalidate();
-                view.repaint();
-
             }
+
+            view.getWrapperPanel().revalidate();
+            view.getWrapperPanel().repaint();
         });
     }
 

@@ -3,6 +3,7 @@ package com.setkim.ui;
 import com.setkim.ekleme.EklemeController;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 
 public class MainController {
 
@@ -28,7 +29,6 @@ public class MainController {
 
     private void initTable() {
         JTable table = view.getTable();
-
 
     }
 

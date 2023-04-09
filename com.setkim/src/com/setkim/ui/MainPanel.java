@@ -36,12 +36,14 @@ public class MainPanel extends JPanel {
         tableModel.addColumn("Tutar");
 
         table = new JTable(tableModel);
-        GridBagConstraints gbc_table = new GridBagConstraints();
-        gbc_table.insets = new Insets(0, 0, 5, 0);
-        gbc_table.fill = GridBagConstraints.BOTH;
-        gbc_table.gridx = 0;
-        gbc_table.gridy = 0;
-        panel.add(table, gbc_table);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+        gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+        gbc_scrollPane.fill = GridBagConstraints.BOTH;
+        gbc_scrollPane.gridx = 0;
+        gbc_scrollPane.gridy = 0;
+        panel.add(scrollPane, gbc_scrollPane);
 
         JPanel buttonWrapper = new JPanel();
         GridBagConstraints gbc_buttonWrapper = new GridBagConstraints();
