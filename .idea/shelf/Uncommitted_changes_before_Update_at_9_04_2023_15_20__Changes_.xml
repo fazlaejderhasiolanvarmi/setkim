@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_9_04_2023_15_20_[Changes]" date="1681042826881" recycled="false" toDelete="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_04_2023_15_20_[Changes]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 9.04.2023 15:20 [Changes]" />
-  <binary>
-    <option name="BEFORE_PATH" value="Deployment/setkim.db" />
-    <option name="AFTER_PATH" value="Deployment/setkim.db" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_04_2023_15_20_[Changes]/setkim.db" />
-  </binary>
-</changelist>
