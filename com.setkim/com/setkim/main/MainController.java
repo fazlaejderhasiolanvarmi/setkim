@@ -1,10 +1,12 @@
-package com.setkim.ui;
+package com.setkim.main;
 
 import com.setkim.ekleme.EklemeController;
 import com.setkim.util.Database;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.Vector;
 
@@ -62,5 +64,22 @@ public class MainController {
         eklemeFrame.add(eklemeController.getView());
         eklemeFrame.setVisible(true);
         eklemeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        eklemeFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+                DefaultTableModel dm = (DefaultTableModel) view.getTable().getModel();
+                int rowCount = dm.getRowCount();
+
+                for (int i = rowCount - 1; i >= 0; i--) {
+                    dm.removeRow(i);
+                }
+
+                initTable();
+
+                super.windowClosed(e);
+            }
+        });
     }
 }

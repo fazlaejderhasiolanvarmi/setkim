@@ -1,4 +1,4 @@
-package com.setkim.ui;
+package com.setkim.main;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
