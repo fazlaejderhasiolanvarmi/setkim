@@ -1,14 +1,13 @@
 package com.setkim.ekleme;
 
 import javax.swing.*;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.*;
 
 public class EklemePanel extends JPanel {
 
     private JPanel wrapperPanel;
     private JComboBox comboBox;
+
     public EklemePanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0};
@@ -18,7 +17,7 @@ public class EklemePanel extends JPanel {
         setLayout(gridBagLayout);
 
         comboBox = new JComboBox();
-        comboBox.setModel(new DefaultComboBoxModel(new String[] { "Müşteri Bilgisi", "Sipariş", "Sipariş Detayı" }));
+        comboBox.setModel(new DefaultComboBoxModel(new String[]{"Müşteri Bilgisi", "Sipariş", "Sipariş Detayı"}));
         GridBagConstraints gbc_comboBox = new GridBagConstraints();
         gbc_comboBox.insets = new Insets(0, 0, 5, 0);
         gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;

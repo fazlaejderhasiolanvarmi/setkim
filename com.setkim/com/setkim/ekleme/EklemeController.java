@@ -18,12 +18,17 @@ public class EklemeController {
 
     private SiparisDetayController siparisDetayController;
 
-    public EklemeController(){
+    public EklemeController() {
         view = new EklemePanel();
 
         musteriController = new MusteriController();
         siparisController = new SiparisController();
         siparisDetayController = new SiparisDetayController();
+
+        view.getWrapperPanel().add(musteriController.getView());
+        view.getWrapperPanel().revalidate();
+        view.getWrapperPanel().repaint();
+
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,11 +36,11 @@ public class EklemeController {
 
                 view.getWrapperPanel().removeAll();
 
-                if (selection.equals("Müşteri Bilgisi")){
+                if (selection.equals("Müşteri Bilgisi")) {
 
                     view.getWrapperPanel().add(musteriController.getView());
 
-                } else if(selection.equals("Sipariş")) {
+                } else if (selection.equals("Sipariş")) {
 
                     view.getWrapperPanel().add(siparisController.getView());
 
