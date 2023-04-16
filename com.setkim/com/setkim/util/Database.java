@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
@@ -21,13 +23,15 @@ public class Database {
     public static final String INSERT = "INSERT INTO Setkim_Main(Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     public static final String DELETE = "";
     public static final String UPDATE = "";
-    public static final String SHOW = "SELECT * FROM main.Boyanan_Malzeme";
+    public static final String SHOW = "select Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi," +
+            "       Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar" +
+            "from Setkim_Main";
 
     private static Connection connection;
 
     private static boolean isConnected = false;
 
-    public static void connect(){
+    public static void connect() {
         String path = "jdbc:sqlite:" + CommonConfig.path;
         connection = null;
 
@@ -46,7 +50,7 @@ public class Database {
         }
     }
 
-    public static void insert(){
+    public static void insert() {
         //TODO: Insert Query gelecek
         PreparedStatement ps = null;
 
@@ -67,23 +71,58 @@ public class Database {
 
             ps.execute();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public static void delete(){
+    public static void delete() {
         //TODO: Delete Query gelecek
     }
 
-    public static void update(){
+    public static void update() {
 
         //TODO: Update Query gelecek
 
     }
 
-    public static void show(){
+    public static List<Object> showSetkimMain() {
+        
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT * FROM Setkim_Main";
+
+        List<Object> table = new ArrayList<>();
+
+        if (connection != null) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    List<Object> row = new ArrayList<>();
+
+                    for (int i = 2; i < 13; i++) {
+                        row.add(resultSet.getObject(i));
+                    }
+
+                    table.add(row);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
+            }
+
+        }
+
+        return table;
+    }
+
+    public static void show() {
         PreparedStatement ps = null;
 
         //if(isConnected) sonradan eklenecek connection test
@@ -94,26 +133,26 @@ public class Database {
 
             ResultSet resultSet = ps.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 System.out.print("index: " + resultSet.getInt("index"));
                 System.out.print(",\t Name: " + resultSet.getString("Name"));
                 System.out.println();
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
-        }finally {
+        } finally {
             try {
                 ps.close();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
             }
         }
     }
 
-    public static void closeConnection(){
+    public static void closeConnection() {
         try {
-            if (connection != null){
+            if (connection != null) {
 
                 connection.close();
                 System.out.println("Connection closed.");
@@ -128,7 +167,7 @@ public class Database {
     }
 
     //Bağlantı sağlanıyor mu kontrolleri, silinecek
-    public static void main(String[] args){
+    public static void main(String[] args) {
         connect();
         insert();
         closeConnection();

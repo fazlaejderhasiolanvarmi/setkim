@@ -5,6 +5,8 @@ import com.setkim.ekleme.panels.siparis.SiparisController;
 import com.setkim.ekleme.panels.siparisdetay.SiparisDetayController;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EklemeController {
 
@@ -22,8 +24,33 @@ public class EklemeController {
         musteriController = new MusteriController();
         siparisController = new SiparisController();
         siparisDetayController = new SiparisDetayController();
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selection = (String) view.getComboBox().getSelectedItem();
 
+                view.getWrapperPanel().removeAll();
 
+                if (selection.equals("Müşteri Bilgisi")){
+
+                    view.getWrapperPanel().add(musteriController.getView());
+
+                } else if(selection.equals("Sipariş")) {
+
+                    view.getWrapperPanel().add(siparisController.getView());
+
+                } else if (selection.equals("Sipariş Detayı")) {
+
+                    view.getWrapperPanel().add(siparisDetayController.getView());
+
+                }
+
+                view.getWrapperPanel().revalidate();
+                view.getWrapperPanel().repaint();
+            }
+        };
+
+        view.getComboBox().addActionListener(actionListener);
 
     }
 
