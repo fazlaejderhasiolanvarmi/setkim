@@ -39,9 +39,7 @@ public class MainController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        Database.connect();
         List<Object> tableData = Database.showSetkimMain();
-        Database.closeConnection();
 
 
         for (int i = 0; i < tableData.size(); i++) {

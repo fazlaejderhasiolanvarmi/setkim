@@ -1,3 +1,6 @@
 /out
 /.idea
 setkim.iml
+
+Deployment/setkim.db
+com.setkim/com/setkim/config
