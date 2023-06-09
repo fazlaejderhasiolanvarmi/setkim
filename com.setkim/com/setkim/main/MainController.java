@@ -5,16 +5,15 @@ import com.setkim.util.Database;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.Vector;
 
 public class MainController {
-
-    //TODO: Buralar çok değişecek vaziyet alın
     private MainPanel view;
-
     private EklemeController eklemeController;
 
     public MainController() {
@@ -43,11 +42,25 @@ public class MainController {
 
         List<Object> tableData = Database.showSetkimMain();
 
-
         for (int i = 0; i < tableData.size(); i++) {
             model.addRow(new Vector<>((List<Object>) tableData.get(i)));
         }
 
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setDefaultEditor(Object.class, null);
+
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int selectedRow = table.getSelectedRow();
+
+                if (e.getClickCount() == 2 && selectedRow != -1) {
+                    //TODO: Seçili satırı değiştirme ve fatura oluşturma ekranı
+
+                    System.out.println("Edit ve fatura ekranı");
+                }
+            }
+        });
     }
 
     private void initListeners() {
@@ -56,6 +69,8 @@ public class MainController {
     }
 
     private void raporla() {
+        //TODO
+        System.out.println("Raporlama Paneli");
     }
 
     private void showEklemePanel() {

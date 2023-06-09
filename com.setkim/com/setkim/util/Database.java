@@ -16,7 +16,7 @@ public class Database {
                * Musteri
                * Siparis_Detay
      */
-
+    
     private static Connection connection;
 
     public static List<Object> showSetkimMain() {

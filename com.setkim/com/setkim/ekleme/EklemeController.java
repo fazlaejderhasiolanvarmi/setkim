@@ -11,11 +11,8 @@ import java.awt.event.ActionListener;
 public class EklemeController {
 
     private EklemePanel view;
-
     private MusteriController musteriController;
-
     private SiparisController siparisController;
-
     private SiparisDetayController siparisDetayController;
 
     public EklemeController() {
@@ -52,13 +49,13 @@ public class EklemeController {
 
                 view.getWrapperPanel().revalidate();
                 view.getWrapperPanel().repaint();
+
             }
         };
 
         view.getComboBox().addActionListener(actionListener);
 
     }
-
 
     public JPanel getView() {
         return view;

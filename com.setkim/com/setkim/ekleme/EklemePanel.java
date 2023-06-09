@@ -13,13 +13,13 @@ public class EklemePanel extends JPanel {
         gridBagLayout.columnWidths = new int[]{0};
         gridBagLayout.rowHeights = new int[]{0, 0};
         gridBagLayout.columnWeights = new double[]{1.0};
-        gridBagLayout.rowWeights = new double[]{0.1, 1.0};
+        gridBagLayout.rowWeights = new double[]{0.1, 0.9};
         setLayout(gridBagLayout);
 
         comboBox = new JComboBox();
         comboBox.setModel(new DefaultComboBoxModel(new String[]{"Müşteri Bilgisi", "Sipariş", "Sipariş Detayı"}));
         GridBagConstraints gbc_comboBox = new GridBagConstraints();
-        gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+        gbc_comboBox.insets = new Insets(5, 5, 5, 5);
         gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
         gbc_comboBox.gridx = 0;
         gbc_comboBox.gridy = 0;
