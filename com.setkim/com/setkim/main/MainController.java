@@ -1,6 +1,7 @@
 package com.setkim.main;
 
 import com.setkim.ekleme.EklemeController;
+import com.setkim.raporlama.secenek.RaporlamaSecenekController;
 import com.setkim.siparisdetay.SiparisDetayController;
 import com.setkim.util.Database;
 
@@ -16,6 +17,7 @@ import java.util.Vector;
 public class MainController {
     private MainPanel view;
     private EklemeController eklemeController;
+    private RaporlamaSecenekController raporlamaSecenekController;
     private JFrame frame;
 
     public MainController() {
@@ -25,6 +27,7 @@ public class MainController {
         initTable();
 
         eklemeController = new EklemeController();
+        raporlamaSecenekController = new RaporlamaSecenekController();
 
         frame = new JFrame();
         frame.setBounds(100, 200, 800, 600);
@@ -84,8 +87,12 @@ public class MainController {
     }
 
     private void raporla() {
-        //TODO
-        System.out.println("Raporlama Paneli");
+
+        JDialog raporlamaFrame = new JDialog(frame, "Raporlama", true);
+        raporlamaFrame.setBounds(100, 200, 300, 200);
+        raporlamaFrame.add(raporlamaSecenekController.getView());
+        raporlamaFrame.setVisible(true);
+        raporlamaFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     private void showEklemePanel() {
