@@ -6,6 +6,7 @@ import java.awt.*;
 public class SiparisDetayPanel extends JPanel {
     private JTextField textFieldMusteriAdi;
     private JTextField textFieldBelgeNumarasi;
+    private JTextArea textAreaAdres;
     private JTextField textFieldVergiDairesi;
     private JTextField textFieldVergiNo;
     private JTextField textFieldYetkili;
@@ -99,7 +100,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_lblAdres.gridy = 3;
         musteriPanel.add(lblAdres, gbc_lblAdres);
 
-        JTextArea textAreaAdres = new JTextArea();
+        textAreaAdres = new JTextArea();
         GridBagConstraints gbc_textAreaAdres = new GridBagConstraints();
         gbc_textAreaAdres.insets = new Insets(5, 5, 5, 5);
         gbc_textAreaAdres.fill = GridBagConstraints.BOTH;
@@ -468,6 +469,10 @@ public class SiparisDetayPanel extends JPanel {
 
     public JTextField getTextFieldBelgeNumarasi() {
         return textFieldBelgeNumarasi;
+    }
+
+    public JTextArea getTextAreaAdres() {
+        return textAreaAdres;
     }
 
     public JTextField getTextFieldVergiDairesi() {

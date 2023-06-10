@@ -1,6 +1,7 @@
 package com.setkim.main;
 
 import com.setkim.ekleme.EklemeController;
+import com.setkim.siparisdetay.SiparisDetayController;
 import com.setkim.util.Database;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.util.Vector;
 public class MainController {
     private MainPanel view;
     private EklemeController eklemeController;
+    private JFrame frame;
 
     public MainController() {
         view = new MainPanel();
@@ -24,7 +26,7 @@ public class MainController {
 
         eklemeController = new EklemeController();
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setBounds(100, 200, 800, 600);
         frame.add(view);
         frame.setVisible(true);
@@ -56,17 +58,21 @@ public class MainController {
 
                 if (e.getClickCount() == 2 && selectedRow != -1) {
 
-                    Database.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
+                    List<Object> musteriBilgisi = Database.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
 
-                    System.out.println(table.getModel().getValueAt(selectedRow, 1));
-                    System.out.println(table.getModel().getValueAt(selectedRow, 2));
-                    System.out.println(table.getModel().getValueAt(selectedRow, 3));
-                    System.out.println(table.getModel().getValueAt(selectedRow, 4));
+                    List<Object> siparisBilgisi = Database.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
+                            (double) table.getModel().getValueAt(selectedRow, 2),
+                            (String) table.getModel().getValueAt(selectedRow, 3),
+                            (String) table.getModel().getValueAt(selectedRow, 4)
+                    );
 
+                    SiparisDetayController siparisDetayController = new SiparisDetayController(musteriBilgisi, siparisBilgisi);
 
-//                    SiparisDetayController siparisDetayController = new SiparisDetayController();
-
-
+                    JDialog siparisDetayFrame = new JDialog(frame, "Sipariş Detay", true);
+                    siparisDetayFrame.setBounds(100, 200, 800, 600);
+                    siparisDetayFrame.add(siparisDetayController.getView());
+                    siparisDetayFrame.setVisible(true);
+                    siparisDetayFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }
             }
         });

@@ -165,7 +165,7 @@ public class Database {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "insert into Musteri (Musteri_Adı, Belge_No, Adres, Vergi_Dairesi, Vergi_No, Yetkili)" +
+        String query = "insert into Musteri (Musteri_Adi, Belge_No, Adres, Vergi_Dairesi, Vergi_No, Yetkili)" +
                 "values (?, ?, ?, ?, ?, ?)";
 
         if (connection != null) {
@@ -233,23 +233,30 @@ public class Database {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "SELECT * FROM Musteri WHERE Musteri_Adi = " + musteriName;
+        String query = "SELECT * FROM Musteri WHERE Musteri_Adi = \"" + musteriName + "\"";
 
         List<Object> musteriBilgisi = new ArrayList<>();
 
-        try {
+        if (connection != null) {
 
-            preparedStatement = connection.prepareStatement(query);
+            try {
+                preparedStatement = connection.prepareStatement(query);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            for (int i = 1; i < 8; i++) {
-                musteriBilgisi.add(resultSet.getObject(i));
+                for (int i = 2; i < 8; i++) {
+                    musteriBilgisi.add(resultSet.getObject(i));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            connect();
+            musteriBilgisi = getMusteriFromMusteriName(musteriName);
+            closeConnection();
         }
+
 
         return musteriBilgisi;
     }
@@ -258,16 +265,18 @@ public class Database {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "SELECT Musteri_Adı FROM Musteri WHERE Musteri_No = " + musteriNo;
+        String query = "SELECT Musteri_Adi FROM Musteri WHERE Musteri_No = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, musteriNo);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
-                return resultSet.getString("Musteri_Adı");
+                return resultSet.getString(1);
 
             }
 
@@ -278,4 +287,42 @@ public class Database {
         return "";
     }
 
+    public static List<Object> getSiparisBilgisiFromTabloBilgisi(String boyananMalzeme, double tutar, String alimTarihi, String teslimTarihi) {
+
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT * FROM SiparisBilgisi WHERE Boyanan_Malzeme = ? AND Tutar = ? AND AlimTarihi = ? AND TeslimTarihi = ?";
+
+        List<Object> siparisBilgisi = new ArrayList<>();
+
+        if (connection != null) {
+
+            try {
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1, boyananMalzeme);
+                preparedStatement.setDouble(2, tutar);
+                preparedStatement.setString(3, alimTarihi);
+                preparedStatement.setString(4, teslimTarihi);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                for (int i = 2; i < 19; i++) {
+                    siparisBilgisi.add(resultSet.getObject(i));
+                }
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
+        } else {
+            connect();
+            siparisBilgisi = getSiparisBilgisiFromTabloBilgisi(boyananMalzeme, tutar, alimTarihi, teslimTarihi);
+            closeConnection();
+        }
+
+
+        return siparisBilgisi;
+    }
 }
