@@ -40,7 +40,7 @@ public class MainController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> tableData = Database.showSetkimMain();
+        List<Object> tableData = Database.showMainTable();
 
         for (int i = 0; i < tableData.size(); i++) {
             model.addRow(new Vector<>((List<Object>) tableData.get(i)));

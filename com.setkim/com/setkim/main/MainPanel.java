@@ -23,17 +23,11 @@ public class MainPanel extends JPanel {
 
         DefaultTableModel tableModel = new DefaultTableModel();
 
+        tableModel.addColumn("Müşteri Adı");
         tableModel.addColumn("Boyanan Malzeme");
-        tableModel.addColumn("Malzeme Cinsi");
-        tableModel.addColumn("Yüzey İşlem");
-        tableModel.addColumn("Renk Kodu");
-        tableModel.addColumn("Boya Miktarı");
-        tableModel.addColumn("İşçilik Süresi");
-        tableModel.addColumn("Boyanan Malzeme Miktarı");
-        tableModel.addColumn("Birimi");
-        tableModel.addColumn("Hat");
-        tableModel.addColumn("Boyama Fiyatı");
         tableModel.addColumn("Tutar");
+        tableModel.addColumn("Alım Tarihi");
+        tableModel.addColumn("Teslim Tarihi");
 
         table = new JTable(tableModel);
 

@@ -12,25 +12,24 @@ import java.util.List;
 public class Database {
 
     /*
-    DB Tables: * Setkim_Main
-               * Musteri
-               * Siparis_Detay
+    DB Tables: * Musteri
+               * Siparis
      */
 
     private static Connection connection;
 
-    public static List<Object> showSetkimMain() {
+    public static List<Object> showMainTable() {
 
         PreparedStatement preparedStatement = null;
 
         //TODO: Burdaki panelde değişiklik yapılacak Müşteri Bilgileri de bu panelde gösterilecek
 
         /*
-        MusteriAdi
-        BoyananMalzeme
-        Tutar
-        AlimTarihi
-        TeslimTarihi
+        MusteriAdi ++
+        BoyananMalzeme 2
+        Tutar 12
+        AlimTarihi 14
+        TeslimTarihi 15
          */
 
         String query = "SELECT * FROM SiparisBilgisi";
@@ -48,6 +47,28 @@ public class Database {
                 while (resultSet.next()) {
                     List<Object> row = new ArrayList<>();
 
+                    int musteriNo = (int) resultSet.getObject("MusteriNo");
+
+                    String musteriAdi = getMusteriAdiFromMusteriNo(musteriNo);
+
+                    row.add(musteriAdi);
+
+                    String boyananMalzeme = (String) resultSet.getObject(2);
+
+                    row.add(boyananMalzeme);
+
+                    double tutar = (double) resultSet.getObject(12);
+
+                    row.add(tutar);
+
+                    String alimTarihi = (String) resultSet.getObject(14);
+
+                    row.add(alimTarihi);
+
+                    String teslimTarihi = (String) resultSet.getObject(15);
+
+                    row.add(teslimTarihi);
+
                     for (int i = 2; i < 13; i++) {
                         row.add(resultSet.getObject(i));
                     }
@@ -61,7 +82,7 @@ public class Database {
 
         } else {
             connect();
-            table = showSetkimMain();
+            table = showMainTable();
             closeConnection();
         }
 
@@ -209,6 +230,30 @@ public class Database {
             e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
 
         }
+    }
+
+    private static String getMusteriAdiFromMusteriNo(int musteriNo) {
+
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT Musteri_Adı FROM Musteri WHERE Musteri_No = " + musteriNo;
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                return resultSet.getString("Musteri_Adı");
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
 }
