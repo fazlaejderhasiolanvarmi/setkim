@@ -16,14 +16,24 @@ public class Database {
                * Musteri
                * Siparis_Detay
      */
-    
+
     private static Connection connection;
 
     public static List<Object> showSetkimMain() {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "SELECT * FROM Setkim_Main";
+        //TODO: Burdaki panelde değişiklik yapılacak Müşteri Bilgileri de bu panelde gösterilecek
+
+        /*
+        MusteriAdi
+        BoyananMalzeme
+        Tutar
+        AlimTarihi
+        TeslimTarihi
+         */
+
+        String query = "SELECT * FROM SiparisBilgisi";
 
         List<Object> table = new ArrayList<>();
 

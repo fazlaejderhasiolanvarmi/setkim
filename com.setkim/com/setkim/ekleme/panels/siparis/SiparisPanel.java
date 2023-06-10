@@ -15,15 +15,20 @@ public class SiparisPanel extends JPanel {
     private JTextField hat;
     private JTextField boyamaFiyati;
     private JTextField tutar;
+    private JTextField textFieldMalzemeAlimTarihi;
+    private JTextField textFieldTeslimTarihi;
+    private JTextField textFieldIrsaliyeNo;
+    private JTextField textFieldFaturaNo;
+    private JTextField textFieldVade;
 
     private JButton btnEkle;
 
     public SiparisPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-        gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        gridBagLayout.columnWeights = new double[]{0.5, 1.0, 0.0, Double.MIN_VALUE};
-        gridBagLayout.rowWeights = new double[]{0.83, 0.83, 0.83, 0.83, 0.83, 0.83, 0.83, 0.83, 0.83, 0.83, 0.83, 0.83, Double.MIN_VALUE};
+        gridBagLayout.columnWidths = new int[]{0, 0};
+        gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        gridBagLayout.columnWeights = new double[]{0.4, 0.6};
+        gridBagLayout.rowWeights = new double[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         setLayout(gridBagLayout);
 
         JLabel lblNewLabel = new JLabel("Boyanan Malzeme");
@@ -201,6 +206,86 @@ public class SiparisPanel extends JPanel {
         gbc_textField_10.gridy = 10;
         add(tutar, gbc_textField_10);
         tutar.setColumns(10);
+
+        JLabel lblMalzAlTar = new JLabel("Malzeme Alım Tarihi");
+        GridBagConstraints gbc_lblMalzAlTar = new GridBagConstraints();
+        gbc_lblMalzAlTar.insets = new Insets(0, 0, 5, 5);
+        gbc_lblMalzAlTar.gridx = 0;
+        gbc_lblMalzAlTar.gridy = 11;
+        add(lblMalzAlTar, gbc_lblMalzAlTar);
+
+        textFieldMalzemeAlimTarihi = new JTextField();
+        GridBagConstraints gbc_textFieldMalzemeAlimTarihi = new GridBagConstraints();
+        gbc_textFieldMalzemeAlimTarihi.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldMalzemeAlimTarihi.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldMalzemeAlimTarihi.gridx = 1;
+        gbc_textFieldMalzemeAlimTarihi.gridy = 11;
+        add(textFieldMalzemeAlimTarihi, gbc_textFieldMalzemeAlimTarihi);
+        textFieldMalzemeAlimTarihi.setColumns(10);
+
+        JLabel lblTeslimTarihi = new JLabel("Teslim Tarihi");
+        GridBagConstraints gbc_lblTeslimTarihi = new GridBagConstraints();
+        gbc_lblTeslimTarihi.insets = new Insets(0, 0, 5, 5);
+        gbc_lblTeslimTarihi.gridx = 0;
+        gbc_lblTeslimTarihi.gridy = 12;
+        add(lblTeslimTarihi, gbc_lblTeslimTarihi);
+
+        textFieldTeslimTarihi = new JTextField();
+        GridBagConstraints gbc_textFieldTeslimTarihi = new GridBagConstraints();
+        gbc_textFieldTeslimTarihi.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldTeslimTarihi.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldTeslimTarihi.gridx = 1;
+        gbc_textFieldTeslimTarihi.gridy = 12;
+        add(textFieldTeslimTarihi, gbc_textFieldTeslimTarihi);
+        textFieldTeslimTarihi.setColumns(10);
+
+        JLabel lblIrsaliye = new JLabel("İrsaliye No");
+        GridBagConstraints gbc_lblIrsaliye = new GridBagConstraints();
+        gbc_lblIrsaliye.insets = new Insets(0, 0, 5, 5);
+        gbc_lblIrsaliye.gridx = 0;
+        gbc_lblIrsaliye.gridy = 13;
+        add(lblIrsaliye, gbc_lblIrsaliye);
+
+        textFieldIrsaliyeNo = new JTextField();
+        GridBagConstraints gbc_textFieldIrsaliyeNo = new GridBagConstraints();
+        gbc_textFieldIrsaliyeNo.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldIrsaliyeNo.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldIrsaliyeNo.gridx = 1;
+        gbc_textFieldIrsaliyeNo.gridy = 13;
+        add(textFieldIrsaliyeNo, gbc_textFieldIrsaliyeNo);
+        textFieldIrsaliyeNo.setColumns(10);
+
+        JLabel lblFatura = new JLabel("Fatura No");
+        GridBagConstraints gbc_lblFatura = new GridBagConstraints();
+        gbc_lblFatura.insets = new Insets(0, 0, 5, 5);
+        gbc_lblFatura.gridx = 0;
+        gbc_lblFatura.gridy = 14;
+        add(lblNewLabel_3, gbc_lblFatura);
+
+        textFieldFaturaNo = new JTextField();
+        GridBagConstraints gbc_textFieldFaturaNo = new GridBagConstraints();
+        gbc_textFieldFaturaNo.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldFaturaNo.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldFaturaNo.gridx = 1;
+        gbc_textFieldFaturaNo.gridy = 14;
+        add(textFieldFaturaNo, gbc_textFieldFaturaNo);
+        textFieldFaturaNo.setColumns(10);
+
+        JLabel lblVade = new JLabel("Vade");
+        GridBagConstraints gbc_lblVade = new GridBagConstraints();
+        gbc_lblVade.insets = new Insets(0, 0, 5, 5);
+        gbc_lblVade.gridx = 0;
+        gbc_lblVade.gridy = 15;
+        add(lblVade, gbc_lblVade);
+
+        textFieldVade = new JTextField();
+        GridBagConstraints gbc_textFieldVade = new GridBagConstraints();
+        gbc_textFieldVade.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldVade.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldVade.gridx = 1;
+        gbc_textFieldVade.gridy = 15;
+        add(textFieldVade, gbc_textFieldVade);
+        textFieldVade.setColumns(10);
 
         btnEkle = new JButton("Ekle");
         GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
