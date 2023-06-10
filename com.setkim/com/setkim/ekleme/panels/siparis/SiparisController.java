@@ -9,20 +9,25 @@ public class SiparisController {
     public SiparisController() {
         view = new SiparisPanel();
 
-        view.getBtnEkle().addActionListener(e -> {
+        view.getEkleBtn().addActionListener(e -> {
 
-            Database.insertToSetkimMain(
+            Database.insertToSiparisBilgisi(
                     view.getBoyananMalzeme().getText(),
                     view.getMalzemeCinsi().getText(),
                     view.getYuzeyIslem().getText(),
                     view.getRenkKodu().getText(),
-                    Double.valueOf(view.getBoyaMiktari().getText()),
-                    Double.valueOf(view.getIscilikSuresi().getText()),
-                    Double.valueOf(view.getBoyananMalzemeMiktari().getText()),
+                    Double.parseDouble(view.getBoyaMiktari().getText()),
+                    Double.parseDouble(view.getIscilikSuresi().getText()),
+                    Double.parseDouble(view.getBoyananMalzemeMiktari().getText()),
                     view.getBirim().getText(),
-                    Integer.valueOf(view.getHat().getText()),
-                    Double.valueOf(view.getBoyamaFiyati().getText()),
-                    Double.valueOf(view.getTutar().getText())
+                    Integer.parseInt(view.getHat().getText()),
+                    Double.parseDouble(view.getBoyamaFiyati().getText()),
+                    Double.parseDouble(view.getTutar().getText()),
+                    view.getMalzemeAlimTarihi().getText(),
+                    view.getTeslimTarihi().getText(),
+                    view.getIrsaliyeNo().getText(),
+                    view.getFaturaNo().getText(),
+                    Integer.parseInt(view.getVade().getText())
             );
             
         });

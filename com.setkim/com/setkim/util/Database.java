@@ -89,23 +89,34 @@ public class Database {
         return table;
     }
 
-    public static void insertToSiparisDetay(String alimTarihi, String teslimTarihi, String irsaliyeNo, String faturaNo, int vade) {
+    public static void insertToSiparisBilgisi(String boyananMalzeme, String malzemeCinsi, String yuzeyIslem, String renkKodu, double boyaMiktari, double iscilikSuresi, double boyananMalzemeMiktari, String birim, int hat, double boyamaFiyati, double tutar, String alimTarihi, String teslimTarihi, String irsaliyeNo, String faturaNo, int vade) {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "INSERT INTO Siparis_Detay (Alim_Tarihi, Teslim_Tarihi, Irsaliye_No, Fatura_No, Vade)" +
-                "VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO SiparisBilgisi (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar, AlimTarihi, TeslimTarihi, IrsaliyeNo, FaturaNo, Vade)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if (connection != null) {
 
             try {
                 preparedStatement = connection.prepareStatement(query);
 
-                preparedStatement.setString(1, alimTarihi);
-                preparedStatement.setString(2, teslimTarihi);
-                preparedStatement.setString(3, irsaliyeNo);
-                preparedStatement.setString(4, faturaNo);
-                preparedStatement.setInt(5, vade);
+                preparedStatement.setString(1, boyananMalzeme);
+                preparedStatement.setString(2, malzemeCinsi);
+                preparedStatement.setString(3, yuzeyIslem);
+                preparedStatement.setString(4, renkKodu);
+                preparedStatement.setDouble(5, boyaMiktari);
+                preparedStatement.setDouble(6, iscilikSuresi);
+                preparedStatement.setDouble(7, boyananMalzemeMiktari);
+                preparedStatement.setString(8, birim);
+                preparedStatement.setInt(9, hat);
+                preparedStatement.setDouble(10, boyamaFiyati);
+                preparedStatement.setDouble(11, tutar);
+                preparedStatement.setString(12, alimTarihi);
+                preparedStatement.setString(13, teslimTarihi);
+                preparedStatement.setString(14, irsaliyeNo);
+                preparedStatement.setString(15, faturaNo);
+                preparedStatement.setInt(16, vade);
 
                 preparedStatement.executeUpdate();
 
@@ -115,7 +126,7 @@ public class Database {
 
         } else {
             connect();
-            insertToSiparisDetay(alimTarihi, teslimTarihi, irsaliyeNo, faturaNo, vade);
+            insertToSiparisBilgisi(boyananMalzeme, malzemeCinsi, yuzeyIslem, renkKodu, boyaMiktari, iscilikSuresi, boyananMalzemeMiktari, birim, hat, boyamaFiyati, tutar, alimTarihi, teslimTarihi, irsaliyeNo, faturaNo, vade);
             closeConnection();
         }
 
@@ -125,7 +136,7 @@ public class Database {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "insert into Setkim_Main (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar)" +
+        String query = "insert into SiparisBilgisi (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar)" +
                 "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if (connection != null) {
