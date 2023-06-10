@@ -55,9 +55,18 @@ public class MainController {
                 int selectedRow = table.getSelectedRow();
 
                 if (e.getClickCount() == 2 && selectedRow != -1) {
-                    //TODO: Seçili satırı değiştirme ve fatura oluşturma ekranı
 
-                    System.out.println("Edit ve fatura ekranı");
+                    Database.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
+
+                    System.out.println(table.getModel().getValueAt(selectedRow, 1));
+                    System.out.println(table.getModel().getValueAt(selectedRow, 2));
+                    System.out.println(table.getModel().getValueAt(selectedRow, 3));
+                    System.out.println(table.getModel().getValueAt(selectedRow, 4));
+
+
+//                    SiparisDetayController siparisDetayController = new SiparisDetayController();
+
+
                 }
             }
         });

@@ -22,16 +22,6 @@ public class Database {
 
         PreparedStatement preparedStatement = null;
 
-        //TODO: Burdaki panelde değişiklik yapılacak Müşteri Bilgileri de bu panelde gösterilecek
-
-        /*
-        MusteriAdi ++
-        BoyananMalzeme 2
-        Tutar 12
-        AlimTarihi 14
-        TeslimTarihi 15
-         */
-
         String query = "SELECT * FROM SiparisBilgisi";
 
         List<Object> table = new ArrayList<>();
@@ -68,10 +58,6 @@ public class Database {
                     String teslimTarihi = (String) resultSet.getObject(15);
 
                     row.add(teslimTarihi);
-
-                    for (int i = 2; i < 13; i++) {
-                        row.add(resultSet.getObject(i));
-                    }
 
                     table.add(row);
                 }
@@ -241,6 +227,31 @@ public class Database {
             e.printStackTrace(); //Beğenmeyen ağlayarak günlüğüne yazabilir
 
         }
+    }
+
+    public static List<Object> getMusteriFromMusteriName(String musteriName) {
+
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT * FROM Musteri WHERE Musteri_Adi = " + musteriName;
+
+        List<Object> musteriBilgisi = new ArrayList<>();
+
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            for (int i = 1; i < 8; i++) {
+                musteriBilgisi.add(resultSet.getObject(i));
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return musteriBilgisi;
     }
 
     private static String getMusteriAdiFromMusteriNo(int musteriNo) {
