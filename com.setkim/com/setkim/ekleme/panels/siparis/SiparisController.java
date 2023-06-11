@@ -2,6 +2,8 @@ package com.setkim.ekleme.panels.siparis;
 
 import com.setkim.util.Database;
 
+import javax.swing.*;
+
 public class SiparisController {
 
     private SiparisPanel view;
@@ -29,7 +31,13 @@ public class SiparisController {
                     view.getFaturaNo().getText(),
                     Integer.parseInt(view.getVade().getText())
             );
-            
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Bilgiler eklendi!",
+                    "Başarılı",
+                    JOptionPane.INFORMATION_MESSAGE);
+
         });
 
     }

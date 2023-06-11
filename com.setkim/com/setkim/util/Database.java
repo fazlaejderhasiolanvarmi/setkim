@@ -325,4 +325,39 @@ public class Database {
 
         return siparisBilgisi;
     }
+
+    public static List<String> getMusteriList() {
+
+        List<String> musteriList = new ArrayList<>();
+
+        String query = "SELECT Musteri_Adi FROM Musteri";
+
+        PreparedStatement preparedStatement = null;
+
+        if (connection != null) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    musteriList.add(resultSet.getString(1));
+                }
+
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
+        } else {
+            connect();
+            musteriList = getMusteriList();
+            closeConnection();
+        }
+
+        return musteriList;
+    }
 }
