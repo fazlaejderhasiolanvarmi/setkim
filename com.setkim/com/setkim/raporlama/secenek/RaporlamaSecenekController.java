@@ -25,7 +25,7 @@ public class RaporlamaSecenekController {
                 musteriFrame.add(musteriRaporlamaController.getView());
                 musteriFrame.setBounds(100, 100, 400, 600);
                 musteriFrame.setVisible(true);
-                musteriFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                musteriFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             } else {
                 //TODO: Tarih ekranıyla bağlantı

@@ -75,7 +75,7 @@ public class MainController {
                     siparisDetayFrame.setBounds(100, 200, 800, 600);
                     siparisDetayFrame.add(siparisDetayController.getView());
                     siparisDetayFrame.setVisible(true);
-                    siparisDetayFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 }
             }
         });
@@ -92,7 +92,7 @@ public class MainController {
         raporlamaFrame.setBounds(100, 200, 300, 200);
         raporlamaFrame.add(raporlamaSecenekController.getView());
         raporlamaFrame.setVisible(true);
-        raporlamaFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        raporlamaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private void showEklemePanel() {
