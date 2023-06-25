@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class MusteriRaporlamaPanel extends JPanel {
     private JTable table;
-    private JComboBox musteriDropdown;
+    private JComboBox<MusteriNoVeAdPair> musteriDropdown;
     private JButton raporlaBtn;
     public MusteriRaporlamaPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();

@@ -2,6 +2,7 @@ package com.setkim.raporlama.secenek;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class RaporlamaSecenekPanel extends JPanel {
     JRadioButton rdbtnMusteri;
@@ -59,5 +60,11 @@ public class RaporlamaSecenekPanel extends JPanel {
 
     public JButton getBtnRaporla() {
         return btnRaporla;
+    }
+
+    public void raporlamaPopupClose(ActionEvent e) {
+        JComponent comp = (JComponent) e.getSource();
+        Window win = SwingUtilities.getWindowAncestor(comp);
+        win.dispose();
     }
 }

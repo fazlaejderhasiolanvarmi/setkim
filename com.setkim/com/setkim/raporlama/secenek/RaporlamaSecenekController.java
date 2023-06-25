@@ -3,6 +3,7 @@ package com.setkim.raporlama.secenek;
 import com.setkim.raporlama.musteri.MusteriRaporlamaController;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class RaporlamaSecenekController {
 
@@ -22,10 +23,14 @@ public class RaporlamaSecenekController {
             if (view.rdbtnMusteri.isSelected()) {
 
                 JFrame musteriFrame = new JFrame();
+              //  musteriFrame.setAlwaysOnTop(true);
                 musteriFrame.add(musteriRaporlamaController.getView());
                 musteriFrame.setBounds(100, 100, 400, 600);
                 musteriFrame.setVisible(true);
                 musteriFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                view.raporlamaPopupClose(e);
+
 
             } else {
                 //TODO: Tarih ekranıyla bağlantı

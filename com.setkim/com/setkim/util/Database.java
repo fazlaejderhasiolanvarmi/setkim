@@ -1,6 +1,7 @@
 package com.setkim.util;
 
 import com.setkim.config.CommonConfig;
+import com.setkim.raporlama.musteri.MusteriNoVeAdPair;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -326,11 +327,11 @@ public class Database {
         return siparisBilgisi;
     }
 
-    public static List<String> getMusteriList() {
+    public static List<MusteriNoVeAdPair> getMusteriList() {
 
-        List<String> musteriList = new ArrayList<>();
+        List<MusteriNoVeAdPair> musteriList = new ArrayList<>();
 
-        String query = "SELECT Musteri_Adi FROM Musteri";
+        String query = "SELECT Musteri_No, Musteri_Adi  FROM Musteri";
 
         PreparedStatement preparedStatement = null;
 
@@ -339,12 +340,16 @@ public class Database {
             try {
 
                 preparedStatement = connection.prepareStatement(query);
-
                 ResultSet resultSet = preparedStatement.executeQuery();
-
                 while (resultSet.next()) {
-                    musteriList.add(resultSet.getString(1));
+                    MusteriNoVeAdPair noVeAdPair = new MusteriNoVeAdPair();
+                    noVeAdPair.setMusteriNo(resultSet.getInt(1));
+                    noVeAdPair.setMusteriAdi(resultSet.getString(2));
+                    musteriList.add(noVeAdPair);
+
                 }
+
+
 
 
             } catch (Exception e) {
@@ -360,4 +365,41 @@ public class Database {
 
         return musteriList;
     }
+
+    public static List<Object> getBilgilerFromMusteri(int Musteri_No){
+        PreparedStatement preparedStatement = null;
+
+        String query = "SELECT * FROM SiparisBilgisi WHERE MusteriNo = ?";
+
+        List<Object> siparisBilgisi = new ArrayList<>();
+        if (connection != null) {
+
+            try {
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setInt(1, Musteri_No);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                for (int i = 1; i < 3; i++) {
+                    siparisBilgisi.add(resultSet.getObject(i));
+                }
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
+        } else {
+            connect();
+            siparisBilgisi = getBilgilerFromMusteri(Musteri_No);
+            closeConnection();
+        }
+
+
+        return siparisBilgisi;
+
+    }
+
+
 }
