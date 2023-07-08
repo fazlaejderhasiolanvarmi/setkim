@@ -48,6 +48,8 @@ public class RaporlamaSecenekPanel extends JPanel {
         ButtonGroup btnGroup = new ButtonGroup();
         btnGroup.add(rdbtnMusteri);
         btnGroup.add(rdbtnTarih);
+
+        rdbtnMusteri.setSelected(true);
     }
 
     public JRadioButton getRdbtnMusteri() {

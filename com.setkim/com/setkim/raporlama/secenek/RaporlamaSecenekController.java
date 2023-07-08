@@ -23,14 +23,13 @@ public class RaporlamaSecenekController {
             if (view.rdbtnMusteri.isSelected()) {
 
                 JFrame musteriFrame = new JFrame();
-              //  musteriFrame.setAlwaysOnTop(true);
+                musteriFrame.toFront();
                 musteriFrame.add(musteriRaporlamaController.getView());
-                musteriFrame.setBounds(100, 100, 400, 600);
+                musteriFrame.setBounds(100, 100, 1200, 800);
                 musteriFrame.setVisible(true);
                 musteriFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                 view.raporlamaPopupClose(e);
-
 
             } else {
                 //TODO: Tarih ekranıyla bağlantı

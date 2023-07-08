@@ -349,9 +349,6 @@ public class Database {
 
                 }
 
-
-
-
             } catch (Exception e) {
 
                 e.printStackTrace();
@@ -367,7 +364,7 @@ public class Database {
     }
 
     public static List<Object> getBilgilerFromMusteri(int Musteri_No){
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
 
         String query = "SELECT * FROM SiparisBilgisi WHERE MusteriNo = ?";
 
@@ -381,9 +378,20 @@ public class Database {
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                for (int i = 1; i < 3; i++) {
-                    siparisBilgisi.add(resultSet.getObject(i));
+                while(resultSet.next()){
+
+                    List<Object> tableRow = new ArrayList<>();
+                    for (int i = 2; i < 19; i++) {
+                        if (i == 13){
+                            continue;
+                        }
+
+                        tableRow.add(resultSet.getObject(i));
+                    }
+
+                    siparisBilgisi.add(tableRow);
                 }
+
 
             } catch (Exception e) {
 

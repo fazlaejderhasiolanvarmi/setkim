@@ -1,21 +1,17 @@
 package com.setkim.raporlama.musteri;
 
-import com.setkim.siparisdetay.SiparisDetayController;
 import com.setkim.util.Database;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
-public class MusteriRaporlamaController extends MusteriRaporlamaPanel {
+public class MusteriRaporlamaController {
 
     private List<MusteriNoVeAdPair> musteriList;
     private MusteriRaporlamaPanel view;
-    private JFrame frame;
    //inittable doldurulacak müsteriye göre
 
 
@@ -28,8 +24,7 @@ public class MusteriRaporlamaController extends MusteriRaporlamaPanel {
     private void initComboBox() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-
-         musteriList = Database.getMusteriList();
+        musteriList = Database.getMusteriList();
 
         for (MusteriNoVeAdPair musteri : musteriList) {
             model.addElement(musteri);
@@ -56,13 +51,31 @@ public class MusteriRaporlamaController extends MusteriRaporlamaPanel {
 
     private void initListener(){
         view.getRaporlaBtn().addActionListener(e -> {
-          int musteriNo =  ((MusteriNoVeAdPair)view.getMusteriDropdown().getSelectedItem()).getMusteriNo();
-            List<Object> bilgiler = Database.getBilgilerFromMusteri(musteriNo);
-          //  initTable();
+
+            int musteriNo =  ((MusteriNoVeAdPair)view.getMusteriDropdown().getSelectedItem()).getMusteriNo();
+
+            DefaultTableModel model = (DefaultTableModel) view.getTable().getModel();
+            model.setRowCount(0);
+
+            updateTable(musteriNo);
 
         });
     }
 
+    public void updateTable(int musteriNo){
+
+        JTable table = view.getTable();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        List<Object> bilgiler = Database.getBilgilerFromMusteri(musteriNo);
+
+        for (int i = 0; i < bilgiler.size(); i++) {
+            model.addRow(new Vector<>((List<Object>) bilgiler.get(i)));
+        }
+
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setDefaultEditor(Object.class, null);
+    }
 
     public MusteriRaporlamaPanel getView() {
         return view;
