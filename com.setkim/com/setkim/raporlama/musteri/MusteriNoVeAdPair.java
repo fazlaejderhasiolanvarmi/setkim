@@ -4,7 +4,7 @@ public class MusteriNoVeAdPair {
     private int musteriNo;
     private String musteriAdi;
 
-    public MusteriNoVeAdPair(){
+    public MusteriNoVeAdPair() {
 
     }
 

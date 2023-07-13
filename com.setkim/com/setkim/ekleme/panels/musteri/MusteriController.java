@@ -2,6 +2,8 @@ package com.setkim.ekleme.panels.musteri;
 
 import com.setkim.util.Database;
 
+import javax.swing.*;
+
 public class MusteriController {
 
     private MusteriPanel view;
@@ -18,6 +20,12 @@ public class MusteriController {
                     view.getTextFieldVergiNo().getText(),
                     view.getTextFieldYetkili().getText()
             );
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Bilgiler eklendi!",
+                    "Başarılı",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
 
     }

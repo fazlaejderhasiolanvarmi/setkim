@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SiparisPanel extends JPanel {
+
     private JTextField boyananMalzeme;
     private JTextField malzemeCinsi;
     private JTextField yuzeyIslem;
@@ -21,20 +22,38 @@ public class SiparisPanel extends JPanel {
     private JTextField faturaNo;
     private JTextField vade;
     private JButton ekleBtn;
+    private JComboBox musteriComboBox;
+
     public SiparisPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0, 0, 0};
-        gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
         setLayout(gridBagLayout);
+
+        JLabel lblNewLabel_16 = new JLabel("Müşteri");
+        GridBagConstraints gbc_lblNewLabel_16 = new GridBagConstraints();
+        gbc_lblNewLabel_16.anchor = GridBagConstraints.EAST;
+        gbc_lblNewLabel_16.insets = new Insets(0, 0, 5, 5);
+        gbc_lblNewLabel_16.gridx = 0;
+        gbc_lblNewLabel_16.gridy = 0;
+        add(lblNewLabel_16, gbc_lblNewLabel_16);
+
+        musteriComboBox = new JComboBox();
+        GridBagConstraints gbc_musteriComboBox = new GridBagConstraints();
+        gbc_musteriComboBox.insets = new Insets(0, 0, 5, 0);
+        gbc_musteriComboBox.fill = GridBagConstraints.HORIZONTAL;
+        gbc_musteriComboBox.gridx = 1;
+        gbc_musteriComboBox.gridy = 0;
+        add(musteriComboBox, gbc_musteriComboBox);
 
         JLabel lblNewLabel = new JLabel("Boyanan Malzeme");
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
         gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel.gridx = 0;
-        gbc_lblNewLabel.gridy = 0;
+        gbc_lblNewLabel.gridy = 2;
         add(lblNewLabel, gbc_lblNewLabel);
 
         boyananMalzeme = new JTextField();
@@ -42,7 +61,7 @@ public class SiparisPanel extends JPanel {
         gbc_boyananMalzeme.insets = new Insets(0, 0, 5, 0);
         gbc_boyananMalzeme.fill = GridBagConstraints.HORIZONTAL;
         gbc_boyananMalzeme.gridx = 1;
-        gbc_boyananMalzeme.gridy = 0;
+        gbc_boyananMalzeme.gridy = 2;
         add(boyananMalzeme, gbc_boyananMalzeme);
         boyananMalzeme.setColumns(10);
 
@@ -51,7 +70,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_1.gridx = 0;
-        gbc_lblNewLabel_1.gridy = 1;
+        gbc_lblNewLabel_1.gridy = 3;
         add(lblNewLabel_1, gbc_lblNewLabel_1);
 
         malzemeCinsi = new JTextField();
@@ -59,7 +78,7 @@ public class SiparisPanel extends JPanel {
         gbc_malzemeCinsi.insets = new Insets(0, 0, 5, 0);
         gbc_malzemeCinsi.fill = GridBagConstraints.HORIZONTAL;
         gbc_malzemeCinsi.gridx = 1;
-        gbc_malzemeCinsi.gridy = 1;
+        gbc_malzemeCinsi.gridy = 3;
         add(malzemeCinsi, gbc_malzemeCinsi);
         malzemeCinsi.setColumns(10);
 
@@ -68,7 +87,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_2.gridx = 0;
-        gbc_lblNewLabel_2.gridy = 2;
+        gbc_lblNewLabel_2.gridy = 4;
         add(lblNewLabel_2, gbc_lblNewLabel_2);
 
         yuzeyIslem = new JTextField();
@@ -76,7 +95,7 @@ public class SiparisPanel extends JPanel {
         gbc_yuzeyIslem.insets = new Insets(0, 0, 5, 0);
         gbc_yuzeyIslem.fill = GridBagConstraints.HORIZONTAL;
         gbc_yuzeyIslem.gridx = 1;
-        gbc_yuzeyIslem.gridy = 2;
+        gbc_yuzeyIslem.gridy = 4;
         add(yuzeyIslem, gbc_yuzeyIslem);
         yuzeyIslem.setColumns(10);
 
@@ -85,7 +104,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_3.gridx = 0;
-        gbc_lblNewLabel_3.gridy = 3;
+        gbc_lblNewLabel_3.gridy = 5;
         add(lblNewLabel_3, gbc_lblNewLabel_3);
 
         renkKodu = new JTextField();
@@ -93,7 +112,7 @@ public class SiparisPanel extends JPanel {
         gbc_renkKodu.insets = new Insets(0, 0, 5, 0);
         gbc_renkKodu.fill = GridBagConstraints.HORIZONTAL;
         gbc_renkKodu.gridx = 1;
-        gbc_renkKodu.gridy = 3;
+        gbc_renkKodu.gridy = 5;
         add(renkKodu, gbc_renkKodu);
         renkKodu.setColumns(10);
 
@@ -102,7 +121,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_4.gridx = 0;
-        gbc_lblNewLabel_4.gridy = 4;
+        gbc_lblNewLabel_4.gridy = 6;
         add(lblNewLabel_4, gbc_lblNewLabel_4);
 
         boyaMiktari = new JTextField();
@@ -110,7 +129,7 @@ public class SiparisPanel extends JPanel {
         gbc_boyaMiktari.insets = new Insets(0, 0, 5, 0);
         gbc_boyaMiktari.fill = GridBagConstraints.HORIZONTAL;
         gbc_boyaMiktari.gridx = 1;
-        gbc_boyaMiktari.gridy = 4;
+        gbc_boyaMiktari.gridy = 6;
         add(boyaMiktari, gbc_boyaMiktari);
         boyaMiktari.setColumns(10);
 
@@ -119,7 +138,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_5.gridx = 0;
-        gbc_lblNewLabel_5.gridy = 5;
+        gbc_lblNewLabel_5.gridy = 7;
         add(lblNewLabel_5, gbc_lblNewLabel_5);
 
         iscilikSuresi = new JTextField();
@@ -127,7 +146,7 @@ public class SiparisPanel extends JPanel {
         gbc_iscilikSuresi.insets = new Insets(0, 0, 5, 0);
         gbc_iscilikSuresi.fill = GridBagConstraints.HORIZONTAL;
         gbc_iscilikSuresi.gridx = 1;
-        gbc_iscilikSuresi.gridy = 5;
+        gbc_iscilikSuresi.gridy = 7;
         add(iscilikSuresi, gbc_iscilikSuresi);
         iscilikSuresi.setColumns(10);
 
@@ -136,7 +155,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_6.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_6.gridx = 0;
-        gbc_lblNewLabel_6.gridy = 6;
+        gbc_lblNewLabel_6.gridy = 8;
         add(lblNewLabel_6, gbc_lblNewLabel_6);
 
         boyananMalzemeMiktari = new JTextField();
@@ -144,7 +163,7 @@ public class SiparisPanel extends JPanel {
         gbc_boyananMalzemeMiktari.insets = new Insets(0, 0, 5, 0);
         gbc_boyananMalzemeMiktari.fill = GridBagConstraints.HORIZONTAL;
         gbc_boyananMalzemeMiktari.gridx = 1;
-        gbc_boyananMalzemeMiktari.gridy = 6;
+        gbc_boyananMalzemeMiktari.gridy = 8;
         add(boyananMalzemeMiktari, gbc_boyananMalzemeMiktari);
         boyananMalzemeMiktari.setColumns(10);
 
@@ -153,7 +172,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_7.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_7.gridx = 0;
-        gbc_lblNewLabel_7.gridy = 7;
+        gbc_lblNewLabel_7.gridy = 9;
         add(lblNewLabel_7, gbc_lblNewLabel_7);
 
         birim = new JTextField();
@@ -161,7 +180,7 @@ public class SiparisPanel extends JPanel {
         gbc_birim.insets = new Insets(0, 0, 5, 0);
         gbc_birim.fill = GridBagConstraints.HORIZONTAL;
         gbc_birim.gridx = 1;
-        gbc_birim.gridy = 7;
+        gbc_birim.gridy = 9;
         add(birim, gbc_birim);
         birim.setColumns(10);
 
@@ -170,7 +189,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_8.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_8.gridx = 0;
-        gbc_lblNewLabel_8.gridy = 8;
+        gbc_lblNewLabel_8.gridy = 10;
         add(lblNewLabel_8, gbc_lblNewLabel_8);
 
         hat = new JTextField();
@@ -178,7 +197,7 @@ public class SiparisPanel extends JPanel {
         gbc_hat.insets = new Insets(0, 0, 5, 0);
         gbc_hat.fill = GridBagConstraints.HORIZONTAL;
         gbc_hat.gridx = 1;
-        gbc_hat.gridy = 8;
+        gbc_hat.gridy = 10;
         add(hat, gbc_hat);
         hat.setColumns(10);
 
@@ -187,7 +206,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_9.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_9.gridx = 0;
-        gbc_lblNewLabel_9.gridy = 9;
+        gbc_lblNewLabel_9.gridy = 11;
         add(lblNewLabel_9, gbc_lblNewLabel_9);
 
         boyamaFiyati = new JTextField();
@@ -195,7 +214,7 @@ public class SiparisPanel extends JPanel {
         gbc_boyamaFiyati.insets = new Insets(0, 0, 5, 0);
         gbc_boyamaFiyati.fill = GridBagConstraints.HORIZONTAL;
         gbc_boyamaFiyati.gridx = 1;
-        gbc_boyamaFiyati.gridy = 9;
+        gbc_boyamaFiyati.gridy = 11;
         add(boyamaFiyati, gbc_boyamaFiyati);
         boyamaFiyati.setColumns(10);
 
@@ -204,7 +223,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_10.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_10.gridx = 0;
-        gbc_lblNewLabel_10.gridy = 10;
+        gbc_lblNewLabel_10.gridy = 12;
         add(lblNewLabel_10, gbc_lblNewLabel_10);
 
         tutar = new JTextField();
@@ -212,7 +231,7 @@ public class SiparisPanel extends JPanel {
         gbc_tutar.insets = new Insets(0, 0, 5, 0);
         gbc_tutar.fill = GridBagConstraints.HORIZONTAL;
         gbc_tutar.gridx = 1;
-        gbc_tutar.gridy = 10;
+        gbc_tutar.gridy = 12;
         add(tutar, gbc_tutar);
         tutar.setColumns(10);
 
@@ -221,7 +240,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_11.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_11.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_11.gridx = 0;
-        gbc_lblNewLabel_11.gridy = 11;
+        gbc_lblNewLabel_11.gridy = 13;
         add(lblNewLabel_11, gbc_lblNewLabel_11);
 
         malzemeAlimTarihi = new JTextField();
@@ -229,7 +248,7 @@ public class SiparisPanel extends JPanel {
         gbc_malzemeAlimTarihi.insets = new Insets(0, 0, 5, 0);
         gbc_malzemeAlimTarihi.fill = GridBagConstraints.HORIZONTAL;
         gbc_malzemeAlimTarihi.gridx = 1;
-        gbc_malzemeAlimTarihi.gridy = 11;
+        gbc_malzemeAlimTarihi.gridy = 13;
         add(malzemeAlimTarihi, gbc_malzemeAlimTarihi);
         malzemeAlimTarihi.setColumns(10);
 
@@ -238,7 +257,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_12.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_12.gridx = 0;
-        gbc_lblNewLabel_12.gridy = 12;
+        gbc_lblNewLabel_12.gridy = 14;
         add(lblNewLabel_12, gbc_lblNewLabel_12);
 
         teslimTarihi = new JTextField();
@@ -246,7 +265,7 @@ public class SiparisPanel extends JPanel {
         gbc_teslimTarihi.insets = new Insets(0, 0, 5, 0);
         gbc_teslimTarihi.fill = GridBagConstraints.HORIZONTAL;
         gbc_teslimTarihi.gridx = 1;
-        gbc_teslimTarihi.gridy = 12;
+        gbc_teslimTarihi.gridy = 14;
         add(teslimTarihi, gbc_teslimTarihi);
         teslimTarihi.setColumns(10);
 
@@ -255,7 +274,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_13.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_13.gridx = 0;
-        gbc_lblNewLabel_13.gridy = 13;
+        gbc_lblNewLabel_13.gridy = 15;
         add(lblNewLabel_13, gbc_lblNewLabel_13);
 
         irsaliyeNo = new JTextField();
@@ -263,7 +282,7 @@ public class SiparisPanel extends JPanel {
         gbc_irsaliyeNo.insets = new Insets(0, 0, 5, 0);
         gbc_irsaliyeNo.fill = GridBagConstraints.HORIZONTAL;
         gbc_irsaliyeNo.gridx = 1;
-        gbc_irsaliyeNo.gridy = 13;
+        gbc_irsaliyeNo.gridy = 15;
         add(irsaliyeNo, gbc_irsaliyeNo);
         irsaliyeNo.setColumns(10);
 
@@ -272,7 +291,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_14.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_14.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_14.gridx = 0;
-        gbc_lblNewLabel_14.gridy = 14;
+        gbc_lblNewLabel_14.gridy = 16;
         add(lblNewLabel_14, gbc_lblNewLabel_14);
 
         faturaNo = new JTextField();
@@ -280,7 +299,7 @@ public class SiparisPanel extends JPanel {
         gbc_faturaNo.insets = new Insets(0, 0, 5, 0);
         gbc_faturaNo.fill = GridBagConstraints.HORIZONTAL;
         gbc_faturaNo.gridx = 1;
-        gbc_faturaNo.gridy = 14;
+        gbc_faturaNo.gridy = 16;
         add(faturaNo, gbc_faturaNo);
         faturaNo.setColumns(10);
 
@@ -289,7 +308,7 @@ public class SiparisPanel extends JPanel {
         gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_15.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_15.gridx = 0;
-        gbc_lblNewLabel_15.gridy = 15;
+        gbc_lblNewLabel_15.gridy = 17;
         add(lblNewLabel_15, gbc_lblNewLabel_15);
 
         vade = new JTextField();
@@ -297,7 +316,7 @@ public class SiparisPanel extends JPanel {
         gbc_vade.insets = new Insets(0, 0, 5, 0);
         gbc_vade.fill = GridBagConstraints.HORIZONTAL;
         gbc_vade.gridx = 1;
-        gbc_vade.gridy = 15;
+        gbc_vade.gridy = 17;
         add(vade, gbc_vade);
         vade.setColumns(10);
 
@@ -305,7 +324,7 @@ public class SiparisPanel extends JPanel {
         GridBagConstraints gbc_raporlaBtn = new GridBagConstraints();
         gbc_raporlaBtn.gridwidth = 2;
         gbc_raporlaBtn.gridx = 0;
-        gbc_raporlaBtn.gridy = 16;
+        gbc_raporlaBtn.gridy = 18;
         add(ekleBtn, gbc_raporlaBtn);
     }
 
@@ -375,5 +394,9 @@ public class SiparisPanel extends JPanel {
 
     public JButton getEkleBtn() {
         return ekleBtn;
+    }
+
+    public JComboBox getMusteriComboBox() {
+        return musteriComboBox;
     }
 }

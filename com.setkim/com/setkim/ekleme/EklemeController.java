@@ -36,8 +36,8 @@ public class EklemeController {
 
                 } else if (selection.equals("Sipariş")) {
 
+                    siparisController.refreshCombobox();
                     view.getWrapperPanel().add(siparisController.getView());
-
                 }
 
                 view.getWrapperPanel().revalidate();

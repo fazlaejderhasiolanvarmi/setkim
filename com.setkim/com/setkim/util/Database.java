@@ -76,12 +76,12 @@ public class Database {
         return table;
     }
 
-    public static void insertToSiparisBilgisi(String boyananMalzeme, String malzemeCinsi, String yuzeyIslem, String renkKodu, double boyaMiktari, double iscilikSuresi, double boyananMalzemeMiktari, String birim, int hat, double boyamaFiyati, double tutar, String alimTarihi, String teslimTarihi, String irsaliyeNo, String faturaNo, int vade) {
+    public static void insertToSiparisBilgisi(String boyananMalzeme, String malzemeCinsi, String yuzeyIslem, String renkKodu, double boyaMiktari, double iscilikSuresi, double boyananMalzemeMiktari, String birim, int hat, double boyamaFiyati, double tutar, int musteriNo, String alimTarihi, String teslimTarihi, String irsaliyeNo, String faturaNo, int vade) {
 
         PreparedStatement preparedStatement = null;
 
-        String query = "INSERT INTO SiparisBilgisi (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar, AlimTarihi, TeslimTarihi, IrsaliyeNo, FaturaNo, Vade)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO SiparisBilgisi (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi, Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar, MusteriNo,AlimTarihi, TeslimTarihi, IrsaliyeNo, FaturaNo, Vade)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if (connection != null) {
 
@@ -99,11 +99,12 @@ public class Database {
                 preparedStatement.setInt(9, hat);
                 preparedStatement.setDouble(10, boyamaFiyati);
                 preparedStatement.setDouble(11, tutar);
-                preparedStatement.setString(12, alimTarihi);
-                preparedStatement.setString(13, teslimTarihi);
-                preparedStatement.setString(14, irsaliyeNo);
-                preparedStatement.setString(15, faturaNo);
-                preparedStatement.setInt(16, vade);
+                preparedStatement.setInt(12, musteriNo);
+                preparedStatement.setString(13, alimTarihi);
+                preparedStatement.setString(14, teslimTarihi);
+                preparedStatement.setString(15, irsaliyeNo);
+                preparedStatement.setString(16, faturaNo);
+                preparedStatement.setInt(17, vade);
 
                 preparedStatement.executeUpdate();
 
@@ -113,7 +114,7 @@ public class Database {
 
         } else {
             connect();
-            insertToSiparisBilgisi(boyananMalzeme, malzemeCinsi, yuzeyIslem, renkKodu, boyaMiktari, iscilikSuresi, boyananMalzemeMiktari, birim, hat, boyamaFiyati, tutar, alimTarihi, teslimTarihi, irsaliyeNo, faturaNo, vade);
+            insertToSiparisBilgisi(boyananMalzeme, malzemeCinsi, yuzeyIslem, renkKodu, boyaMiktari, iscilikSuresi, boyananMalzemeMiktari, birim, hat, boyamaFiyati, tutar, musteriNo, alimTarihi, teslimTarihi, irsaliyeNo, faturaNo, vade);
             closeConnection();
         }
 
@@ -363,7 +364,7 @@ public class Database {
         return musteriList;
     }
 
-    public static List<Object> getBilgilerFromMusteri(int Musteri_No){
+    public static List<Object> getBilgilerFromMusteri(int Musteri_No) {
         PreparedStatement preparedStatement;
 
         String query = "SELECT * FROM SiparisBilgisi WHERE MusteriNo = ?";
@@ -378,11 +379,11 @@ public class Database {
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                while(resultSet.next()){
+                while (resultSet.next()) {
 
                     List<Object> tableRow = new ArrayList<>();
                     for (int i = 2; i < 19; i++) {
-                        if (i == 13){
+                        if (i == 13) {
                             continue;
                         }
 
@@ -409,5 +410,50 @@ public class Database {
 
     }
 
+    public static void compareDates() {
 
+        PreparedStatement preparedStatement;
+
+        String query = "SELECT * FROM SiparisBilgisi";
+
+        List<Object> siparisBilgisi = new ArrayList<>();
+        if (connection != null) {
+
+            try {
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    List<Object> tableRow = new ArrayList<>();
+                    for (int i = 2; i < 19; i++) {
+                        if (i == 13) {
+                            continue;
+                        }
+
+                        tableRow.add(resultSet.getObject(i));
+                    }
+
+                    siparisBilgisi.add(tableRow);
+                }
+
+                for (Object siparis : siparisBilgisi) {
+                    List<Object> siparisBilg = (List<Object>) siparis;
+                    System.out.println(siparisBilg.get(11) + "    " + siparisBilg.get(12));
+                }
+
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
+        } else {
+            connect();
+            compareDates();
+            closeConnection();
+        }
+
+    }
 }
