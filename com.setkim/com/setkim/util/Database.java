@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Database {
@@ -410,13 +412,14 @@ public class Database {
 
     }
 
-    public static void compareDates() {
+    public static List<Object> compareDates(Date baslangicTarihi, Date bitisTarihi) {
 
         PreparedStatement preparedStatement;
 
         String query = "SELECT * FROM SiparisBilgisi";
 
         List<Object> siparisBilgisi = new ArrayList<>();
+        List<Object> siparisler = new ArrayList<>();
         if (connection != null) {
 
             try {
@@ -440,9 +443,14 @@ public class Database {
 
                 for (Object siparis : siparisBilgisi) {
                     List<Object> siparisBilg = (List<Object>) siparis;
-                    System.out.println(siparisBilg.get(11) + "    " + siparisBilg.get(12));
-                }
+                    Date dbAlimTarihi = new SimpleDateFormat("dd/MM/yyyy").parse((String) siparisBilg.get(11));
 
+                    if (dbAlimTarihi.after(baslangicTarihi) && dbAlimTarihi.before(bitisTarihi)) {
+                        siparisler.add(siparis);
+                    } else if (baslangicTarihi.compareTo(dbAlimTarihi) == 0) {
+                        siparisler.add(siparis);
+                    }
+                }
 
             } catch (Exception e) {
 
@@ -451,9 +459,10 @@ public class Database {
 
         } else {
             connect();
-            compareDates();
+            siparisler = compareDates(baslangicTarihi, bitisTarihi);
             closeConnection();
         }
 
+        return siparisler;
     }
 }
