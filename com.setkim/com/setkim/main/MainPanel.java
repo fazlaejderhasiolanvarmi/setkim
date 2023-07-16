@@ -30,6 +30,7 @@ public class MainPanel extends JPanel {
         tableModel.addColumn("Teslim Tarihi");
 
         table = new JTable(tableModel);
+        table.setAutoCreateRowSorter(true);
 
         JScrollPane scrollPane = new JScrollPane(table);
         GridBagConstraints gbc_scrollPane = new GridBagConstraints();

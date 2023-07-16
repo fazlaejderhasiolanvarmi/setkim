@@ -86,6 +86,7 @@ public class TarihRaporlamaPanel extends JPanel {
         tableModel.addColumn("Teslim Tarihi");
 
         table = new JTable(tableModel);
+        table.setAutoCreateRowSorter(true);
 
         scrollPane = new JScrollPane(table);
         GridBagConstraints gbc_scrollPane = new GridBagConstraints();
