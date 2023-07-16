@@ -1,10 +1,12 @@
 package com.setkim.raporlama.tarih;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class TarihRaporlamaPanel extends JPanel {
     private JPanel tablePanel;
+    private JTable table;
     private JScrollPane scrollPane;
     private JSpinner spinnerBaslangicTarih;
     private JSpinner spinnerBitisTarih;
@@ -75,7 +77,17 @@ public class TarihRaporlamaPanel extends JPanel {
         gbl_tablePanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
         tablePanel.setLayout(gbl_tablePanel);
 
-        scrollPane = new JScrollPane();
+        DefaultTableModel tableModel = new DefaultTableModel();
+
+        tableModel.addColumn("Müşteri Adı");
+        tableModel.addColumn("Boyanan Malzeme");
+        tableModel.addColumn("Tutar");
+        tableModel.addColumn("Alım Tarihi");
+        tableModel.addColumn("Teslim Tarihi");
+
+        table = new JTable(tableModel);
+
+        scrollPane = new JScrollPane(table);
         GridBagConstraints gbc_scrollPane = new GridBagConstraints();
         gbc_scrollPane.fill = GridBagConstraints.BOTH;
         gbc_scrollPane.gridx = 0;
@@ -101,5 +113,9 @@ public class TarihRaporlamaPanel extends JPanel {
 
     public JButton getBtnFiltrele() {
         return btnFiltrele;
+    }
+
+    public JTable getTable() {
+        return table;
     }
 }

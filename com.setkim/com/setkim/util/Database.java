@@ -1,6 +1,5 @@
 package com.setkim.util;
 
-import com.setkim.config.CommonConfig;
 import com.setkim.raporlama.musteri.MusteriNoVeAdPair;
 
 import java.sql.Connection;
@@ -432,6 +431,7 @@ public class Database {
                     List<Object> tableRow = new ArrayList<>();
                     for (int i = 2; i < 19; i++) {
                         if (i == 13) {
+                            tableRow.add(getMusteriAdiFromMusteriNo(resultSet.getInt(i)));
                             continue;
                         }
 
@@ -443,7 +443,7 @@ public class Database {
 
                 for (Object siparis : siparisBilgisi) {
                     List<Object> siparisBilg = (List<Object>) siparis;
-                    Date dbAlimTarihi = new SimpleDateFormat("dd/MM/yyyy").parse((String) siparisBilg.get(11));
+                    Date dbAlimTarihi = new SimpleDateFormat("dd/MM/yyyy").parse((String) siparisBilg.get(12));
 
                     if (dbAlimTarihi.after(baslangicTarihi) && dbAlimTarihi.before(bitisTarihi)) {
                         siparisler.add(siparis);
