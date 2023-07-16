@@ -69,7 +69,6 @@ public class TarihRaporlamaController {
 
         view.getBtnFiltrele().addActionListener(e -> {
 
-
             Calendar calendar = Calendar.getInstance();
 
             Date baslangicTarihi = (Date) view.getSpinnerBaslangicTarih().getValue();
