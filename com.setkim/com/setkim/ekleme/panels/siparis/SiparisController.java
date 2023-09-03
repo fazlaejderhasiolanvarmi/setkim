@@ -4,6 +4,8 @@ import com.setkim.raporlama.musteri.MusteriNoVeAdPair;
 import com.setkim.util.Database;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.util.List;
 
@@ -13,6 +15,12 @@ public class SiparisController {
 
     public SiparisController() {
         view = new SiparisPanel();
+
+        initListeners();
+
+    }
+
+    private void initListeners() {
 
         view.getEkleBtn().addActionListener(e -> {
 
@@ -44,6 +52,73 @@ public class SiparisController {
 
         });
 
+        view.getBoyananMalzemeMiktari().getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                fillTutar();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                fillTutar();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // nothing to do
+            }
+        });
+
+        view.getBoyamaFiyati().getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                fillTutar();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                fillTutar();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // nothing to do
+            }
+        });
+
+    }
+
+    private void fillTutar() {
+
+        if (!view.getBoyananMalzemeMiktari().getText().isEmpty() && !view.getBoyamaFiyati().getText().isEmpty()) {
+
+            try {
+                double boyananMalzemeMiktari = Double.parseDouble(view.getBoyananMalzemeMiktari().getText());
+                double boyamaFiyati = Double.parseDouble(view.getBoyamaFiyati().getText());
+
+                double tutar = boyananMalzemeMiktari * boyamaFiyati;
+
+                view.getTutar().setText(String.valueOf(tutar));
+
+            } catch (Exception e) {
+
+                // double değer yok devam et
+
+            }
+
+        } else {
+
+            view.getTutar().setText("");
+
+        }
     }
 
     public void refreshCombobox() {
