@@ -7,7 +7,9 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.util.Formatter;
 import java.util.List;
+import java.util.Locale;
 
 public class SiparisController {
 
@@ -106,7 +108,10 @@ public class SiparisController {
 
                 double tutar = boyananMalzemeMiktari * boyamaFiyati;
 
-                view.getTutar().setText(String.valueOf(tutar));
+                Formatter formatter = new Formatter(Locale.US);
+                formatter.format("%.2f", tutar);
+
+                view.getTutar().setText(formatter.toString());
 
             } catch (Exception e) {
 

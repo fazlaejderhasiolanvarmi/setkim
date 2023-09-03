@@ -465,4 +465,46 @@ public class Database {
 
         return siparisler;
     }
+
+    public static List<Object> getTarihFiltrelemeTable() {
+
+        PreparedStatement preparedStatement;
+
+        String query = "SELECT * FROM SiparisBilgisi";
+
+        List<Object> siparisBilgisi = new ArrayList<>();
+
+        if (connection != null) {
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    List<Object> tableRow = new ArrayList<>();
+                    for (int i = 2; i < 19; i++) {
+                        if (i == 13) {
+                            tableRow.add(getMusteriAdiFromMusteriNo(resultSet.getInt(i)));
+                            continue;
+                        }
+
+                        tableRow.add(resultSet.getObject(i));
+                    }
+
+                    siparisBilgisi.add(tableRow);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(); //beğenmeyen ağlayarak günlüğüne yazabilir
+            }
+        } else {
+            connect();
+            siparisBilgisi = getTarihFiltrelemeTable();
+            closeConnection();
+        }
+
+        return siparisBilgisi;
+    }
 }

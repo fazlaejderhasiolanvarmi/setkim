@@ -9,7 +9,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class TarihRaporlamaController {
     private TarihRaporlamaPanel view;
@@ -27,10 +30,32 @@ public class TarihRaporlamaController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> tableData = Database.showMainTable();
+        List<Object> tableData = Database.getTarihFiltrelemeTable();
 
-        for (int i = 0; i < tableData.size(); i++) {
-            model.addRow(new Vector<>((List<Object>) tableData.get(i)));
+        for (Object siparis : tableData) {
+            Object[] tableRow = new Object[17];
+
+            List<Object> row = (List<Object>) siparis;
+
+            tableRow[0] = row.get(11);
+            tableRow[1] = row.get(0);
+            tableRow[2] = row.get(1);
+            tableRow[3] = row.get(2);
+            tableRow[4] = row.get(3);
+            tableRow[5] = row.get(4);
+            tableRow[6] = row.get(5);
+            tableRow[7] = row.get(6);
+            tableRow[8] = row.get(7);
+            tableRow[9] = row.get(8);
+            tableRow[10] = row.get(9);
+            tableRow[11] = row.get(10);
+            tableRow[12] = row.get(12);
+            tableRow[13] = row.get(13);
+            tableRow[14] = row.get(14);
+            tableRow[15] = row.get(15);
+            tableRow[16] = row.get(16);
+
+            ((DefaultTableModel) view.getTable().getModel()).addRow(tableRow);
         }
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -45,9 +70,9 @@ public class TarihRaporlamaController {
                     List<Object> musteriBilgisi = Database.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
 
                     List<Object> siparisBilgisi = Database.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
-                            (double) table.getModel().getValueAt(selectedRow, 2),
-                            (String) table.getModel().getValueAt(selectedRow, 3),
-                            (String) table.getModel().getValueAt(selectedRow, 4)
+                            (double) table.getModel().getValueAt(selectedRow, 11),
+                            (String) table.getModel().getValueAt(selectedRow, 12),
+                            (String) table.getModel().getValueAt(selectedRow, 13)
                     );
 
                     SiparisDetayController siparisDetayController = new SiparisDetayController(musteriBilgisi, siparisBilgisi);
@@ -94,7 +119,7 @@ public class TarihRaporlamaController {
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
-            //Bunun yerine tabloya yazılacak
+
             if (!siparisler.isEmpty()) {
 
                 DefaultTableModel dm = (DefaultTableModel) view.getTable().getModel();
@@ -107,13 +132,25 @@ public class TarihRaporlamaController {
                 for (Object siparis : siparisler) {
                     List<Object> row = (List<Object>) siparis;
 
-                    Object[] tableRow = new Object[5];
+                    Object[] tableRow = new Object[17];
 
-                    tableRow[0] = row.get(11); //Musteri Adi
-                    tableRow[1] = row.get(0); //Boyanan Malzeme
-                    tableRow[2] = row.get(10); //Tutar
-                    tableRow[3] = row.get(12); //Alim Tarihi
-                    tableRow[4] = row.get(13); //Teslim Tarihi
+                    tableRow[0] = row.get(11);
+                    tableRow[1] = row.get(0);
+                    tableRow[2] = row.get(1);
+                    tableRow[3] = row.get(2);
+                    tableRow[4] = row.get(3);
+                    tableRow[5] = row.get(4);
+                    tableRow[6] = row.get(5);
+                    tableRow[7] = row.get(6);
+                    tableRow[8] = row.get(7);
+                    tableRow[9] = row.get(8);
+                    tableRow[10] = row.get(9);
+                    tableRow[11] = row.get(10);
+                    tableRow[12] = row.get(12);
+                    tableRow[13] = row.get(13);
+                    tableRow[14] = row.get(14);
+                    tableRow[15] = row.get(15);
+                    tableRow[16] = row.get(16);
 
                     ((DefaultTableModel) view.getTable().getModel()).addRow(tableRow);
 
