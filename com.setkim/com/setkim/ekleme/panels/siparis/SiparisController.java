@@ -1,7 +1,7 @@
 package com.setkim.ekleme.panels.siparis;
 
 import com.setkim.raporlama.musteri.MusteriNoVeAdPair;
-import com.setkim.util.Database;
+import com.setkim.util.DatabaseController;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -26,7 +26,7 @@ public class SiparisController {
 
         view.getEkleBtn().addActionListener(e -> {
 
-            Database.insertToSiparisBilgisi(
+            DatabaseController.insertToSiparisBilgisi(
                     view.getBoyananMalzeme().getText(),
                     view.getMalzemeCinsi().getText(),
                     view.getYuzeyIslem().getText(),
@@ -130,7 +130,7 @@ public class SiparisController {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-        List<MusteriNoVeAdPair> musteriList = Database.getMusteriList();
+        List<MusteriNoVeAdPair> musteriList = DatabaseController.getMusteriList();
 
         for (MusteriNoVeAdPair musteri : musteriList) {
             model.addElement(musteri);

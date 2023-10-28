@@ -3,7 +3,8 @@ package com.setkim.main;
 import com.setkim.ekleme.EklemeController;
 import com.setkim.raporlama.secenek.RaporlamaSecenekController;
 import com.setkim.siparisdetay.SiparisDetayController;
-import com.setkim.util.Database;
+import com.setkim.util.DatabaseController;
+import com.setkim.util.DatabaseObjectList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,8 @@ public class MainController {
 
     public MainController() {
         view = new MainPanel();
+
+        DatabaseObjectList.fillListsFromDatabase();
 
         initListeners();
         initTable();
@@ -45,7 +48,7 @@ public class MainController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> tableData = Database.showMainTable();
+        List<Object> tableData = DatabaseController.showMainTable();
 
         for (int i = 0; i < tableData.size(); i++) {
             model.addRow(new Vector<>((List<Object>) tableData.get(i)));
@@ -61,9 +64,9 @@ public class MainController {
 
                 if (e.getClickCount() == 2 && selectedRow != -1) {
 
-                    List<Object> musteriBilgisi = Database.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
+                    List<Object> musteriBilgisi = DatabaseController.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
 
-                    List<Object> siparisBilgisi = Database.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
+                    List<Object> siparisBilgisi = DatabaseController.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
                             (double) table.getModel().getValueAt(selectedRow, 2),
                             (String) table.getModel().getValueAt(selectedRow, 3),
                             (String) table.getModel().getValueAt(selectedRow, 4)

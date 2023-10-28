@@ -1,6 +1,6 @@
 package com.setkim.raporlama.musteri;
 
-import com.setkim.util.Database;
+import com.setkim.util.DatabaseController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,7 +12,7 @@ public class MusteriRaporlamaController {
 
     private List<MusteriNoVeAdPair> musteriList;
     private MusteriRaporlamaPanel view;
-   //inittable doldurulacak müsteriye göre
+    //inittable doldurulacak müsteriye göre
 
 
     public MusteriRaporlamaController() {
@@ -24,7 +24,7 @@ public class MusteriRaporlamaController {
     private void initComboBox() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-        musteriList = Database.getMusteriList();
+        musteriList = DatabaseController.getMusteriList();
 
         for (MusteriNoVeAdPair musteri : musteriList) {
             model.addElement(musteri);
@@ -49,10 +49,10 @@ public class MusteriRaporlamaController {
 
     }
 
-    private void initListener(){
+    private void initListener() {
         view.getRaporlaBtn().addActionListener(e -> {
 
-            int musteriNo =  ((MusteriNoVeAdPair)view.getMusteriDropdown().getSelectedItem()).getMusteriNo();
+            int musteriNo = ((MusteriNoVeAdPair) view.getMusteriDropdown().getSelectedItem()).getMusteriNo();
 
             DefaultTableModel model = (DefaultTableModel) view.getTable().getModel();
             model.setRowCount(0);
@@ -62,12 +62,12 @@ public class MusteriRaporlamaController {
         });
     }
 
-    public void updateTable(int musteriNo){
+    public void updateTable(int musteriNo) {
 
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> bilgiler = Database.getBilgilerFromMusteri(musteriNo);
+        List<Object> bilgiler = DatabaseController.getBilgilerFromMusteri(musteriNo);
 
         for (int i = 0; i < bilgiler.size(); i++) {
             model.addRow(new Vector<>((List<Object>) bilgiler.get(i)));

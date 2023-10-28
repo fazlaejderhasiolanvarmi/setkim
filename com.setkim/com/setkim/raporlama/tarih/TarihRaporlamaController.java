@@ -1,7 +1,7 @@
 package com.setkim.raporlama.tarih;
 
 import com.setkim.siparisdetay.SiparisDetayController;
-import com.setkim.util.Database;
+import com.setkim.util.DatabaseController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +30,7 @@ public class TarihRaporlamaController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> tableData = Database.getTarihFiltrelemeTable();
+        List<Object> tableData = DatabaseController.getTarihFiltrelemeTable();
 
         for (Object siparis : tableData) {
             Object[] tableRow = new Object[17];
@@ -67,9 +67,9 @@ public class TarihRaporlamaController {
                 int selectedRow = table.getSelectedRow();
 
                 if (e.getClickCount() == 2 && selectedRow != -1) {
-                    List<Object> musteriBilgisi = Database.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
+                    List<Object> musteriBilgisi = DatabaseController.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
 
-                    List<Object> siparisBilgisi = Database.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
+                    List<Object> siparisBilgisi = DatabaseController.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
                             (double) table.getModel().getValueAt(selectedRow, 11),
                             (String) table.getModel().getValueAt(selectedRow, 12),
                             (String) table.getModel().getValueAt(selectedRow, 13)
@@ -115,7 +115,7 @@ public class TarihRaporlamaController {
             List<Object> siparisler = new ArrayList<>();
 
             try {
-                siparisler = Database.compareDates(new SimpleDateFormat("dd/MM/yyyy").parse(baslangicTarih), new SimpleDateFormat("dd/MM/yyyy").parse(bitisTarih));
+                siparisler = DatabaseController.compareDates(new SimpleDateFormat("dd/MM/yyyy").parse(baslangicTarih), new SimpleDateFormat("dd/MM/yyyy").parse(bitisTarih));
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
