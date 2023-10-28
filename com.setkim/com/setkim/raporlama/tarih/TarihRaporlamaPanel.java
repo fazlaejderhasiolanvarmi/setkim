@@ -12,6 +12,10 @@ public class TarihRaporlamaPanel extends JPanel {
     private JSpinner spinnerBitisTarih;
     private JButton btnFiltrele;
 
+    private JTextField iscilikSuresiToplamTextField;
+    private JTextField boyaMiktarıToplamTextField;
+    private JTextField tutarToplamTextField;
+
     public TarihRaporlamaPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -106,6 +110,71 @@ public class TarihRaporlamaPanel extends JPanel {
         gbc_scrollPane.gridx = 0;
         gbc_scrollPane.gridy = 0;
         tablePanel.add(scrollPane, gbc_scrollPane);
+
+        JPanel toplamPanel = new JPanel();
+        GridBagConstraints gbc_toplamPanel = new GridBagConstraints();
+        gbc_toplamPanel.insets = new Insets(0, 0, 5, 5);
+        gbc_toplamPanel.fill = GridBagConstraints.BOTH;
+        gbc_toplamPanel.gridx = 2;
+        gbc_toplamPanel.gridy = 5;
+        add(toplamPanel, gbc_toplamPanel);
+        GridBagLayout gbl_toplamPanel = new GridBagLayout();
+        gbl_toplamPanel.columnWidths = new int[]{62, 46, 46, 46, 0};
+        gbl_toplamPanel.rowHeights = new int[]{14, 0, 0, 0};
+        gbl_toplamPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+        gbl_toplamPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+        toplamPanel.setLayout(gbl_toplamPanel);
+
+        iscilikSuresiToplamTextField = new JTextField();
+        GridBagConstraints gbc_iscilikSuresiToplamTextField = new GridBagConstraints();
+        gbc_iscilikSuresiToplamTextField.insets = new Insets(0, 0, 5, 5);
+        gbc_iscilikSuresiToplamTextField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_iscilikSuresiToplamTextField.gridx = 2;
+        gbc_iscilikSuresiToplamTextField.gridy = 0;
+        toplamPanel.add(iscilikSuresiToplamTextField, gbc_iscilikSuresiToplamTextField);
+        iscilikSuresiToplamTextField.setColumns(10);
+
+        boyaMiktarıToplamTextField = new JTextField();
+        GridBagConstraints gbc_boyaMiktarıToplamTextField = new GridBagConstraints();
+        gbc_boyaMiktarıToplamTextField.insets = new Insets(0, 0, 5, 5);
+        gbc_boyaMiktarıToplamTextField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_boyaMiktarıToplamTextField.gridx = 2;
+        gbc_boyaMiktarıToplamTextField.gridy = 1;
+        toplamPanel.add(boyaMiktarıToplamTextField, gbc_boyaMiktarıToplamTextField);
+        boyaMiktarıToplamTextField.setColumns(10);
+
+        JLabel tutarToplamLabel = new JLabel("Tutar");
+        GridBagConstraints gbc_tutarToplamLabel = new GridBagConstraints();
+        gbc_tutarToplamLabel.anchor = GridBagConstraints.NORTHWEST;
+        gbc_tutarToplamLabel.insets = new Insets(0, 0, 0, 5);
+        gbc_tutarToplamLabel.gridx = 0;
+        gbc_tutarToplamLabel.gridy = 2;
+        toplamPanel.add(tutarToplamLabel, gbc_tutarToplamLabel);
+
+        JLabel boyaMiktariToplamLabel = new JLabel("Boya Miktarı");
+        GridBagConstraints gbc_boyaMiktariToplamLabel = new GridBagConstraints();
+        gbc_boyaMiktariToplamLabel.anchor = GridBagConstraints.NORTHWEST;
+        gbc_boyaMiktariToplamLabel.insets = new Insets(0, 0, 5, 5);
+        gbc_boyaMiktariToplamLabel.gridx = 0;
+        gbc_boyaMiktariToplamLabel.gridy = 1;
+        toplamPanel.add(boyaMiktariToplamLabel, gbc_boyaMiktariToplamLabel);
+
+        JLabel iscilikSuresiToplamLabel = new JLabel("İşçilik Süresi");
+        GridBagConstraints gbc_iscilikSuresiToplamLabel = new GridBagConstraints();
+        gbc_iscilikSuresiToplamLabel.insets = new Insets(0, 0, 5, 5);
+        gbc_iscilikSuresiToplamLabel.anchor = GridBagConstraints.NORTHWEST;
+        gbc_iscilikSuresiToplamLabel.gridx = 0;
+        gbc_iscilikSuresiToplamLabel.gridy = 0;
+        toplamPanel.add(iscilikSuresiToplamLabel, gbc_iscilikSuresiToplamLabel);
+
+        tutarToplamTextField = new JTextField();
+        GridBagConstraints gbc_tutarToplamTextField = new GridBagConstraints();
+        gbc_tutarToplamTextField.insets = new Insets(0, 0, 0, 5);
+        gbc_tutarToplamTextField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_tutarToplamTextField.gridx = 2;
+        gbc_tutarToplamTextField.gridy = 2;
+        toplamPanel.add(tutarToplamTextField, gbc_tutarToplamTextField);
+        tutarToplamTextField.setColumns(10);
     }
 
     public JPanel getTablePanel() {
