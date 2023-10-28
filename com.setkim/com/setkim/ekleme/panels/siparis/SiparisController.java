@@ -1,12 +1,14 @@
 package com.setkim.ekleme.panels.siparis;
 
-import com.setkim.raporlama.musteri.MusteriNoVeAdPair;
-import com.setkim.util.DatabaseController;
+import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.Musteri;
+import com.setkim.util.objects.SiparisBilgisi;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
@@ -26,25 +28,33 @@ public class SiparisController {
 
         view.getEkleBtn().addActionListener(e -> {
 
-            DatabaseController.insertToSiparisBilgisi(
-                    view.getBoyananMalzeme().getText(),
-                    view.getMalzemeCinsi().getText(),
-                    view.getYuzeyIslem().getText(),
-                    view.getRenkKodu().getText(),
-                    Double.parseDouble(view.getBoyaMiktari().getText()),
-                    Double.parseDouble(view.getIscilikSuresi().getText()),
-                    Double.parseDouble(view.getBoyananMalzemeMiktari().getText()),
-                    view.getBirim().getText(),
-                    Integer.parseInt(view.getHat().getText()),
-                    Double.parseDouble(view.getBoyamaFiyati().getText()),
-                    Double.parseDouble(view.getTutar().getText()),
-                    ((MusteriNoVeAdPair) view.getMusteriComboBox().getSelectedItem()).getMusteriNo(),
-                    view.getMalzemeAlimTarihi().getText(),
-                    view.getTeslimTarihi().getText(),
-                    view.getIrsaliyeNo().getText(),
-                    view.getFaturaNo().getText(),
-                    Integer.parseInt(view.getVade().getText())
-            );
+            SiparisBilgisi siparis = new SiparisBilgisi();
+
+            siparis.setBoyananMalzeme(view.getBoyananMalzeme().getText());
+            siparis.setMalzemeCinsi(view.getMalzemeCinsi().getText());
+            siparis.setYuzeyIslem(view.getYuzeyIslem().getText());
+            siparis.setRenkKodu(view.getRenkKodu().getText());
+            siparis.setBoyaMiktari(Double.parseDouble(view.getBoyaMiktari().getText()));
+            siparis.setIscilikSuresi(Double.parseDouble(view.getIscilikSuresi().getText()));
+            siparis.setBoyananMalzemeMiktari(Double.parseDouble(view.getBoyananMalzemeMiktari().getText()));
+            siparis.setBirim(view.getBirim().getText());
+            siparis.setHat(Integer.parseInt(view.getBirim().getText()));
+            siparis.setBoyamaFiyati(Double.parseDouble(view.getBoyamaFiyati().getText()));
+            siparis.setTutar(Double.parseDouble(view.getTutar().getText()));
+            siparis.setMusteri((Musteri) view.getMusteriComboBox().getSelectedItem());
+
+            try {
+                siparis.setAlimTarihi(new SimpleDateFormat().parse(view.getMalzemeAlimTarihi().getText()));
+                siparis.setTeslimTarihi(new SimpleDateFormat().parse(view.getTeslimTarihi().getText()));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+            siparis.setIrsaliyeNo(view.getIrsaliyeNo().getText());
+            siparis.setFaturaNo(view.getFaturaNo().getText());
+            siparis.setVade(Integer.parseInt(view.getVade().getText()));
+
+            DatabaseObjectList.addSiparisToList(siparis);
 
             JOptionPane.showMessageDialog(
                     null,
@@ -126,13 +136,14 @@ public class SiparisController {
         }
     }
 
+    // TODO
     public void refreshCombobox() {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-        List<MusteriNoVeAdPair> musteriList = DatabaseController.getMusteriList();
+        List<Musteri> musteriList = DatabaseObjectList.getMusteriList();
 
-        for (MusteriNoVeAdPair musteri : musteriList) {
+        for (Musteri musteri : musteriList) {
             model.addElement(musteri);
         }
 
@@ -146,8 +157,8 @@ public class SiparisController {
                                                           final boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected,
                         cellHasFocus);
-                if (value instanceof MusteriNoVeAdPair)
-                    setText(((MusteriNoVeAdPair) value).getMusteriAdi());
+                if (value instanceof Musteri)
+                    setText(((Musteri) value).getMusteriAdi());
 
                 return this;
             }

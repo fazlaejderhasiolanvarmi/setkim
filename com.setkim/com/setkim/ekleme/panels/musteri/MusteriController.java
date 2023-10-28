@@ -1,6 +1,7 @@
 package com.setkim.ekleme.panels.musteri;
 
-import com.setkim.util.DatabaseController;
+import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.Musteri;
 
 import javax.swing.*;
 
@@ -12,14 +13,17 @@ public class MusteriController {
         view = new MusteriPanel();
 
         view.getBtnEkle().addActionListener(e -> {
-            DatabaseController.insertToMusteri(
-                    view.getTextFieldMusteriAdi().getText(),
-                    Integer.valueOf(view.getTextFieldBelgeNo().getText()),
-                    view.getTextFieldAdres().getText(),
-                    view.getTextFieldVergiDairesi().getText(),
-                    view.getTextFieldVergiNo().getText(),
-                    view.getTextFieldYetkili().getText()
-            );
+            
+            Musteri musteri = new Musteri();
+
+            musteri.setMusteriAdi(view.getTextFieldMusteriAdi().getText());
+            musteri.setBelgeNo(Integer.valueOf(view.getTextFieldBelgeNo().getText()));
+            musteri.setAdres(view.getTextFieldAdres().getText());
+            musteri.setVergiDairesi(view.getTextFieldVergiDairesi().getText());
+            musteri.setVergiNo(view.getTextFieldVergiNo().getText());
+            musteri.setYetkili(view.getTextFieldYetkili().getText());
+
+            DatabaseObjectList.addMusteriToList(musteri);
 
             JOptionPane.showMessageDialog(
                     null,

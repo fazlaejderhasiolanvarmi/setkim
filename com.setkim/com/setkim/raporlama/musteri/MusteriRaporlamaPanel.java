@@ -8,6 +8,7 @@ public class MusteriRaporlamaPanel extends JPanel {
     private JTable table;
     private JComboBox<MusteriNoVeAdPair> musteriDropdown;
     private JButton raporlaBtn;
+
     public MusteriRaporlamaPanel() {
         setBounds(100, 100, 800, 800);
 

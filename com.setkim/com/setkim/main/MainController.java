@@ -2,8 +2,6 @@ package com.setkim.main;
 
 import com.setkim.ekleme.EklemeController;
 import com.setkim.raporlama.secenek.RaporlamaSecenekController;
-import com.setkim.siparisdetay.SiparisDetayController;
-import com.setkim.util.DatabaseController;
 import com.setkim.util.DatabaseObjectList;
 
 import javax.swing.*;
@@ -48,7 +46,7 @@ public class MainController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> tableData = DatabaseController.showMainTable();
+        List<Object> tableData = DatabaseObjectList.getMainTableList();
 
         for (int i = 0; i < tableData.size(); i++) {
             model.addRow(new Vector<>((List<Object>) tableData.get(i)));
@@ -62,24 +60,26 @@ public class MainController {
             public void mousePressed(MouseEvent e) {
                 int selectedRow = table.getSelectedRow();
 
-                if (e.getClickCount() == 2 && selectedRow != -1) {
+                //TODO
 
-                    List<Object> musteriBilgisi = DatabaseController.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
-
-                    List<Object> siparisBilgisi = DatabaseController.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
-                            (double) table.getModel().getValueAt(selectedRow, 2),
-                            (String) table.getModel().getValueAt(selectedRow, 3),
-                            (String) table.getModel().getValueAt(selectedRow, 4)
-                    );
-
-                    SiparisDetayController siparisDetayController = new SiparisDetayController(musteriBilgisi, siparisBilgisi);
-
-                    JDialog siparisDetayFrame = new JDialog(frame, "Sipariş Detay", true);
-                    siparisDetayFrame.setBounds(100, 200, 800, 600);
-                    siparisDetayFrame.add(siparisDetayController.getView());
-                    siparisDetayFrame.setVisible(true);
-                    siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                }
+//                if (e.getClickCount() == 2 && selectedRow != -1) {
+//
+//                    List<Object> musteriBilgisi = DatabaseController.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
+//
+//                    List<Object> siparisBilgisi = DatabaseController.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
+//                            (double) table.getModel().getValueAt(selectedRow, 2),
+//                            (String) table.getModel().getValueAt(selectedRow, 3),
+//                            (String) table.getModel().getValueAt(selectedRow, 4)
+//                    );
+//
+//                    SiparisDetayController siparisDetayController = new SiparisDetayController(musteriBilgisi, siparisBilgisi);
+//
+//                    JDialog siparisDetayFrame = new JDialog(frame, "Sipariş Detay", true);
+//                    siparisDetayFrame.setBounds(100, 200, 800, 600);
+//                    siparisDetayFrame.add(siparisDetayController.getView());
+//                    siparisDetayFrame.setVisible(true);
+//                    siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//                }
             }
         });
     }

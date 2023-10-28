@@ -31,6 +31,65 @@ public class DatabaseObjectList {
         return null;
     }
 
+    public static List<Object> getMainTableList() {
+
+        List<Object> tableList = new ArrayList<>();
+
+        for (SiparisBilgisi siparis : siparisBilgisiList) {
+            List<Object> row = new ArrayList<>();
+
+            row.add(siparis.getMusteri().getMusteriAdi());
+            row.add(siparis.getBoyananMalzeme());
+            row.add(siparis.getTutar());
+            row.add(siparis.getAlimTarihi());
+            row.add(siparis.getTeslimTarihi());
+
+        }
+
+        return tableList;
+    }
+
+    public static void addMusteriToList(Musteri musteri) {
+        musteri.setMusteriNo(getMaxMusteriNo() + 1);
+
+        musteriList.add(musteri);
+    }
+
+    private static int getMaxMusteriNo() {
+
+        int max = -1;
+
+        for (Musteri musteri : musteriList) {
+            if (musteri.getMusteriNo() > max) {
+                max = musteri.getMusteriNo();
+            }
+        }
+
+        return max;
+    }
+
+    public static void addSiparisToList(SiparisBilgisi siparis) {
+
+        siparis.setSiparisNo(getMaxSiparisNo() + 1);
+
+        siparisBilgisiList.add(siparis);
+    }
+
+    private static int getMaxSiparisNo() {
+
+        int max = -1;
+
+        for (SiparisBilgisi siparis : siparisBilgisiList) {
+
+            if (siparis.getSiparisNo() > max) {
+                max = siparis.getSiparisNo();
+            }
+
+        }
+
+        return max;
+    }
+
     public List<SiparisBilgisi> getSiparisBilgisiList() {
         return siparisBilgisiList;
     }
