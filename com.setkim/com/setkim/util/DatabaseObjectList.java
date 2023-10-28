@@ -44,6 +44,7 @@ public class DatabaseObjectList {
             row.add(siparis.getAlimTarihi());
             row.add(siparis.getTeslimTarihi());
 
+            tableList.add(row);
         }
 
         return tableList;
@@ -88,6 +89,71 @@ public class DatabaseObjectList {
         }
 
         return max;
+    }
+
+    public static List<Object> getSiparisListOfMusteri(Musteri musteri) {
+
+        List<Object> filteredResults = new ArrayList<>();
+
+        for (SiparisBilgisi siparis : siparisBilgisiList) {
+
+            if (siparis.getMusteri().equals(musteri)) {
+
+                List<Object> row = new ArrayList<>();
+
+                row.add(siparis.getBoyananMalzeme());
+                row.add(siparis.getMalzemeCinsi());
+                row.add(siparis.getYuzeyIslem());
+                row.add(siparis.getRenkKodu());
+                row.add(siparis.getBoyaMiktari());
+                row.add(siparis.getIscilikSuresi());
+                row.add(siparis.getBoyananMalzemeMiktari());
+                row.add(siparis.getBirim());
+                row.add(siparis.getHat());
+                row.add(siparis.getBoyamaFiyati());
+                row.add(siparis.getTutar());
+                row.add(siparis.getAlimTarihi().toString());
+                row.add(siparis.getTeslimTarihi().toString());
+                row.add(siparis.getIrsaliyeNo());
+                row.add(siparis.getFaturaNo());
+                row.add(siparis.getVade());
+
+                filteredResults.add(row);
+            }
+        }
+
+        return filteredResults;
+    }
+
+    public static List<Object> getTarihFiltrelemeTable() {
+
+        List<Object> tableData = new ArrayList<>();
+
+        for (SiparisBilgisi siparis : siparisBilgisiList) {
+            List<Object> row = new ArrayList<>();
+
+            row.add(siparis.getMusteri().getMusteriAdi());
+            row.add(siparis.getBoyananMalzeme());
+            row.add(siparis.getMalzemeCinsi());
+            row.add(siparis.getYuzeyIslem());
+            row.add(siparis.getRenkKodu());
+            row.add(siparis.getBoyaMiktari());
+            row.add(siparis.getIscilikSuresi());
+            row.add(siparis.getBoyananMalzemeMiktari());
+            row.add(siparis.getBirim());
+            row.add(siparis.getHat());
+            row.add(siparis.getBoyamaFiyati());
+            row.add(siparis.getTutar());
+            row.add(siparis.getAlimTarihi().toString());
+            row.add(siparis.getTeslimTarihi().toString());
+            row.add(siparis.getIrsaliyeNo());
+            row.add(siparis.getFaturaNo());
+            row.add(siparis.getVade());
+
+            tableData.add(row);
+        }
+
+        return tableData;
     }
 
     public List<SiparisBilgisi> getSiparisBilgisiList() {

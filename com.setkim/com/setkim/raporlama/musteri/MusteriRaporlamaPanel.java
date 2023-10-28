@@ -1,12 +1,14 @@
 package com.setkim.raporlama.musteri;
 
+import com.setkim.util.objects.Musteri;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class MusteriRaporlamaPanel extends JPanel {
     private JTable table;
-    private JComboBox<MusteriNoVeAdPair> musteriDropdown;
+    private JComboBox<Musteri> musteriDropdown;
     private JButton raporlaBtn;
 
     public MusteriRaporlamaPanel() {

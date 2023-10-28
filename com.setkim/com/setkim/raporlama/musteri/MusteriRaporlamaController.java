@@ -1,6 +1,7 @@
 package com.setkim.raporlama.musteri;
 
-import com.setkim.util.DatabaseController;
+import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.Musteri;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,7 +11,7 @@ import java.util.Vector;
 
 public class MusteriRaporlamaController {
 
-    private List<MusteriNoVeAdPair> musteriList;
+    private List<Musteri> musteriList;
     private MusteriRaporlamaPanel view;
     //inittable doldurulacak müsteriye göre
 
@@ -24,9 +25,9 @@ public class MusteriRaporlamaController {
     private void initComboBox() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-        musteriList = DatabaseController.getMusteriList();
+        musteriList = DatabaseObjectList.getMusteriList();
 
-        for (MusteriNoVeAdPair musteri : musteriList) {
+        for (Musteri musteri : musteriList) {
             model.addElement(musteri);
         }
 
@@ -40,8 +41,8 @@ public class MusteriRaporlamaController {
                                                           final boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected,
                         cellHasFocus);
-                if (value instanceof MusteriNoVeAdPair)
-                    setText(((MusteriNoVeAdPair) value).getMusteriAdi());
+                if (value instanceof Musteri)
+                    setText(((Musteri) value).getMusteriAdi());
 
                 return this;
             }
@@ -52,22 +53,22 @@ public class MusteriRaporlamaController {
     private void initListener() {
         view.getRaporlaBtn().addActionListener(e -> {
 
-            int musteriNo = ((MusteriNoVeAdPair) view.getMusteriDropdown().getSelectedItem()).getMusteriNo();
+            Musteri musteri = ((Musteri) view.getMusteriDropdown().getSelectedItem());
 
             DefaultTableModel model = (DefaultTableModel) view.getTable().getModel();
             model.setRowCount(0);
 
-            updateTable(musteriNo);
+            updateTable(musteri);
 
         });
     }
 
-    public void updateTable(int musteriNo) {
+    public void updateTable(Musteri musteri) {
 
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> bilgiler = DatabaseController.getBilgilerFromMusteri(musteriNo);
+        List<Object> bilgiler = DatabaseObjectList.getSiparisListOfMusteri(musteri);
 
         for (int i = 0; i < bilgiler.size(); i++) {
             model.addRow(new Vector<>((List<Object>) bilgiler.get(i)));

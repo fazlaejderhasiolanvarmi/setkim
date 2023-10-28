@@ -48,8 +48,8 @@ public class MainController {
 
         List<Object> tableData = DatabaseObjectList.getMainTableList();
 
-        for (int i = 0; i < tableData.size(); i++) {
-            model.addRow(new Vector<>((List<Object>) tableData.get(i)));
+        for (Object tableDatum : tableData) {
+            model.addRow(new Vector<>((List<Object>) tableDatum));
         }
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

@@ -117,16 +117,19 @@ public class DatabaseController {
                     siparisBilgisi.setRenkKodu(resultSet.getString(5));
                     siparisBilgisi.setBoyaMiktari(resultSet.getDouble(6));
                     siparisBilgisi.setIscilikSuresi(resultSet.getDouble(7));
-                    siparisBilgisi.setBirim(resultSet.getString(8));
-                    siparisBilgisi.setHat(resultSet.getInt(9));
-                    siparisBilgisi.setBoyamaFiyati(resultSet.getDouble(10));
-                    siparisBilgisi.setTutar(resultSet.getDouble(11));
-                    siparisBilgisi.setMusteri(DatabaseObjectList.findMusteriWithMusteriNo(resultSet.getInt(12)));
-                    siparisBilgisi.setAlimTarihi(new SimpleDateFormat().parse(resultSet.getString(13)));
-                    siparisBilgisi.setTeslimTarihi(new SimpleDateFormat().parse(resultSet.getString(14)));
-                    siparisBilgisi.setIrsaliyeNo(resultSet.getString(15));
-                    siparisBilgisi.setFaturaNo(resultSet.getString(16));
-                    siparisBilgisi.setVade(resultSet.getInt(17));
+                    siparisBilgisi.setBoyananMalzemeMiktari(resultSet.getDouble(8));
+                    siparisBilgisi.setBirim(resultSet.getString(9));
+                    siparisBilgisi.setHat(resultSet.getInt(10));
+                    siparisBilgisi.setBoyamaFiyati(resultSet.getDouble(11));
+                    siparisBilgisi.setTutar(resultSet.getDouble(12));
+                    siparisBilgisi.setMusteri(DatabaseObjectList.findMusteriWithMusteriNo(resultSet.getInt(13)));
+                    siparisBilgisi.setAlimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString(14)));
+                    siparisBilgisi.setTeslimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString(15)));
+                    siparisBilgisi.setIrsaliyeNo(resultSet.getString(16));
+                    siparisBilgisi.setFaturaNo(resultSet.getString(17));
+                    siparisBilgisi.setVade(resultSet.getInt(18));
+
+                    siparisBilgisiList.add(siparisBilgisi);
                 }
 
             } catch (Exception e) {

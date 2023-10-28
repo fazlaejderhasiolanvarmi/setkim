@@ -44,8 +44,8 @@ public class SiparisController {
             siparis.setMusteri((Musteri) view.getMusteriComboBox().getSelectedItem());
 
             try {
-                siparis.setAlimTarihi(new SimpleDateFormat().parse(view.getMalzemeAlimTarihi().getText()));
-                siparis.setTeslimTarihi(new SimpleDateFormat().parse(view.getTeslimTarihi().getText()));
+                siparis.setAlimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(view.getMalzemeAlimTarihi().getText()));
+                siparis.setTeslimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(view.getTeslimTarihi().getText()));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -136,7 +136,6 @@ public class SiparisController {
         }
     }
 
-    // TODO
     public void refreshCombobox() {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel();
