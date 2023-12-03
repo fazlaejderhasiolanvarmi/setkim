@@ -112,8 +112,8 @@ public class DatabaseObjectList {
                 row.add(siparis.getHat());
                 row.add(siparis.getBoyamaFiyati());
                 row.add(siparis.getTutar());
-                row.add(siparis.getAlimTarihi().toString());
-                row.add(siparis.getTeslimTarihi().toString());
+                row.add(siparis.getAlimTarihi());
+                row.add(siparis.getTeslimTarihi());
                 row.add(siparis.getIrsaliyeNo());
                 row.add(siparis.getFaturaNo());
                 row.add(siparis.getVade());
@@ -144,8 +144,8 @@ public class DatabaseObjectList {
             row.add(siparis.getHat());
             row.add(siparis.getBoyamaFiyati());
             row.add(siparis.getTutar());
-            row.add(siparis.getAlimTarihi().toString());
-            row.add(siparis.getTeslimTarihi().toString());
+            row.add(siparis.getAlimTarihi());
+            row.add(siparis.getTeslimTarihi());
             row.add(siparis.getIrsaliyeNo());
             row.add(siparis.getFaturaNo());
             row.add(siparis.getVade());

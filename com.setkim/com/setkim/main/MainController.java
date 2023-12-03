@@ -5,11 +5,16 @@ import com.setkim.raporlama.secenek.RaporlamaSecenekController;
 import com.setkim.util.DatabaseObjectList;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -54,6 +59,24 @@ public class MainController {
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setDefaultEditor(Object.class, null);
+
+        TableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
+
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+            public Component getTableCellRendererComponent(JTable table,
+                                                           Object value, boolean isSelected, boolean hasFocus,
+                                                           int row, int column) {
+                if (value instanceof Date) {
+                    value = f.format(value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+            }
+        };
+
+        table.getColumnModel().getColumn(3).setCellRenderer(dateRenderer);
+        table.getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
 
         table.addMouseListener(new MouseAdapter() {
             @Override
