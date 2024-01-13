@@ -12,20 +12,42 @@ public class MusteriController {
         view = new MusteriPanel();
 
         view.getBtnEkle().addActionListener(e -> {
-            Database.insertToMusteri(
-                    view.getTextFieldMusteriAdi().getText(),
-                    Integer.valueOf(view.getTextFieldBelgeNo().getText()),
-                    view.getTextFieldAdres().getText(),
-                    view.getTextFieldVergiDairesi().getText(),
-                    view.getTextFieldVergiNo().getText(),
-                    view.getTextFieldYetkili().getText()
-            );
+            String satirAdi = "";
+            try {
+                satirAdi = "Müşteri Adı";
+                String musteriAdi = view.getTextFieldMusteriAdi().getText();
+                satirAdi = "Belge Numarası";
+                int belgeNo = Integer.parseInt(view.getTextFieldBelgeNo().getText());
+                satirAdi = "Adres";
+                String adres = view.getTextFieldAdres().getText();
+                satirAdi = "Vergi Dairesi";
+                String vergiDairesi = view.getTextFieldVergiDairesi().getText();
+                satirAdi = "Vergi Numarası";
+                String vergiNo = view.getTextFieldVergiNo().getText();
+                satirAdi = "Yetkili";
+                String yetkili = view.getTextFieldYetkili().getText();
+                Database.insertToMusteri(
+                        musteriAdi,
+                        belgeNo,
+                        adres,
+                        vergiDairesi,
+                        vergiNo,
+                        yetkili
+                );
 
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Bilgiler eklendi!",
-                    "Başarılı",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Bilgiler eklendi!",
+                        "Başarılı",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex){
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        satirAdi + " yanlış girildi.",
+                        "Başarısız",
+                        JOptionPane.WARNING_MESSAGE);
+            }
         });
 
     }

@@ -23,6 +23,7 @@ public class TarihRaporlamaController {
 
         initListeners();
         initTable();
+        refreshToplamFields();
     }
 
     private void initTable() {
@@ -90,6 +91,28 @@ public class TarihRaporlamaController {
 
     }
 
+    private void refreshToplamFields(){
+        JTable table = view.getTable();
+
+        int rowCount = table.getModel().getRowCount();
+
+        double toplamIsclikSuresi = 0;
+        double toplamBoyaMiktari = 0;
+        double toplamTutar = 0;
+
+        for(int i = 0; i < rowCount; i++){
+           toplamIsclikSuresi += (double)table.getValueAt(i,6);
+           toplamBoyaMiktari += (double)table.getValueAt(i,5);
+           toplamTutar += (double)table.getValueAt(i,11);
+
+        }
+        view.getBoyaMiktarıToplamTextField().setText(String.valueOf(toplamBoyaMiktari));
+        view.getIscilikSuresiToplamTextField().setText(String.valueOf(toplamIsclikSuresi));
+        view.getTutarToplamTextField().setText(String.valueOf(toplamTutar));
+
+
+    }
+
     private void initListeners() {
 
         view.getBtnFiltrele().addActionListener(e -> {
@@ -153,6 +176,8 @@ public class TarihRaporlamaController {
                     tableRow[16] = row.get(16);
 
                     ((DefaultTableModel) view.getTable().getModel()).addRow(tableRow);
+
+                    refreshToplamFields();
 
                 }
             } else {

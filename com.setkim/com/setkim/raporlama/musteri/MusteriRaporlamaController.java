@@ -19,6 +19,7 @@ public class MusteriRaporlamaController {
         view = new MusteriRaporlamaPanel();
         initComboBox();
         initListener();
+        refreshToplamFields();
     }
 
     private void initComboBox() {
@@ -59,7 +60,31 @@ public class MusteriRaporlamaController {
 
             updateTable(musteriNo);
 
+            refreshToplamFields();
+
         });
+    }
+
+    private void refreshToplamFields(){
+        JTable table = view.getTable();
+
+        int rowCount = table.getModel().getRowCount();
+
+        double toplamIsclikSuresi = 0;
+        double toplamBoyaMiktari = 0;
+        double toplamTutar = 0;
+
+        for(int i = 0; i < rowCount; i++){
+            toplamIsclikSuresi += (double)table.getValueAt(i,5);
+            toplamBoyaMiktari += (double)table.getValueAt(i,4);
+            toplamTutar += (double)table.getValueAt(i,10);
+
+        }
+        view.getBoyaMiktarıToplamTextField().setText(String.valueOf(toplamBoyaMiktari));
+        view.getIscilikSuresiToplamTextField().setText(String.valueOf(toplamIsclikSuresi));
+        view.getTutarToplamTextField().setText(String.valueOf(toplamTutar));
+
+
     }
 
     public void updateTable(int musteriNo){

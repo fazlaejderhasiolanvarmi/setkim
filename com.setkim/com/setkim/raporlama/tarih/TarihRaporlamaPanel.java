@@ -125,6 +125,15 @@ public class TarihRaporlamaPanel extends JPanel {
         gbl_toplamPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
         toplamPanel.setLayout(gbl_toplamPanel);
 
+        tutarToplamTextField = new JTextField();
+        GridBagConstraints gbc_tutarToplamTextField = new GridBagConstraints();
+        gbc_tutarToplamTextField.insets = new Insets(0, 0, 0, 5);
+        gbc_tutarToplamTextField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_tutarToplamTextField.gridx = 2;
+        gbc_tutarToplamTextField.gridy = 2;
+        toplamPanel.add(tutarToplamTextField, gbc_tutarToplamTextField);
+        tutarToplamTextField.setColumns(10);
+
         iscilikSuresiToplamTextField = new JTextField();
         GridBagConstraints gbc_iscilikSuresiToplamTextField = new GridBagConstraints();
         gbc_iscilikSuresiToplamTextField.insets = new Insets(0, 0, 5, 5);
@@ -143,7 +152,7 @@ public class TarihRaporlamaPanel extends JPanel {
         toplamPanel.add(boyaMiktarıToplamTextField, gbc_boyaMiktarıToplamTextField);
         boyaMiktarıToplamTextField.setColumns(10);
 
-        JLabel tutarToplamLabel = new JLabel("Tutar");
+        JLabel tutarToplamLabel = new JLabel("Toplam Tutar");
         GridBagConstraints gbc_tutarToplamLabel = new GridBagConstraints();
         gbc_tutarToplamLabel.anchor = GridBagConstraints.NORTHWEST;
         gbc_tutarToplamLabel.insets = new Insets(0, 0, 0, 5);
@@ -151,7 +160,7 @@ public class TarihRaporlamaPanel extends JPanel {
         gbc_tutarToplamLabel.gridy = 2;
         toplamPanel.add(tutarToplamLabel, gbc_tutarToplamLabel);
 
-        JLabel boyaMiktariToplamLabel = new JLabel("Boya Miktarı");
+        JLabel boyaMiktariToplamLabel = new JLabel("Toplam Boya Miktarı");
         GridBagConstraints gbc_boyaMiktariToplamLabel = new GridBagConstraints();
         gbc_boyaMiktariToplamLabel.anchor = GridBagConstraints.NORTHWEST;
         gbc_boyaMiktariToplamLabel.insets = new Insets(0, 0, 5, 5);
@@ -159,7 +168,7 @@ public class TarihRaporlamaPanel extends JPanel {
         gbc_boyaMiktariToplamLabel.gridy = 1;
         toplamPanel.add(boyaMiktariToplamLabel, gbc_boyaMiktariToplamLabel);
 
-        JLabel iscilikSuresiToplamLabel = new JLabel("İşçilik Süresi");
+        JLabel iscilikSuresiToplamLabel = new JLabel("Toplam İşçilik Süresi");
         GridBagConstraints gbc_iscilikSuresiToplamLabel = new GridBagConstraints();
         gbc_iscilikSuresiToplamLabel.insets = new Insets(0, 0, 5, 5);
         gbc_iscilikSuresiToplamLabel.anchor = GridBagConstraints.NORTHWEST;
@@ -167,14 +176,7 @@ public class TarihRaporlamaPanel extends JPanel {
         gbc_iscilikSuresiToplamLabel.gridy = 0;
         toplamPanel.add(iscilikSuresiToplamLabel, gbc_iscilikSuresiToplamLabel);
 
-        tutarToplamTextField = new JTextField();
-        GridBagConstraints gbc_tutarToplamTextField = new GridBagConstraints();
-        gbc_tutarToplamTextField.insets = new Insets(0, 0, 0, 5);
-        gbc_tutarToplamTextField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_tutarToplamTextField.gridx = 2;
-        gbc_tutarToplamTextField.gridy = 2;
-        toplamPanel.add(tutarToplamTextField, gbc_tutarToplamTextField);
-        tutarToplamTextField.setColumns(10);
+
     }
 
     public JPanel getTablePanel() {
@@ -199,5 +201,17 @@ public class TarihRaporlamaPanel extends JPanel {
 
     public JTable getTable() {
         return table;
+    }
+
+    public JTextField getIscilikSuresiToplamTextField() {
+        return iscilikSuresiToplamTextField;
+    }
+
+    public JTextField getBoyaMiktarıToplamTextField() {
+        return boyaMiktarıToplamTextField;
+    }
+
+    public JTextField getTutarToplamTextField() {
+        return tutarToplamTextField;
     }
 }

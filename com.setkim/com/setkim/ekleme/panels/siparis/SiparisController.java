@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
@@ -23,28 +25,77 @@ public class SiparisController {
     }
 
     private void initListeners() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         view.getEkleBtn().addActionListener(e -> {
+            String satirAdi = "";
+            try {
+                satirAdi = "Boyanan Malzeme";
+                String boyananMalzeme = view.getBoyananMalzeme().getText();
+                satirAdi = "Malzeme Cinsi";
+                String malzemeCinsi = view.getMalzemeCinsi().getText();
+                satirAdi = "Yüzey İşlem";
+                String yuzeyIslem = view.getYuzeyIslem().getText();
+                satirAdi = "Renk Kodu";
+                String renkKodu = view.getRenkKodu().getText();
+                satirAdi = "Boya Miktarı";
+                double boyaMiktari = Double.parseDouble(view.getBoyaMiktari().getText());
+                satirAdi = "İşçilik Süresi";
+                double iscilikSuresi = Double.parseDouble(view.getIscilikSuresi().getText());
+                satirAdi = "Boyanan Malzeme Miktarı";
+                double boyananMalzemeMiktari = Double.parseDouble(view.getBoyananMalzemeMiktari().getText());
+                satirAdi = "Birim";
+                String birim = view.getBirim().getText();
+                satirAdi = "Hat";
+                int hat = Integer.parseInt(view.getHat().getText());
+                satirAdi = "Boyama Fiyatı";
+                double boyamaFiyati = Double.parseDouble(view.getBoyamaFiyati().getText());
+                satirAdi = "Tutar";
+                double tutar = Double.parseDouble(view.getTutar().getText());
+                satirAdi = "Müşteri No";
+                int musteriNo = ((MusteriNoVeAdPair) view.getMusteriComboBox().getSelectedItem()).getMusteriNo();
+                satirAdi = "Malzeme Alım Tarihi";
+                String malzemeAlimTarihi = view.getMalzemeAlimTarihi().getText();
+                dateFormat.parse(malzemeAlimTarihi);
+                satirAdi = "Teslim Tarihi";
+                String teslimTarihi = view.getTeslimTarihi().getText();
+                dateFormat.parse(teslimTarihi);
+                satirAdi = "İrsaliye No";
+                String irsaliyeNo = view.getIrsaliyeNo().getText();
+                satirAdi = "Fatura No";
+                String faturaNo = view.getFaturaNo().getText();
+                satirAdi = "Vade";
+                int vade = Integer.parseInt(view.getVade().getText());
 
-            Database.insertToSiparisBilgisi(
-                    view.getBoyananMalzeme().getText(),
-                    view.getMalzemeCinsi().getText(),
-                    view.getYuzeyIslem().getText(),
-                    view.getRenkKodu().getText(),
-                    Double.parseDouble(view.getBoyaMiktari().getText()),
-                    Double.parseDouble(view.getIscilikSuresi().getText()),
-                    Double.parseDouble(view.getBoyananMalzemeMiktari().getText()),
-                    view.getBirim().getText(),
-                    Integer.parseInt(view.getHat().getText()),
-                    Double.parseDouble(view.getBoyamaFiyati().getText()),
-                    Double.parseDouble(view.getTutar().getText()),
-                    ((MusteriNoVeAdPair) view.getMusteriComboBox().getSelectedItem()).getMusteriNo(),
-                    view.getMalzemeAlimTarihi().getText(),
-                    view.getTeslimTarihi().getText(),
-                    view.getIrsaliyeNo().getText(),
-                    view.getFaturaNo().getText(),
-                    Integer.parseInt(view.getVade().getText())
-            );
+                Database.insertToSiparisBilgisi(
+                        boyananMalzeme,
+                        malzemeCinsi,
+                        yuzeyIslem,
+                        renkKodu,
+                        boyaMiktari,
+                        iscilikSuresi,
+                        boyananMalzemeMiktari,
+                        birim,
+                        hat,
+                        boyamaFiyati,
+                        tutar,
+                        musteriNo,
+                        malzemeAlimTarihi,
+                        teslimTarihi,
+                        irsaliyeNo,
+                        faturaNo,
+                        vade
+                );
+            } catch (Exception ex){
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        satirAdi + " hatalı girildi.",
+                        "Başarısız",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
 
             JOptionPane.showMessageDialog(
                     null,

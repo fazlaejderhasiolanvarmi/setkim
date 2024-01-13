@@ -28,6 +28,8 @@ public class SiparisDetayPanel extends JPanel {
     private JTextField textFieldVade;
     private JButton btnfaturalandir;
 
+    private JButton btnKaydet;
+
     public SiparisDetayPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0, 0, 0};
@@ -461,6 +463,15 @@ public class SiparisDetayPanel extends JPanel {
         gbc_faturalandir.gridx = 0;
         gbc_faturalandir.gridy = 1;
         add(btnfaturalandir, gbc_faturalandir);
+
+        btnKaydet = new JButton("Kaydet");
+        GridBagConstraints gbc_kaydet = new GridBagConstraints();
+        gbc_kaydet.fill = GridBagConstraints.VERTICAL;
+        gbc_kaydet.gridwidth = 2;
+        gbc_kaydet.insets = new Insets(5, 5, 5, 5);
+        gbc_kaydet.gridx = 1;
+        gbc_kaydet.gridy = 1;
+        add(btnKaydet, gbc_kaydet);
     }
 
     public JTextField getTextFieldMusteriAdi() {
@@ -555,4 +566,7 @@ public class SiparisDetayPanel extends JPanel {
         return btnfaturalandir;
     }
 
+    public JButton getBtnKaydet() {
+        return btnKaydet;
+    }
 }

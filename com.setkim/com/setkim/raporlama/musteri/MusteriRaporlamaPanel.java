@@ -11,6 +11,9 @@ public class MusteriRaporlamaPanel extends JPanel {
     private JComboBox<MusteriNoVeAdPair> musteriDropdown;
     private JButton raporlaBtn;
 
+    private JSpinner spinnerBaslangicTarih;
+
+    private JSpinner spinnerBitisTarih;
     private JTextField iscilikSuresiToplamTextField;
     private JTextField boyaMiktarıToplamTextField;
     private JTextField tutarToplamTextField;
@@ -92,28 +95,34 @@ public class MusteriRaporlamaPanel extends JPanel {
         gbc_lblNewLabel.gridy = 0;
         zamanFiltresiPanel.add(lblNewLabel, gbc_lblNewLabel);
 
-        JSpinner spinner = new JSpinner();
-        spinner.setModel(new SpinnerDateModel(new Date(1698440459000L), null, null, Calendar.DAY_OF_MONTH));
-        GridBagConstraints gbc_spinner = new GridBagConstraints();
-        gbc_spinner.insets = new Insets(0, 0, 0, 5);
-        gbc_spinner.gridx = 6;
-        gbc_spinner.gridy = 0;
-        zamanFiltresiPanel.add(spinner, gbc_spinner);
+        SpinnerDateModel solTarihModel = new SpinnerDateModel();
+        spinnerBaslangicTarih = new JSpinner(solTarihModel);
+        JComponent solTarih = new JSpinner.DateEditor(spinnerBaslangicTarih, "dd/MM/yyyy");
+        spinnerBaslangicTarih.setEditor(solTarih);
+        GridBagConstraints gbc_spinnerSolTarih = new GridBagConstraints();
+        gbc_spinnerSolTarih.insets = new Insets(0, 0, 0, 5);
+        gbc_spinnerSolTarih.gridx = 6;
+        gbc_spinnerSolTarih.gridy = 0;
+        zamanFiltresiPanel.add(spinnerBaslangicTarih, gbc_spinnerSolTarih);
 
         JLabel lblNewLabel_1 = new JLabel("Bitiş Tarihi");
         GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-        gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+        gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 10);
         gbc_lblNewLabel_1.gridx = 8;
         gbc_lblNewLabel_1.gridy = 0;
         zamanFiltresiPanel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-        JSpinner spinner_1 = new JSpinner();
-        spinner_1.setModel(new SpinnerDateModel(new Date(1698440400000L), null, null, Calendar.DAY_OF_MONTH));
-        GridBagConstraints gbc_spinner_1 = new GridBagConstraints();
-        gbc_spinner_1.insets = new Insets(0, 0, 0, 5);
-        gbc_spinner_1.gridx = 9;
-        gbc_spinner_1.gridy = 0;
-        zamanFiltresiPanel.add(spinner_1, gbc_spinner_1);
+        SpinnerDateModel sagTarihModel = new SpinnerDateModel();
+
+        spinnerBitisTarih = new JSpinner(sagTarihModel);
+        JComponent sagTarih = new JSpinner.DateEditor(spinnerBitisTarih, "dd/MM/yyyy");
+        spinnerBitisTarih.setEditor(sagTarih);
+        GridBagConstraints gbc_spinnerSagTarih = new GridBagConstraints();
+        gbc_spinnerSagTarih.insets = new Insets(0, 0, 0, 5);
+        gbc_spinnerSagTarih.gridx = 9;
+        gbc_spinnerSagTarih.gridy = 0;
+        zamanFiltresiPanel.add(spinnerBitisTarih, gbc_spinnerSagTarih);
+
 
         JPanel toplamPanel = new JPanel();
         GridBagConstraints gbc_toplamPanel = new GridBagConstraints();
@@ -147,7 +156,7 @@ public class MusteriRaporlamaPanel extends JPanel {
         toplamPanel.add(boyaMiktarıToplamTextField, gbc_boyaMiktarıToplamTextField);
         boyaMiktarıToplamTextField.setColumns(10);
 
-        JLabel tutarToplamLabel = new JLabel("Tutar");
+        JLabel tutarToplamLabel = new JLabel("Toplam Tutar");
         GridBagConstraints gbc_tutarToplamLabel = new GridBagConstraints();
         gbc_tutarToplamLabel.anchor = GridBagConstraints.NORTHWEST;
         gbc_tutarToplamLabel.insets = new Insets(0, 0, 0, 5);
@@ -155,7 +164,7 @@ public class MusteriRaporlamaPanel extends JPanel {
         gbc_tutarToplamLabel.gridy = 2;
         toplamPanel.add(tutarToplamLabel, gbc_tutarToplamLabel);
 
-        JLabel boyaMiktariToplamLabel = new JLabel("Boya Miktarı");
+        JLabel boyaMiktariToplamLabel = new JLabel("Toplam Boya Miktarı");
         GridBagConstraints gbc_boyaMiktariToplamLabel = new GridBagConstraints();
         gbc_boyaMiktariToplamLabel.anchor = GridBagConstraints.NORTHWEST;
         gbc_boyaMiktariToplamLabel.insets = new Insets(0, 0, 5, 5);
@@ -163,7 +172,7 @@ public class MusteriRaporlamaPanel extends JPanel {
         gbc_boyaMiktariToplamLabel.gridy = 1;
         toplamPanel.add(boyaMiktariToplamLabel, gbc_boyaMiktariToplamLabel);
 
-        JLabel iscilikSuresiToplamLabel = new JLabel("İşçilik Süresi");
+        JLabel iscilikSuresiToplamLabel = new JLabel("Toplam İşçilik Süresi");
         GridBagConstraints gbc_iscilikSuresiToplamLabel = new GridBagConstraints();
         gbc_iscilikSuresiToplamLabel.insets = new Insets(0, 0, 5, 5);
         gbc_iscilikSuresiToplamLabel.anchor = GridBagConstraints.NORTHWEST;
@@ -194,5 +203,23 @@ public class MusteriRaporlamaPanel extends JPanel {
         return raporlaBtn;
     }
 
+    public JSpinner getSpinnerBaslangicTarih() {
+        return spinnerBaslangicTarih;
+    }
 
+    public JSpinner getSpinnerBitisTarih() {
+        return spinnerBitisTarih;
+    }
+
+    public JTextField getIscilikSuresiToplamTextField() {
+        return iscilikSuresiToplamTextField;
+    }
+
+    public JTextField getBoyaMiktarıToplamTextField() {
+        return boyaMiktarıToplamTextField;
+    }
+
+    public JTextField getTutarToplamTextField() {
+        return tutarToplamTextField;
+    }
 }
