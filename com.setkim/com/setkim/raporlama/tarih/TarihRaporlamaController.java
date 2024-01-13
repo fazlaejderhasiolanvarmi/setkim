@@ -3,9 +3,14 @@ package com.setkim.raporlama.tarih;
 import com.setkim.util.DatabaseObjectList;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class TarihRaporlamaController {
@@ -33,6 +38,24 @@ public class TarihRaporlamaController {
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setDefaultEditor(Object.class, null);
+
+        TableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
+
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+            public Component getTableCellRendererComponent(JTable table,
+                                                           Object value, boolean isSelected, boolean hasFocus,
+                                                           int row, int column) {
+                if (value instanceof Date) {
+                    value = f.format(value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+            }
+        };
+
+        table.getColumnModel().getColumn(12).setCellRenderer(dateRenderer);
+        table.getColumnModel().getColumn(13).setCellRenderer(dateRenderer);
 
         table.addMouseListener(new MouseAdapter() {
             @Override

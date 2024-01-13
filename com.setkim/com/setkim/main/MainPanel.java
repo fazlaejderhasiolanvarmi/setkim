@@ -28,6 +28,8 @@ public class MainPanel extends JPanel {
         tableModel.addColumn("Tutar");
         tableModel.addColumn("Alım Tarihi");
         tableModel.addColumn("Teslim Tarihi");
+        tableModel.addColumn("Sipariş No"); // Sipariş No'yu göstermiyoruz ama arama kolaylaşsın diye ekledim
+        
 
         table = new JTable(tableModel);
         table.setAutoCreateRowSorter(true);

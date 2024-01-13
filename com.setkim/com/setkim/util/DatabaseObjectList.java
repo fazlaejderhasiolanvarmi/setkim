@@ -31,6 +31,19 @@ public class DatabaseObjectList {
         return null;
     }
 
+    public static SiparisBilgisi findSiparisWithSiparisNo(int siparisNo) {
+
+        for (SiparisBilgisi siparisBilgisi : siparisBilgisiList) {
+
+            if (siparisBilgisi.getSiparisNo() == siparisNo) {
+                return siparisBilgisi;
+            }
+
+        }
+
+        return null;
+    }
+
     public static List<Object> getMainTableList() {
 
         List<Object> tableList = new ArrayList<>();
@@ -43,6 +56,7 @@ public class DatabaseObjectList {
             row.add(siparis.getTutar());
             row.add(siparis.getAlimTarihi());
             row.add(siparis.getTeslimTarihi());
+            row.add(siparis.getSiparisNo());
 
             tableList.add(row);
         }
@@ -56,7 +70,7 @@ public class DatabaseObjectList {
         musteriList.add(musteri);
     }
 
-    private static int getMaxMusteriNo() {
+    public static int getMaxMusteriNo() {
 
         int max = -1;
 
@@ -76,7 +90,7 @@ public class DatabaseObjectList {
         siparisBilgisiList.add(siparis);
     }
 
-    private static int getMaxSiparisNo() {
+    public static int getMaxSiparisNo() {
 
         int max = -1;
 
@@ -156,7 +170,17 @@ public class DatabaseObjectList {
         return tableData;
     }
 
-    public List<SiparisBilgisi> getSiparisBilgisiList() {
+    public static List<SiparisBilgisi> getSiparisBilgisiList() {
         return siparisBilgisiList;
+    }
+
+    public static void saveMusteriList() {
+        DatabaseController.deleteMusteriListFromDatabase();
+        DatabaseController.saveMusteriListToDatabase(musteriList);
+    }
+
+    public static void saveSiparisList() {
+        DatabaseController.deleteSiparisListFromDatabase();
+        DatabaseController.saveSiparisListToDatabase(siparisBilgisiList);
     }
 }

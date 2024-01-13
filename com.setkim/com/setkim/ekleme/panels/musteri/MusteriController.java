@@ -13,9 +13,10 @@ public class MusteriController {
         view = new MusteriPanel();
 
         view.getBtnEkle().addActionListener(e -> {
-            
+
             Musteri musteri = new Musteri();
 
+            musteri.setMusteriNo(DatabaseObjectList.getMaxMusteriNo());
             musteri.setMusteriAdi(view.getTextFieldMusteriAdi().getText());
             musteri.setBelgeNo(Integer.valueOf(view.getTextFieldBelgeNo().getText()));
             musteri.setAdres(view.getTextFieldAdres().getText());

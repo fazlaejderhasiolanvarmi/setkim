@@ -147,4 +147,141 @@ public class DatabaseController {
 
     }
 
+    public static void deleteMusteriListFromDatabase() {
+
+        PreparedStatement preparedStatement;
+        String query = "DELETE FROM Musteri";
+
+        if (connection != null) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        } else {
+            connect();
+            deleteMusteriListFromDatabase();
+            closeConnection();
+        }
+    }
+
+    public static void saveMusteriListToDatabase(List<Musteri> musteriList) {
+
+        PreparedStatement preparedStatement;
+        String query = "INSERT INTO Musteri (Musteri_No, Musteri_Adi, Belge_No, Adres, Vergi_Dairesi, Vergi_No, Yetkili) VALUES (?,?,?,?,?,?,?)";
+
+        if (connection != null) {
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                for (Musteri musteri : musteriList) {
+
+                    preparedStatement.setInt(1, musteri.getMusteriNo());
+                    preparedStatement.setString(2, musteri.getMusteriAdi());
+                    preparedStatement.setInt(3, musteri.getBelgeNo());
+                    preparedStatement.setString(4, musteri.getAdres());
+                    preparedStatement.setString(5, musteri.getVergiDairesi());
+                    preparedStatement.setString(6, musteri.getVergiNo());
+                    preparedStatement.setString(7, musteri.getYetkili());
+
+                    preparedStatement.addBatch();
+                }
+
+                preparedStatement.executeBatch();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            connect();
+            saveMusteriListToDatabase(musteriList);
+            closeConnection();
+        }
+
+    }
+
+    public static void deleteSiparisListFromDatabase() {
+
+        PreparedStatement preparedStatement;
+        String query = "DELETE FROM SiparisBilgisi";
+
+        if (connection != null) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        } else {
+            connect();
+            deleteSiparisListFromDatabase();
+            closeConnection();
+        }
+    }
+
+    public static void saveSiparisListToDatabase(List<SiparisBilgisi> siparisList) {
+
+        PreparedStatement preparedStatement;
+        String query = "INSERT INTO SiparisBilgisi (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi,\n" +
+                "                            Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar, MusteriNo, AlimTarihi,\n" +
+                "                            TeslimTarihi, IrsaliyeNo, FaturaNo, Vade)\n" +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        if (connection != null) {
+
+            try {
+                preparedStatement = connection.prepareStatement(query);
+
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+                for (SiparisBilgisi siparis : siparisList) {
+
+                    preparedStatement.setString(1, siparis.getBoyananMalzeme());
+                    preparedStatement.setString(2, siparis.getMalzemeCinsi());
+                    preparedStatement.setString(3, siparis.getYuzeyIslem());
+                    preparedStatement.setString(4, siparis.getRenkKodu());
+                    preparedStatement.setDouble(5, siparis.getBoyaMiktari());
+                    preparedStatement.setDouble(6, siparis.getIscilikSuresi());
+                    preparedStatement.setDouble(7, siparis.getBoyananMalzemeMiktari());
+                    preparedStatement.setString(8, siparis.getBirim());
+                    preparedStatement.setInt(9, siparis.getHat());
+                    preparedStatement.setDouble(10, siparis.getBoyamaFiyati());
+                    preparedStatement.setDouble(11, siparis.getTutar());
+                    preparedStatement.setObject(12, siparis.getMusteri().getMusteriNo());
+                    preparedStatement.setString(13, f.format(siparis.getAlimTarihi()));
+                    preparedStatement.setString(14, f.format(siparis.getTeslimTarihi()));
+                    preparedStatement.setString(15, siparis.getIrsaliyeNo());
+                    preparedStatement.setString(16, siparis.getFaturaNo());
+                    preparedStatement.setInt(17, siparis.getVade());
+
+                    preparedStatement.addBatch();
+                }
+
+                preparedStatement.executeBatch();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            connect();
+            saveSiparisListToDatabase(siparisList);
+            closeConnection();
+        }
+
+    }
 }

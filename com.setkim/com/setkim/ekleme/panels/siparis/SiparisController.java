@@ -30,6 +30,7 @@ public class SiparisController {
 
             SiparisBilgisi siparis = new SiparisBilgisi();
 
+            siparis.setSiparisNo(DatabaseObjectList.getMaxSiparisNo());
             siparis.setBoyananMalzeme(view.getBoyananMalzeme().getText());
             siparis.setMalzemeCinsi(view.getMalzemeCinsi().getText());
             siparis.setYuzeyIslem(view.getYuzeyIslem().getText());
@@ -38,7 +39,7 @@ public class SiparisController {
             siparis.setIscilikSuresi(Double.parseDouble(view.getIscilikSuresi().getText()));
             siparis.setBoyananMalzemeMiktari(Double.parseDouble(view.getBoyananMalzemeMiktari().getText()));
             siparis.setBirim(view.getBirim().getText());
-            siparis.setHat(Integer.parseInt(view.getBirim().getText()));
+            siparis.setHat(Integer.parseInt(view.getHat().getText()));
             siparis.setBoyamaFiyati(Double.parseDouble(view.getBoyamaFiyati().getText()));
             siparis.setTutar(Double.parseDouble(view.getTutar().getText()));
             siparis.setMusteri((Musteri) view.getMusteriComboBox().getSelectedItem());

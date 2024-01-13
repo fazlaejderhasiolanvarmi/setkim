@@ -4,8 +4,12 @@ import com.setkim.util.DatabaseObjectList;
 import com.setkim.util.objects.Musteri;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -18,11 +22,32 @@ public class MusteriRaporlamaController {
 
     public MusteriRaporlamaController() {
         view = new MusteriRaporlamaPanel();
-        initComboBox();
+        refreshComboBox();
         initListener();
+
+        JTable table = view.getTable();
+
+        TableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
+
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+
+            public Component getTableCellRendererComponent(JTable table,
+                                                           Object value, boolean isSelected, boolean hasFocus,
+                                                           int row, int column) {
+                if (value instanceof Date) {
+                    value = f.format(value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+            }
+        };
+
+        table.getColumnModel().getColumn(11).setCellRenderer(dateRenderer);
+        table.getColumnModel().getColumn(12).setCellRenderer(dateRenderer);
+
     }
 
-    private void initComboBox() {
+    public void refreshComboBox() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
         musteriList = DatabaseObjectList.getMusteriList();

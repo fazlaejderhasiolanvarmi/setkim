@@ -28,6 +28,7 @@ public class RaporlamaSecenekController {
 
                 JFrame musteriFrame = new JFrame("Müşteri Filtreleme");
                 musteriFrame.toFront();
+                musteriRaporlamaController.refreshComboBox();
                 musteriFrame.add(musteriRaporlamaController.getView());
                 musteriFrame.setBounds(100, 100, 1200, 800);
                 musteriFrame.setVisible(true);
