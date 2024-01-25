@@ -19,7 +19,6 @@ import java.util.Vector;
 
 public class MusteriRaporlamaController {
 
-    private List<Musteri> musteriList;
     private MusteriRaporlamaPanel view;
 
     public MusteriRaporlamaController() {
@@ -90,7 +89,7 @@ public class MusteriRaporlamaController {
     public void refreshComboBox() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-        musteriList = DatabaseObjectList.getMusteriList();
+        List<Musteri> musteriList = DatabaseObjectList.getMusteriList();
 
         for (Musteri musteri : musteriList) {
             model.addElement(musteri);
@@ -135,8 +134,8 @@ public class MusteriRaporlamaController {
 
         List<Object> bilgiler = DatabaseObjectList.getSiparisListOfMusteri(musteri);
 
-        for (int i = 0; i < bilgiler.size(); i++) {
-            model.addRow(new Vector<>((List<Object>) bilgiler.get(i)));
+        for (Object o : bilgiler) {
+            model.addRow(new Vector<>((List<Object>) o));
         }
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
