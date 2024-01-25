@@ -1,6 +1,8 @@
 package com.setkim.raporlama.tarih;
 
+import com.setkim.siparisdetay.SiparisDetayController;
 import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.SiparisBilgisi;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -20,13 +22,17 @@ public class TarihRaporlamaController {
 
         view = new TarihRaporlamaPanel();
 
-        initListeners();
         initTable();
+        initListeners();
     }
 
+    // Burası okunaklı hale gelebilir belki?
     private void initTable() {
 
         JTable table = view.getTable();
+
+        table.removeColumn(table.getColumnModel().getColumn(17)); // Sipariş No Gizlemecilik
+
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
         List<Object> tableData = DatabaseObjectList.getTarihFiltrelemeTable();
@@ -54,41 +60,41 @@ public class TarihRaporlamaController {
             }
         };
 
+        // Burası acaba Date.class mı olsa?
         table.getColumnModel().getColumn(12).setCellRenderer(dateRenderer);
         table.getColumnModel().getColumn(13).setCellRenderer(dateRenderer);
 
+        // Teknik olarak bu da bi listener
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+
                 int selectedRow = table.getSelectedRow();
 
-                //TODO
+                if (e.getClickCount() >= 2 && selectedRow != -1) {
 
-//                if (e.getClickCount() == 2 && selectedRow != -1) {
-//                    List<Object> musteriBilgisi = DatabaseController.getMusteriFromMusteriName((String) table.getModel().getValueAt(selectedRow, 0));
-//
-//                    List<Object> siparisBilgisi = DatabaseController.getSiparisBilgisiFromTabloBilgisi((String) table.getModel().getValueAt(selectedRow, 1),
-//                            (double) table.getModel().getValueAt(selectedRow, 11),
-//                            (String) table.getModel().getValueAt(selectedRow, 12),
-//                            (String) table.getModel().getValueAt(selectedRow, 13)
-//                    );
-//
-//                    SiparisDetayController siparisDetayController = new SiparisDetayController(musteriBilgisi, siparisBilgisi);
-//
-//                    JDialog siparisDetayFrame = new JDialog();
-//                    siparisDetayFrame.setTitle("Sipariş Detay");
-//                    siparisDetayFrame.setModal(true);
-//                    siparisDetayFrame.setBounds(100, 200, 800, 600);
-//                    siparisDetayFrame.add(siparisDetayController.getView());
-//                    siparisDetayFrame.setVisible(true);
-//                    siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//                }
+                    int siparisNo = (int) table.getModel().getValueAt(selectedRow, 17);
+
+                    SiparisBilgisi siparis = DatabaseObjectList.findSiparisWithSiparisNo(siparisNo);
+
+                    if (siparis != null) {
+                        SiparisDetayController siparisDetayController = new SiparisDetayController(siparis);
+
+                        JDialog siparisDetayFrame = new JDialog((JFrame) SwingUtilities.getWindowAncestor(view), "Sipariş Detay", true);
+                        siparisDetayFrame.setBounds(100, 200, 800, 600);
+                        siparisDetayFrame.add(siparisDetayController.getView());
+                        siparisDetayFrame.setVisible(true);
+                        siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    }
+                }
             }
         });
 
     }
 
     private void initListeners() {
+
+        // OOOOOOOOFFFFFFFF
 
         view.getBtnFiltrele().addActionListener(e -> {
 

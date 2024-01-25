@@ -17,8 +17,6 @@ public class MusteriRaporlamaController {
 
     private List<Musteri> musteriList;
     private MusteriRaporlamaPanel view;
-    //inittable doldurulacak müsteriye göre
-
 
     public MusteriRaporlamaController() {
         view = new MusteriRaporlamaPanel();

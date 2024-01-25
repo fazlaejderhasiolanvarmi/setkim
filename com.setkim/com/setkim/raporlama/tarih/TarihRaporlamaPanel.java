@@ -96,6 +96,7 @@ public class TarihRaporlamaPanel extends JPanel {
         tableModel.addColumn("İrsaliye No");
         tableModel.addColumn("Fatura No");
         tableModel.addColumn("Vade");
+        tableModel.addColumn("Sipariş No"); // Sipariş No'yu göstermiyoruz ama arama kolaylaşsın diye ekledim
 
         table = new JTable(tableModel);
         table.setAutoCreateRowSorter(true);
