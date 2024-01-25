@@ -4,6 +4,7 @@ import com.setkim.util.objects.Musteri;
 import com.setkim.util.objects.SiparisBilgisi;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseObjectList {
@@ -170,6 +171,27 @@ public class DatabaseObjectList {
         }
 
         return tableData;
+    }
+
+    public static List<SiparisBilgisi> findSiparisBetweenDates(Date baslangicTarihi, Date bitisTarihi) {
+
+        List<SiparisBilgisi> filteredSiparisList = new ArrayList<>();
+
+        for (SiparisBilgisi siparis : siparisBilgisiList) {
+
+            if (siparis.getAlimTarihi().after(baslangicTarihi) && siparis.getAlimTarihi().before(bitisTarihi)) {
+
+                filteredSiparisList.add(siparis);
+
+            } else if (siparis.getAlimTarihi().equals(baslangicTarihi) || siparis.getAlimTarihi().equals(bitisTarihi)) {
+                // Alım tarihiyle aynı tarihse onu da almak için equals attım
+
+                filteredSiparisList.add(siparis);
+            }
+
+        }
+
+        return filteredSiparisList;
     }
 
     public static List<SiparisBilgisi> getSiparisBilgisiList() {

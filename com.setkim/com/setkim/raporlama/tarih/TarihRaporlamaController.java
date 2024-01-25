@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 public class TarihRaporlamaController {
-    private TarihRaporlamaPanel view;
+    private final TarihRaporlamaPanel view;
 
     public TarihRaporlamaController() {
 
@@ -32,8 +32,6 @@ public class TarihRaporlamaController {
         JTable table = view.getTable();
 
         table.removeColumn(table.getColumnModel().getColumn(17)); // Sipariş No Gizlemecilik
-
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
 
         List<Object> tableData = DatabaseObjectList.getTarihFiltrelemeTable();
 
@@ -94,81 +92,71 @@ public class TarihRaporlamaController {
 
     private void initListeners() {
 
-        // OOOOOOOOFFFFFFFF
-
         view.getBtnFiltrele().addActionListener(e -> {
 
-//            Calendar calendar = Calendar.getInstance();
-//
-//            Date baslangicTarihi = (Date) view.getSpinnerBaslangicTarih().getValue();
-//            Date bitisTarihi = (Date) view.getSpinnerBitisTarih().getValue();
-//
-//            calendar.setTime(baslangicTarihi);
-//            int baslangicGunu = calendar.get(Calendar.DAY_OF_MONTH);
-//            int baslangicAy = calendar.get(Calendar.MONTH) + 1;
-//            int baslangicYil = calendar.get(Calendar.YEAR);
-//
-//            calendar.setTime(bitisTarihi);
-//            int bitisGunu = calendar.get(Calendar.DAY_OF_MONTH);
-//            int bitisAy = calendar.get(Calendar.MONTH) + 1;
-//            int bitisYil = calendar.get(Calendar.YEAR);
-//
-//            String baslangicTarih = baslangicGunu + "/" + baslangicAy + "/" + baslangicYil;
-//            String bitisTarih = bitisGunu + "/" + bitisAy + "/" + bitisYil;
-//
-//            List<Object> siparisler = new ArrayList<>();
-//
-//            try {
-//                siparisler = DatabaseController.compareDates(new SimpleDateFormat("dd/MM/yyyy").parse(baslangicTarih), new SimpleDateFormat("dd/MM/yyyy").parse(bitisTarih));
-//            } catch (ParseException ex) {
-//                ex.printStackTrace();
-//            }
-//
-//            if (!siparisler.isEmpty()) {
-//
-//                DefaultTableModel dm = (DefaultTableModel) view.getTable().getModel();
-//                int rowCount = dm.getRowCount();
-//
-//                for (int i = rowCount - 1; i >= 0; i--) {
-//                    dm.removeRow(i);
-//                }
-//
-//                for (Object siparis : siparisler) {
-//                    List<Object> row = (List<Object>) siparis;
-//
-//                    Object[] tableRow = new Object[17];
-//
-//                    tableRow[0] = row.get(11);
-//                    tableRow[1] = row.get(0);
-//                    tableRow[2] = row.get(1);
-//                    tableRow[3] = row.get(2);
-//                    tableRow[4] = row.get(3);
-//                    tableRow[5] = row.get(4);
-//                    tableRow[6] = row.get(5);
-//                    tableRow[7] = row.get(6);
-//                    tableRow[8] = row.get(7);
-//                    tableRow[9] = row.get(8);
-//                    tableRow[10] = row.get(9);
-//                    tableRow[11] = row.get(10);
-//                    tableRow[12] = row.get(12);
-//                    tableRow[13] = row.get(13);
-//                    tableRow[14] = row.get(14);
-//                    tableRow[15] = row.get(15);
-//                    tableRow[16] = row.get(16);
-//
-//                    ((DefaultTableModel) view.getTable().getModel()).addRow(tableRow);
-//
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(
-//                        null,
-//                        "Veri bulunamadı!",
-//                        "Hata",
-//                        JOptionPane.INFORMATION_MESSAGE);
-//            }
-//
-//        });
+            Date baslangicTarihi = (Date) view.getSpinnerBaslangicTarih().getValue();
+            Date bitisTarihi = (Date) view.getSpinnerBitisTarih().getValue();
+
+            List<SiparisBilgisi> filteredSiparisList = DatabaseObjectList.findSiparisBetweenDates(baslangicTarihi, bitisTarihi);
+
+            if (!filteredSiparisList.isEmpty()) {
+
+                removeAllRows();
+
+                for (SiparisBilgisi siparis : filteredSiparisList) {
+
+                    Object[] siparisBilgisi = siparisToObjectArray(siparis);
+
+                    ((DefaultTableModel) view.getTable().getModel()).addRow(siparisBilgisi);
+
+                }
+
+
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Veri bulunamadı!",
+                        "Hata",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
         });
+    }
+
+    private Object[] siparisToObjectArray(SiparisBilgisi siparis) {
+
+        Object[] objectArray = new Object[18];
+
+        objectArray[0] = siparis.getMusteri().getMusteriAdi();
+        objectArray[1] = siparis.getBoyananMalzeme();
+        objectArray[2] = siparis.getMalzemeCinsi();
+        objectArray[3] = siparis.getYuzeyIslem();
+        objectArray[4] = siparis.getRenkKodu();
+        objectArray[5] = siparis.getBoyaMiktari();
+        objectArray[6] = siparis.getIscilikSuresi();
+        objectArray[7] = siparis.getBoyananMalzemeMiktari();
+        objectArray[8] = siparis.getBirim();
+        objectArray[9] = siparis.getHat();
+        objectArray[10] = siparis.getBoyamaFiyati();
+        objectArray[11] = siparis.getTutar();
+        objectArray[12] = siparis.getAlimTarihi();
+        objectArray[13] = siparis.getTeslimTarihi();
+        objectArray[14] = siparis.getIrsaliyeNo();
+        objectArray[15] = siparis.getFaturaNo();
+        objectArray[16] = siparis.getVade();
+        objectArray[17] = siparis.getSiparisNo();
+
+        return objectArray;
+    }
+
+    private void removeAllRows() {
+
+        DefaultTableModel dm = (DefaultTableModel) view.getTable().getModel();
+        int rowCount = dm.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dm.removeRow(i);
+        }
+
     }
 
     public TarihRaporlamaPanel getView() {
