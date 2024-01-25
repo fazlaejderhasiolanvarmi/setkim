@@ -47,6 +47,7 @@ public class MusteriRaporlamaPanel extends JPanel {
         tableModel.addColumn("İrsaliye No");
         tableModel.addColumn("Fatura No");
         tableModel.addColumn("Vade");
+        tableModel.addColumn("Sipariş No"); // Gizli ama aramayı kolaylaştırsın diye var
 
         table = new JTable(tableModel);
 

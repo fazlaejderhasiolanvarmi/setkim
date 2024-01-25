@@ -131,6 +131,7 @@ public class DatabaseObjectList {
                 row.add(siparis.getIrsaliyeNo());
                 row.add(siparis.getFaturaNo());
                 row.add(siparis.getVade());
+                row.add(siparis.getSiparisNo());
 
                 filteredResults.add(row);
             }
@@ -163,6 +164,7 @@ public class DatabaseObjectList {
             row.add(siparis.getIrsaliyeNo());
             row.add(siparis.getFaturaNo());
             row.add(siparis.getVade());
+            row.add(siparis.getSiparisNo());
 
             tableData.add(row);
         }
