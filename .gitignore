@@ -3,4 +3,4 @@
 setkim.iml
 
 Deployment/setkim.db
-com.setkim/com/setkim/config
+com.setkim/com/setkim/util/CommonConfig.java
