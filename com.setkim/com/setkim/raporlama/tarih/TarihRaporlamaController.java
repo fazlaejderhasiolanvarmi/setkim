@@ -24,6 +24,7 @@ public class TarihRaporlamaController {
 
         initTable();
         initListeners();
+        refreshTxtFields();
     }
 
     // Burası okunaklı hale gelebilir belki?
@@ -157,6 +158,26 @@ public class TarihRaporlamaController {
             dm.removeRow(i);
         }
 
+    }
+
+    private void refreshTxtFields() {
+        JTable table = view.getTable();
+
+        int rowCount = table.getModel().getRowCount();
+
+        double toplamIscilikSuresi = 0;
+        double toplamBoyaMiktari = 0;
+        double toplamTutar = 0;
+
+        for (int i = 0; i < rowCount; i++) {
+            toplamIscilikSuresi += (double) table.getValueAt(i, 6);
+            toplamBoyaMiktari += (double) table.getValueAt(i, 5);
+            toplamTutar += (double) table.getValueAt(i, 11);
+
+        }
+        view.getTxtFieldBoya().setText(String.valueOf(toplamBoyaMiktari));
+        view.getTxtFieldIscilikSuresi().setText(String.valueOf(toplamIscilikSuresi));
+        view.getTxtFieldTutar().setText(String.valueOf(toplamTutar));
     }
 
     public TarihRaporlamaPanel getView() {

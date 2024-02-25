@@ -174,6 +174,14 @@ public class MusteriRaporlamaController {
             bilgiler = DatabaseObjectList.getSiparisListOfMusteri(musteri);
         }
 
+        if (bilgiler.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Veri bulunamadı!",
+                    "Hata",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+
         for (Object o : bilgiler) {
             model.addRow(new Vector<>((List<Object>) o));
         }
