@@ -3,6 +3,7 @@ package com.setkim.main;
 import com.setkim.ekleme.EklemeController;
 import com.setkim.raporlama.secenek.RaporlamaSecenekController;
 import com.setkim.siparisdetay.SiparisDetayController;
+import com.setkim.stokPanel.StokEkranController;
 import com.setkim.util.DatabaseObjectList;
 import com.setkim.util.objects.SiparisBilgisi;
 
@@ -24,6 +25,7 @@ public class MainController {
     private MainPanel view;
     private EklemeController eklemeController;
     private RaporlamaSecenekController raporlamaSecenekController;
+    private StokEkranController stokEkranController;
     private JFrame frame;
 
     public MainController() {
@@ -38,6 +40,7 @@ public class MainController {
 
         eklemeController = new EklemeController();
         raporlamaSecenekController = new RaporlamaSecenekController();
+        stokEkranController = new StokEkranController();
 
         frame = new JFrame();
         frame.setBounds(100, 200, 800, 600);
@@ -125,8 +128,16 @@ public class MainController {
     private void initListeners() {
         view.getBtnEkleme().addActionListener(e -> showEklemePanel());
         view.getBtnRaporlama().addActionListener(e -> raporla());
+        view.getBtnStok().addActionListener(e -> stokEkran() );
     }
 
+    private void stokEkran(){
+        JFrame stokFrame = new JFrame();
+        stokFrame.setBounds(100, 200, 800, 600);
+        stokFrame.add(stokEkranController.getView());
+        stokFrame.setVisible(true);
+        stokFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
     private void raporla() {
 
         JDialog raporlamaFrame = new JDialog(frame, "Raporlama", true);

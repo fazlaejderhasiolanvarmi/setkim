@@ -8,6 +8,7 @@ public class MainPanel extends JPanel {
     private JTable table;
     private JButton btnEkleme;
     private JButton btnRaporlama;
+    private JButton btnStok;
 
     public MainPanel() {
         setLayout(new BorderLayout(0, 0));
@@ -69,6 +70,14 @@ public class MainPanel extends JPanel {
         gbc_btnNewButton_1.gridx = 2;
         gbc_btnNewButton_1.gridy = 0;
         buttonWrapper.add(btnRaporlama, gbc_btnNewButton_1);
+
+        btnStok = new JButton("Stok");
+        GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+        gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
+        gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+        gbc_btnNewButton_2.gridx = 1;
+        gbc_btnNewButton_2.gridy = 0;
+        buttonWrapper.add(btnStok, gbc_btnNewButton_2);
     }
 
     public JTable getTable() {
@@ -83,4 +92,7 @@ public class MainPanel extends JPanel {
         return btnRaporlama;
     }
 
+    public JButton getBtnStok() {
+        return btnStok;
+    }
 }
