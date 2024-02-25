@@ -17,7 +17,7 @@ public class EklemePanel extends JPanel {
         setLayout(gridBagLayout);
 
         comboBox = new JComboBox();
-        comboBox.setModel(new DefaultComboBoxModel(new String[]{"Müşteri Bilgisi", "Sipariş"}));
+        comboBox.setModel(new DefaultComboBoxModel(new String[]{"Müşteri Bilgisi", "Sipariş", "Stok Kartı", "Stok"}));
         GridBagConstraints gbc_comboBox = new GridBagConstraints();
         gbc_comboBox.insets = new Insets(5, 5, 5, 5);
         gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
