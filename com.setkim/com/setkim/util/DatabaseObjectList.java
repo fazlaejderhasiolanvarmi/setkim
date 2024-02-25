@@ -207,4 +207,28 @@ public class DatabaseObjectList {
         DatabaseController.deleteSiparisListFromDatabase();
         DatabaseController.saveSiparisListToDatabase(siparisBilgisiList);
     }
+
+    public static List<Object> getSiparisListOfMusteriWithDate(Musteri musteri, Date baslangicTarihi, Date bitisTarihi) {
+
+        List<Object> siparisListOfMusteri = getSiparisListOfMusteri(musteri);
+
+        List<Object> filteredSiparisListOfMusteri = new ArrayList<>();
+
+        for (Object obj : siparisListOfMusteri) {
+
+            List<Object> siparis = (List<Object>) obj;
+
+            Date alimTarihi = (Date) siparis.get(11);
+            Date teslimTarihi = (Date) siparis.get(12);
+
+            if (alimTarihi.after(baslangicTarihi) && teslimTarihi.before(bitisTarihi)) {
+                filteredSiparisListOfMusteri.add(obj);
+            } else if (alimTarihi.equals(baslangicTarihi) || teslimTarihi.equals(bitisTarihi)) {
+                filteredSiparisListOfMusteri.add(obj);
+            }
+
+        }
+
+        return filteredSiparisListOfMusteri;
+    }
 }

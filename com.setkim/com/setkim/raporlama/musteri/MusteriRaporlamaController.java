@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -24,10 +25,22 @@ public class MusteriRaporlamaController {
     public MusteriRaporlamaController() {
         view = new MusteriRaporlamaPanel();
 
+        initView();
         refreshComboBox();
         initTable();
         initListener();
+        refreshToplamFields();
+    }
 
+    private void initView() {
+        view.getRdBtnIsTarihFilterEnabled().addActionListener(e -> {
+            setTarihFiltrelemeEnabled(view.getRdBtnIsTarihFilterEnabled().isSelected());
+        });
+    }
+
+    private void setTarihFiltrelemeEnabled(boolean isEnabled) {
+        view.getBaslangicDateSpinner().setEnabled(isEnabled);
+        view.getBitisDateSpinner().setEnabled(isEnabled);
     }
 
     private void initTable() {
@@ -123,8 +136,29 @@ public class MusteriRaporlamaController {
             model.setRowCount(0);
 
             updateTable(musteri);
+            refreshToplamFields();
 
         });
+    }
+
+    private void refreshToplamFields() {
+        JTable table = view.getTable();
+
+        int rowCount = table.getModel().getRowCount();
+
+        double toplamIscilikSuresi = 0;
+        double toplamBoyaMiktari = 0;
+        double toplamTutar = 0;
+
+        for (int i = 0; i < rowCount; i++) {
+            toplamIscilikSuresi += (double) table.getValueAt(i, 5);
+            toplamBoyaMiktari += (double) table.getValueAt(i, 4);
+            toplamTutar += (double) table.getValueAt(i, 10);
+
+        }
+        view.getTxtFieldToplamBoya().setText(String.valueOf(toplamBoyaMiktari));
+        view.getTxtFieldToplamIscilik().setText(String.valueOf(toplamIscilikSuresi));
+        view.getTxtFieldToplamTutar().setText(String.valueOf(toplamTutar));
     }
 
     public void updateTable(Musteri musteri) {
@@ -134,12 +168,24 @@ public class MusteriRaporlamaController {
 
         List<Object> bilgiler = DatabaseObjectList.getSiparisListOfMusteri(musteri);
 
+        if (view.getRdBtnIsTarihFilterEnabled().isSelected()) {
+            bilgiler = DatabaseObjectList.getSiparisListOfMusteriWithDate(musteri, (Date) view.getBaslangicDateSpinner().getValue(), (Date) view.getBitisDateSpinner().getValue());
+        } else {
+            bilgiler = DatabaseObjectList.getSiparisListOfMusteri(musteri);
+        }
+
         for (Object o : bilgiler) {
             model.addRow(new Vector<>((List<Object>) o));
         }
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setDefaultEditor(Object.class, null);
+    }
+
+    private List<Object> filterListWithDate() {
+        List<Object> filteredList = new ArrayList<>();
+
+        return filteredList;
     }
 
     public MusteriRaporlamaPanel getView() {
