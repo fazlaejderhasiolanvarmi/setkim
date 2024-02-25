@@ -52,6 +52,7 @@ public class EklemeController {
 
                 } else if (selection.equals("Stok")) {
 
+                    stokController.refreshCombobox();
                     view.getWrapperPanel().add(stokController.getView());
                 }
 

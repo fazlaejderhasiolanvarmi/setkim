@@ -2,6 +2,8 @@ package com.setkim.util;
 
 import com.setkim.util.objects.Musteri;
 import com.setkim.util.objects.SiparisBilgisi;
+import com.setkim.util.objects.Stok;
+import com.setkim.util.objects.StokKarti;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +18,8 @@ public class DatabaseController {
     /*
     DB Tables: * Musteri
                * Siparis
+               * StokBilgisi
+               * StokKartiBilgisi
      */
 
     private static Connection connection;
@@ -283,5 +287,84 @@ public class DatabaseController {
             closeConnection();
         }
 
+    }
+
+    public static List<Stok> getStokListFromDatabase() {
+
+        List<Stok> stokList = new ArrayList<>();
+        PreparedStatement preparedStatement;
+
+        String query = "SELECT * FROM StokBilgisi";
+
+        if (connection != null) {
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    Stok stok = new Stok();
+                    stok.setStokNo(resultSet.getInt(1));
+//                    stok.getStokKarti(resultSet.getInt(2)); // StokKartına dönüşcek
+                    stok.setStokKodu(resultSet.getString(3));
+                    stok.setStokAdi(resultSet.getString(4));
+                    stok.setBirim(resultSet.getString(5));
+                    stok.setFiyat(resultSet.getDouble(6));
+                    stok.setMiktar(resultSet.getInt(7));
+                    stok.setTutar(resultSet.getDouble(8));
+
+                    stokList.add(stok);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(); //beğenmeyen ağlayarak günlüğüne yazabilir
+            }
+
+        } else {
+            connect();
+            stokList = getStokListFromDatabase();
+            closeConnection();
+        }
+
+        return stokList;
+    }
+
+    public static List<StokKarti> getStokKartiListFromDatabase() {
+
+        List<StokKarti> stokKartiList = new ArrayList<>();
+        PreparedStatement preparedStatement;
+
+        String query = "SELECT * FROM StokKartiBilgisi";
+
+        if (connection != null) {
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    StokKarti stokKarti = new StokKarti();
+
+                    stokKarti.setStokKartiNo(resultSet.getInt(1));
+                    stokKarti.setStokKartiAdi(resultSet.getString(2));
+
+                    stokKartiList.add(stokKarti);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(); //beğenmeyen ağlayarak günlüğüne yazabilir
+            }
+
+        } else {
+            connect();
+            stokKartiList = getStokKartiListFromDatabase();
+            closeConnection();
+        }
+
+        return stokKartiList;
     }
 }

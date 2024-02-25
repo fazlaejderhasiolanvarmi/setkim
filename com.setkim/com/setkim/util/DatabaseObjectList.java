@@ -2,6 +2,8 @@ package com.setkim.util;
 
 import com.setkim.util.objects.Musteri;
 import com.setkim.util.objects.SiparisBilgisi;
+import com.setkim.util.objects.Stok;
+import com.setkim.util.objects.StokKarti;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,10 +13,14 @@ public class DatabaseObjectList {
 
     private static List<Musteri> musteriList = new ArrayList<>();
     private static List<SiparisBilgisi> siparisBilgisiList = new ArrayList<>();
+    private static List<Stok> stokList = new ArrayList<>();
+    private static List<StokKarti> stokKartiList = new ArrayList<>();
 
     public static void fillListsFromDatabase() {
         musteriList = DatabaseController.getMusteriListFromDatabase();
         siparisBilgisiList = DatabaseController.getSiparisListFromDatabase();
+        stokKartiList = DatabaseController.getStokKartiListFromDatabase();
+        stokList = DatabaseController.getStokListFromDatabase();
     }
 
     public static List<Musteri> getMusteriList() {
@@ -30,6 +36,14 @@ public class DatabaseObjectList {
         }
 
         return null;
+    }
+
+    public static List<Stok> getStokList() {
+        return stokList;
+    }
+
+    public static List<StokKarti> getStokKartiList() {
+        return stokKartiList;
     }
 
     public static SiparisBilgisi findSiparisWithSiparisNo(int siparisNo) {

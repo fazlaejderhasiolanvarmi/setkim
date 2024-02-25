@@ -1,8 +1,14 @@
 package com.setkim.ekleme.panels.stok;
 
+import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.StokKarti;
+
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Locale;
 
 public class StokController {
@@ -13,6 +19,7 @@ public class StokController {
 
         view = new StokPanel();
 
+        refreshCombobox();
         initListeners();
 
     }
@@ -20,7 +27,7 @@ public class StokController {
     private void initListeners() {
 
         view.getBtnEkle().addActionListener(e -> {
-            
+
         });
 
         view.getTxtFieldMiktar().getDocument().addDocumentListener(new DocumentListener() {
@@ -95,6 +102,33 @@ public class StokController {
                 // double değer yok devam et
             }
         }
+    }
+
+    public void refreshCombobox() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel<>();
+
+        List<StokKarti> stokKartiList = DatabaseObjectList.getStokKartiList();
+
+        for (StokKarti stokKarti : stokKartiList) {
+            model.addElement(stokKarti);
+        }
+
+        view.getCmbBoxStokKart().setModel(model);
+        view.getCmbBoxStokKart().setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(final JList<?> list,
+                                                          final Object value,
+                                                          final int index,
+                                                          final boolean isSelected,
+                                                          final boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected,
+                        cellHasFocus);
+                if (value instanceof StokKarti)
+                    setText(((StokKarti) value).getStokKartiAdi());
+
+                return this;
+            }
+        });
     }
 
     public StokPanel getView() {
