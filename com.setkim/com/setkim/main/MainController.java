@@ -53,6 +53,8 @@ public class MainController {
             public void windowClosing(WindowEvent e) {
                 DatabaseObjectList.saveMusteriList();
                 DatabaseObjectList.saveSiparisList();
+                DatabaseObjectList.saveStokKartiList();
+                DatabaseObjectList.saveStokList();
                 super.windowClosing(e);
             }
         });
@@ -128,16 +130,17 @@ public class MainController {
     private void initListeners() {
         view.getBtnEkleme().addActionListener(e -> showEklemePanel());
         view.getBtnRaporlama().addActionListener(e -> raporla());
-        view.getBtnStok().addActionListener(e -> stokEkran() );
+        view.getBtnStok().addActionListener(e -> stokEkran());
     }
 
-    private void stokEkran(){
+    private void stokEkran() {
         JFrame stokFrame = new JFrame();
         stokFrame.setBounds(100, 200, 800, 600);
         stokFrame.add(stokEkranController.getView());
         stokFrame.setVisible(true);
         stokFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+
     private void raporla() {
 
         JDialog raporlamaFrame = new JDialog(frame, "Raporlama", true);

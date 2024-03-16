@@ -367,4 +367,120 @@ public class DatabaseController {
 
         return stokKartiList;
     }
+
+    public static void deleteStokKartiListFromDatabase() {
+
+        PreparedStatement preparedStatement;
+        String query = "DELETE FROM StokKartiBilgisi";
+
+        if (connection != null) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        } else {
+            connect();
+            deleteStokKartiListFromDatabase();
+            closeConnection();
+        }
+    }
+
+    public static void saveStokKartiListToDatabase(List<StokKarti> stokKartiList) {
+        PreparedStatement preparedStatement;
+        String query = "INSERT INTO StokKartiBilgisi (id, StokKartiAdi) VALUES (?,?)";
+
+        if (connection != null) {
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                for (StokKarti stokKarti : stokKartiList) {
+
+                    preparedStatement.setInt(1, stokKarti.getStokKartiNo());
+                    preparedStatement.setString(2, stokKarti.getStokKartiAdi());
+
+                    preparedStatement.addBatch();
+                }
+
+                preparedStatement.executeBatch();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            connect();
+            saveStokKartiListToDatabase(stokKartiList);
+            closeConnection();
+        }
+    }
+
+    public static void deleteStokListFromDatabase() {
+
+        PreparedStatement preparedStatement;
+        String query = "DELETE FROM StokBilgisi";
+
+        if (connection != null) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        } else {
+            connect();
+            deleteStokListFromDatabase();
+            closeConnection();
+        }
+    }
+
+    public static void saveStokListToDatabase(List<Stok> stokList) {
+
+        PreparedStatement preparedStatement;
+        String query = "INSERT INTO StokKartiBilgisi (id, stokKarti, stokKodu, stokAdi, birim, fiyat, miktar, tutar) VALUES (?,?,?,?,?,?,?,?)";
+
+        if (connection != null) {
+            try {
+
+                preparedStatement = connection.prepareStatement(query);
+                for (Stok stok : stokList) {
+
+                    preparedStatement.setInt(1, stok.getStokNo());
+                    preparedStatement.setInt(2, stok.getStokKarti().getStokKartiNo());
+                    preparedStatement.setString(3, stok.getStokKodu());
+                    preparedStatement.setString(4, stok.getStokAdi());
+                    preparedStatement.setString(5, stok.getBirim());
+                    preparedStatement.setDouble(6, stok.getFiyat());
+                    preparedStatement.setInt(7, stok.getMiktar());
+                    preparedStatement.setDouble(8, stok.getTutar());
+
+                    preparedStatement.addBatch();
+                }
+
+                preparedStatement.executeBatch();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            connect();
+            saveStokListToDatabase(stokList);
+            closeConnection();
+        }
+
+    }
 }

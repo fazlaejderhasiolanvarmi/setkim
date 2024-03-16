@@ -1,6 +1,9 @@
 package com.setkim.ekleme.panels.stokkarti;
 
 
+import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.StokKarti;
+
 public class StokKartiController {
 
     private StokKartiPanel view;
@@ -15,7 +18,11 @@ public class StokKartiController {
     private void initListeners() {
 
         view.getBtnEkle().addActionListener(e -> {
-            
+            StokKarti stokKarti = new StokKarti();
+
+            stokKarti.setStokKartiAdi(view.getTxtFieldStokKartAdi().getText());
+
+            DatabaseObjectList.addStokKartiToList(stokKarti);
         });
     }
 

@@ -289,4 +289,55 @@ public class DatabaseObjectList {
 
         return tableData;
     }
+
+    public static void addStokKartiToList(StokKarti stokKarti) {
+
+        stokKarti.setStokKartiNo(getMaxStokKartiNo() + 1);
+
+        stokKartiList.add(stokKarti);
+    }
+
+    private static int getMaxStokKartiNo() {
+        int max = -1;
+
+        for (StokKarti stokKarti : stokKartiList) {
+
+            if (stokKarti.getStokKartiNo() > max) {
+                max = stokKarti.getStokKartiNo();
+            }
+        }
+
+        return max;
+    }
+
+    public static void addStokToList(Stok stok) {
+
+        stok.setStokNo(getMaxStokNo() + 1);
+
+        stokList.add(stok);
+    }
+
+    private static int getMaxStokNo() {
+
+        int max = -1;
+
+        for (Stok stok : stokList) {
+
+            if (stok.getStokNo() > max) {
+                max = stok.getStokNo();
+            }
+        }
+
+        return max;
+    }
+
+    public static void saveStokKartiList() {
+        DatabaseController.deleteStokKartiListFromDatabase();
+        DatabaseController.saveStokKartiListToDatabase(stokKartiList);
+    }
+
+    public static void saveStokList() {
+        DatabaseController.deleteStokListFromDatabase();
+        DatabaseController.saveStokListToDatabase(stokList);
+    }
 }

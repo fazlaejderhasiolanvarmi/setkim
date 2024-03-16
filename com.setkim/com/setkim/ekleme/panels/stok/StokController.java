@@ -1,6 +1,7 @@
 package com.setkim.ekleme.panels.stok;
 
 import com.setkim.util.DatabaseObjectList;
+import com.setkim.util.objects.Stok;
 import com.setkim.util.objects.StokKarti;
 
 import javax.swing.*;
@@ -27,6 +28,17 @@ public class StokController {
     private void initListeners() {
 
         view.getBtnEkle().addActionListener(e -> {
+            Stok stok = new Stok();
+
+            stok.setStokKarti((StokKarti) view.getCmbBoxStokKart().getSelectedItem());
+            stok.setStokKodu(view.getTxtFieldStokKodu().getText());
+            stok.setStokAdi(view.getTxtFieldStokAdi().getText());
+            stok.setBirim(view.getTxtFieldBirim().getText());
+            stok.setFiyat(Double.parseDouble(view.getTxtFieldFiyat().getText()));
+            stok.setMiktar(Integer.parseInt(view.getTxtFieldMiktar().getText()));
+            stok.setTutar(Double.parseDouble(view.getTxtFieldTutar().getText()));
+
+            DatabaseObjectList.addStokToList(stok);
 
         });
 
