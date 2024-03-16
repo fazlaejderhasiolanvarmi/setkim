@@ -38,7 +38,9 @@ public class DatabaseObjectList {
         return null;
     }
 
-    public static List<Stok> getStokList() {return stokList;}
+    public static List<Stok> getStokList() {
+        return stokList;
+    }
 
     public static List<StokKarti> getStokKartiList() {
         return stokKartiList;
@@ -81,7 +83,7 @@ public class DatabaseObjectList {
 
         List<Object> tableStokList = new ArrayList<>();
 
-        for(Stok stok :stokList){
+        for (Stok stok : stokList) {
             List<Object> row = new ArrayList<>();
 
             row.add(stok.getStokKodu());
@@ -263,5 +265,28 @@ public class DatabaseObjectList {
         }
 
         return filteredSiparisListOfMusteri;
+    }
+
+    public static List<Object> getFilteredStokList(StokKarti stokKarti) {
+
+        List<Object> tableData = new ArrayList<>();
+
+        for (Stok stok : stokList) {
+            if (stokKarti.getStokKartiNo() == stok.getStokKarti().getStokKartiNo()) {
+
+                List<Object> row = new ArrayList<>();
+
+                row.add(stok.getStokKodu());
+                row.add(stok.getStokAdi());
+                row.add(stok.getBirim());
+                row.add(stok.getFiyat());
+                row.add(stok.getMiktar());
+                row.add(stok.getTutar());
+
+                tableData.add(row);
+            }
+        }
+
+        return tableData;
     }
 }

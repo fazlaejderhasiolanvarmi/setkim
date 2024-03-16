@@ -1,27 +1,56 @@
 package com.setkim.stokPanel;
 
 import com.setkim.util.DatabaseObjectList;
-import com.setkim.util.objects.Musteri;
-import com.setkim.util.objects.Stok;
 import com.setkim.util.objects.StokKarti;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Vector;
 
 public class StokEkranController {
 
     private StokEkranPanel view;
+    ActionListener actionListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            StokKarti selectedStokKarti = (StokKarti) view.getComboBox().getSelectedItem();
 
-    public StokEkranController(){
+            ((DefaultTableModel) view.getTable().getModel()).setRowCount(0);
+
+            List<Object> newList = DatabaseObjectList.getFilteredStokList(selectedStokKarti);
+
+
+        }
+    };
+
+    public StokEkranController() {
 
 
         view = new StokEkranPanel();
         refreshComboBox();
-        DatabaseObjectList.getStokKartiList();
+
+        initTable();
+
+    }
+
+    private void initTable() {
+
+        view.getTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        view.getTable().setDefaultEditor(Object.class, null);
+
+        DefaultTableModel model = (DefaultTableModel) view.getTable().getModel();
+
+        List<Object> stokList = DatabaseObjectList.getStokTableList();
+
+        for (Object o : stokList) {
+            model.addRow(new Vector<>((List<Object>) o));
+        }
+
+        model.fireTableStructureChanged();
 
     }
 
@@ -52,16 +81,6 @@ public class StokEkranController {
         });
 
     }
-
-    ActionListener actionListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String selection = (String) view.getComboBox().getSelectedItem();
-
-
-        }
-    };
-
 
     public StokEkranPanel getView() {
         return view;
