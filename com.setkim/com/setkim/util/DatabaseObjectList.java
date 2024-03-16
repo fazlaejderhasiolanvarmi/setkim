@@ -312,9 +312,39 @@ public class DatabaseObjectList {
 
     public static void addStokToList(Stok stok) {
 
-        stok.setStokNo(getMaxStokNo() + 1);
+        Stok existingStok = checkIfSameStokExists(stok);
 
-        stokList.add(stok);
+        if (existingStok != null) {
+
+            int newMiktar = existingStok.getMiktar() + stok.getMiktar();
+            double newTutar = existingStok.getFiyat() * newMiktar;
+
+            existingStok.setMiktar(newMiktar);
+            existingStok.setTutar(newTutar);
+
+
+        } else {
+            stok.setStokNo(getMaxStokNo() + 1);
+
+            stokList.add(stok);
+        }
+    }
+
+    private static Stok checkIfSameStokExists(Stok newStok) {
+
+        for (Stok stok : stokList) {
+
+            if (stok.getStokKarti().getStokKartiNo() == newStok.getStokKarti().getStokKartiNo() &&
+                    stok.getStokAdi().equals(newStok.getStokAdi()) &&
+                    stok.getStokKodu().equals(newStok.getStokKodu()) &&
+                    stok.getBirim().equals(newStok.getBirim()) &&
+                    stok.getFiyat() == newStok.getFiyat()) {
+                return stok;
+            }
+
+        }
+
+        return null;
     }
 
     private static int getMaxStokNo() {
