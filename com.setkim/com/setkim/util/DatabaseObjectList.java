@@ -340,4 +340,17 @@ public class DatabaseObjectList {
         DatabaseController.deleteStokListFromDatabase();
         DatabaseController.saveStokListToDatabase(stokList);
     }
+
+    public static StokKarti getStokKartiWithStokKartiNo(int stokKartiNo) {
+
+        for (StokKarti stokKarti : stokKartiList) {
+
+            if (stokKarti.getStokKartiNo() == stokKartiNo) {
+                return stokKarti;
+            }
+
+        }
+
+        return null;
+    }
 }

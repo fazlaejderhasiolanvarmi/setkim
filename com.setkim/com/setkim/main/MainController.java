@@ -135,6 +135,7 @@ public class MainController {
 
     private void stokEkran() {
         JFrame stokFrame = new JFrame();
+        stokEkranController.refreshComboBox();
         stokFrame.setBounds(100, 200, 800, 600);
         stokFrame.add(stokEkranController.getView());
         stokFrame.setVisible(true);

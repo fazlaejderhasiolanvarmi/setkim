@@ -19,10 +19,16 @@ public class StokEkranController {
         public void actionPerformed(ActionEvent e) {
             StokKarti selectedStokKarti = (StokKarti) view.getComboBox().getSelectedItem();
 
-            ((DefaultTableModel) view.getTable().getModel()).setRowCount(0);
+            DefaultTableModel model = (DefaultTableModel) view.getTable().getModel();
+            model.setRowCount(0);
 
             List<Object> newList = DatabaseObjectList.getFilteredStokList(selectedStokKarti);
 
+            for (Object o : newList) {
+                model.addRow(new Vector<>((List<Object>) o));
+            }
+
+            model.fireTableStructureChanged();
 
         }
     };
@@ -51,6 +57,8 @@ public class StokEkranController {
         }
 
         model.fireTableStructureChanged();
+
+        view.getComboBox().addActionListener(actionListener);
 
     }
 

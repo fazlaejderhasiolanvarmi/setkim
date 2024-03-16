@@ -307,7 +307,7 @@ public class DatabaseController {
 
                     Stok stok = new Stok();
                     stok.setStokNo(resultSet.getInt(1));
-//                    stok.getStokKarti(resultSet.getInt(2)); // StokKartına dönüşcek
+                    stok.setStokKarti(DatabaseObjectList.getStokKartiWithStokKartiNo(resultSet.getInt(2)));
                     stok.setStokKodu(resultSet.getString(3));
                     stok.setStokAdi(resultSet.getString(4));
                     stok.setBirim(resultSet.getString(5));
@@ -450,7 +450,7 @@ public class DatabaseController {
     public static void saveStokListToDatabase(List<Stok> stokList) {
 
         PreparedStatement preparedStatement;
-        String query = "INSERT INTO StokKartiBilgisi (id, stokKarti, stokKodu, stokAdi, birim, fiyat, miktar, tutar) VALUES (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO StokBilgisi (id, stokKarti, stokKodu, stokAdi, birim, fiyat, miktar, tutar) VALUES (?,?,?,?,?,?,?,?)";
 
         if (connection != null) {
             try {
