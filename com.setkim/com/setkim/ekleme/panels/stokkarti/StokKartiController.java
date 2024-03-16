@@ -4,6 +4,8 @@ package com.setkim.ekleme.panels.stokkarti;
 import com.setkim.util.DatabaseObjectList;
 import com.setkim.util.objects.StokKarti;
 
+import javax.swing.*;
+
 public class StokKartiController {
 
     private StokKartiPanel view;
@@ -23,6 +25,12 @@ public class StokKartiController {
             stokKarti.setStokKartiAdi(view.getTxtFieldStokKartAdi().getText());
 
             DatabaseObjectList.addStokKartiToList(stokKarti);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Bilgiler eklendi!",
+                    "Başarılı",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
     }
 

@@ -40,6 +40,12 @@ public class StokController {
 
             DatabaseObjectList.addStokToList(stok);
 
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Bilgiler eklendi!",
+                    "Başarılı",
+                    JOptionPane.INFORMATION_MESSAGE);
+
         });
 
         view.getTxtFieldMiktar().getDocument().addDocumentListener(new DocumentListener() {
