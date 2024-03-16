@@ -26,7 +26,12 @@ public class StokEkranPanel extends JPanel {
         add(comboBox, gbc_comboBox);
 
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("asdf");
+        model.addColumn("Stok Kodu");
+        model.addColumn("Stok Adı");
+        model.addColumn("Birim");
+        model.addColumn("Fiyat");
+        model.addColumn("Miktar");
+        model.addColumn("Tutar");
 
         table = new JTable(model);
         GridBagConstraints gbc_table = new GridBagConstraints();

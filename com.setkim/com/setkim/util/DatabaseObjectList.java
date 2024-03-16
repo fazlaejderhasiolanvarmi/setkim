@@ -38,9 +38,7 @@ public class DatabaseObjectList {
         return null;
     }
 
-    public static List<Stok> getStokList() {
-        return stokList;
-    }
+    public static List<Stok> getStokList() {return stokList;}
 
     public static List<StokKarti> getStokKartiList() {
         return stokKartiList;
@@ -78,6 +76,27 @@ public class DatabaseObjectList {
 
         return tableList;
     }
+
+    public static List<Object> getStokTableList() {
+
+        List<Object> tableStokList = new ArrayList<>();
+
+        for(Stok stok :stokList){
+            List<Object> row = new ArrayList<>();
+
+            row.add(stok.getStokKodu());
+            row.add(stok.getStokAdi());
+            row.add(stok.getBirim());
+            row.add(stok.getFiyat());
+            row.add(stok.getMiktar());
+            row.add(stok.getTutar());
+
+            tableStokList.add(row);
+        }
+
+        return tableStokList;
+    }
+
 
     public static void addMusteriToList(Musteri musteri) {
         musteri.setMusteriNo(getMaxMusteriNo() + 1);
