@@ -1,16 +1,14 @@
 package com.setkim.stokPanel;
 
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTable;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
-public class StokEkranPanel extends JPanel{
+public class StokEkranPanel extends JPanel {
 
     private JTable table;
     private JComboBox comboBox;
+
     public StokEkranPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
@@ -27,13 +25,18 @@ public class StokEkranPanel extends JPanel{
         gbc_comboBox.gridy = 0;
         add(comboBox, gbc_comboBox);
 
-        table = new JTable();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("asdf");
+
+        table = new JTable(model);
         GridBagConstraints gbc_table = new GridBagConstraints();
         gbc_table.insets = new Insets(0, 0, 5, 5);
         gbc_table.fill = GridBagConstraints.BOTH;
         gbc_table.gridx = 1;
         gbc_table.gridy = 1;
-        add(table, gbc_table);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        add(scrollPane, gbc_table);
     }
 
     public JTable getTable() {
