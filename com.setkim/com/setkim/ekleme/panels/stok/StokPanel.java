@@ -189,4 +189,13 @@ public class StokPanel extends JPanel {
         return btnEkle;
     }
 
+    public void clearFields() {
+        txtFieldStokKodu.setText("");
+        txtFieldStokAdi.setText("");
+        txtFieldBirim.setText("");
+        txtFieldFiyat.setText("");
+        txtFieldMiktar.setText("");
+        txtFieldTutar.setText("");
+
+    }
 }

@@ -399,4 +399,24 @@ public class SiparisPanel extends JPanel {
     public JComboBox getMusteriComboBox() {
         return musteriComboBox;
     }
+
+    public void clearFields() {
+        boyananMalzeme.setText("");
+        malzemeCinsi.setText("");
+        yuzeyIslem.setText("");
+        renkKodu.setText("");
+        boyaMiktari.setText("");
+        iscilikSuresi.setText("");
+        boyananMalzemeMiktari.setText("");
+        birim.setText("");
+        hat.setText("");
+        boyamaFiyati.setText("");
+        tutar.setText("");
+        malzemeAlimTarihi.setText("");
+        teslimTarihi.setText("");
+        irsaliyeNo.setText("");
+        faturaNo.setText("");
+        vade.setText("");
+
+    }
 }

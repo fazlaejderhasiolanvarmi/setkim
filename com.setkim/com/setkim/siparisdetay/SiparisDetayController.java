@@ -49,7 +49,6 @@ public class SiparisDetayController {
     private void initMusteriBilgisi(Musteri musteriBilgisi) {
 
         view.getTextFieldMusteriAdi().setText(musteriBilgisi.getMusteriAdi());
-        view.getTextFieldBelgeNumarasi().setText(String.valueOf(musteriBilgisi.getBelgeNo()));
         view.getTextAreaAdres().setText(musteriBilgisi.getAdres());
         view.getTextFieldVergiDairesi().setText(musteriBilgisi.getVergiDairesi());
         view.getTextFieldVergiNo().setText(musteriBilgisi.getVergiNo());

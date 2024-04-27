@@ -46,6 +46,8 @@ public class StokController {
                     "Başarılı",
                     JOptionPane.INFORMATION_MESSAGE);
 
+            view.clearFields();
+
         });
 
         view.getTxtFieldMiktar().getDocument().addDocumentListener(new DocumentListener() {

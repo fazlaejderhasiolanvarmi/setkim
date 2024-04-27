@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 
 public class MusteriPanel extends JPanel {
     private JTextField textFieldMusteriAdi;
-    private JTextField textFieldBelgeNo;
     private JTextField textFieldAdres;
     private JTextField textFieldVergiDairesi;
     private JTextField textFieldVergiNo;
@@ -41,29 +40,14 @@ public class MusteriPanel extends JPanel {
         add(textFieldMusteriAdi, gbc_textField_1);
         textFieldMusteriAdi.setColumns(10);
 
-        JLabel lblNewLabel = new JLabel("Belge No");
-        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-        gbc_lblNewLabel.gridwidth = 2;
-        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel.gridx = 0;
-        gbc_lblNewLabel.gridy = 1;
-        add(lblNewLabel, gbc_lblNewLabel);
 
-        textFieldBelgeNo = new JTextField();
-        GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-        gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-        gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textField_2.gridx = 2;
-        gbc_textField_2.gridy = 1;
-        add(textFieldBelgeNo, gbc_textField_2);
-        textFieldBelgeNo.setColumns(10);
 
         JLabel lblNewLabel_1 = new JLabel("Adres");
         GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
         gbc_lblNewLabel_1.gridwidth = 2;
         gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_1.gridx = 0;
-        gbc_lblNewLabel_1.gridy = 2;
+        gbc_lblNewLabel_1.gridy = 1;
         add(lblNewLabel_1, gbc_lblNewLabel_1);
 
         textFieldAdres = new JTextField();
@@ -71,7 +55,7 @@ public class MusteriPanel extends JPanel {
         gbc_textField_3.insets = new Insets(0, 0, 5, 0);
         gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
         gbc_textField_3.gridx = 2;
-        gbc_textField_3.gridy = 2;
+        gbc_textField_3.gridy = 1;
         add(textFieldAdres, gbc_textField_3);
         textFieldAdres.setColumns(10);
 
@@ -80,7 +64,7 @@ public class MusteriPanel extends JPanel {
         gbc_lblNewLabel_3.gridwidth = 2;
         gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_3.gridx = 0;
-        gbc_lblNewLabel_3.gridy = 3;
+        gbc_lblNewLabel_3.gridy = 2;
         add(lblNewLabel_3, gbc_lblNewLabel_3);
 
         textFieldVergiDairesi = new JTextField();
@@ -88,7 +72,7 @@ public class MusteriPanel extends JPanel {
         gbc_textField_4.insets = new Insets(0, 0, 5, 0);
         gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
         gbc_textField_4.gridx = 2;
-        gbc_textField_4.gridy = 3;
+        gbc_textField_4.gridy = 2;
         add(textFieldVergiDairesi, gbc_textField_4);
         textFieldVergiDairesi.setColumns(10);
 
@@ -97,7 +81,7 @@ public class MusteriPanel extends JPanel {
         gbc_lblNewLabel_4.gridwidth = 2;
         gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_4.gridx = 0;
-        gbc_lblNewLabel_4.gridy = 4;
+        gbc_lblNewLabel_4.gridy = 3;
         add(lblNewLabel_4, gbc_lblNewLabel_4);
 
         textFieldVergiNo = new JTextField();
@@ -105,7 +89,7 @@ public class MusteriPanel extends JPanel {
         gbc_textField_5.insets = new Insets(0, 0, 5, 0);
         gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
         gbc_textField_5.gridx = 2;
-        gbc_textField_5.gridy = 4;
+        gbc_textField_5.gridy = 3;
         add(textFieldVergiNo, gbc_textField_5);
         textFieldVergiNo.setColumns(10);
 
@@ -114,7 +98,7 @@ public class MusteriPanel extends JPanel {
         gbc_lblNewLabel_5.gridwidth = 2;
         gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_5.gridx = 0;
-        gbc_lblNewLabel_5.gridy = 5;
+        gbc_lblNewLabel_5.gridy = 4;
         add(lblNewLabel_5, gbc_lblNewLabel_5);
 
         textFieldYetkili = new JTextField();
@@ -122,7 +106,7 @@ public class MusteriPanel extends JPanel {
         gbc_textField_6.insets = new Insets(0, 0, 5, 0);
         gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
         gbc_textField_6.gridx = 2;
-        gbc_textField_6.gridy = 5;
+        gbc_textField_6.gridy = 4;
         add(textFieldYetkili, gbc_textField_6);
         textFieldYetkili.setColumns(10);
 
@@ -144,10 +128,6 @@ public class MusteriPanel extends JPanel {
         return textFieldMusteriAdi;
     }
 
-    public JTextField getTextFieldBelgeNo() {
-        return textFieldBelgeNo;
-    }
-
     public JTextField getTextFieldAdres() {
         return textFieldAdres;
     }
@@ -162,5 +142,13 @@ public class MusteriPanel extends JPanel {
 
     public JTextField getTextFieldYetkili() {
         return textFieldYetkili;
+    }
+
+    public void clearFields() {
+        textFieldMusteriAdi.setText("");
+        textFieldAdres.setText("");
+        textFieldYetkili.setText("");
+        textFieldVergiDairesi.setText("");
+        textFieldVergiNo.setText("");
     }
 }

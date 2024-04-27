@@ -75,11 +75,10 @@ public class DatabaseController {
 
                     musteri.setMusteriNo(resultSet.getInt(1));
                     musteri.setMusteriAdi(resultSet.getString(2));
-                    musteri.setBelgeNo(resultSet.getInt(3));
-                    musteri.setAdres(resultSet.getString(4));
-                    musteri.setVergiDairesi(resultSet.getString(5));
-                    musteri.setVergiNo(resultSet.getString(6));
-                    musteri.setYetkili(resultSet.getString(7));
+                    musteri.setAdres(resultSet.getString(3));
+                    musteri.setVergiDairesi(resultSet.getString(4));
+                    musteri.setVergiNo(resultSet.getString(5));
+                    musteri.setYetkili(resultSet.getString(6));
 
                     musteriList.add(musteri);
                 }
@@ -179,7 +178,7 @@ public class DatabaseController {
     public static void saveMusteriListToDatabase(List<Musteri> musteriList) {
 
         PreparedStatement preparedStatement;
-        String query = "INSERT INTO Musteri (Musteri_No, Musteri_Adi, Belge_No, Adres, Vergi_Dairesi, Vergi_No, Yetkili) VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Musteri (Musteri_No, Musteri_Adi, Adres, Vergi_Dairesi, Vergi_No, Yetkili) VALUES (?,?,?,?,?,?)";
 
         if (connection != null) {
             try {
@@ -189,11 +188,10 @@ public class DatabaseController {
 
                     preparedStatement.setInt(1, musteri.getMusteriNo());
                     preparedStatement.setString(2, musteri.getMusteriAdi());
-                    preparedStatement.setInt(3, musteri.getBelgeNo());
-                    preparedStatement.setString(4, musteri.getAdres());
-                    preparedStatement.setString(5, musteri.getVergiDairesi());
-                    preparedStatement.setString(6, musteri.getVergiNo());
-                    preparedStatement.setString(7, musteri.getYetkili());
+                    preparedStatement.setString(3, musteri.getAdres());
+                    preparedStatement.setString(4, musteri.getVergiDairesi());
+                    preparedStatement.setString(5, musteri.getVergiNo());
+                    preparedStatement.setString(6, musteri.getYetkili());
 
                     preparedStatement.addBatch();
                 }

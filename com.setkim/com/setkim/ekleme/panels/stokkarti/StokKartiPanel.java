@@ -50,4 +50,8 @@ public class StokKartiPanel extends JPanel {
     public JButton getBtnEkle() {
         return btnEkle;
     }
+
+    public void clearFields() {
+        txtFieldStokKartAdi.setText("");
+    }
 }

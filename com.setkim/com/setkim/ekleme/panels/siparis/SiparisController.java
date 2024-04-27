@@ -40,8 +40,22 @@ public class SiparisController {
             siparis.setBoyananMalzemeMiktari(Double.parseDouble(view.getBoyananMalzemeMiktari().getText()));
             siparis.setBirim(view.getBirim().getText());
             siparis.setHat(Integer.parseInt(view.getHat().getText()));
-            siparis.setBoyamaFiyati(Double.parseDouble(view.getBoyamaFiyati().getText()));
-            siparis.setTutar(Double.parseDouble(view.getTutar().getText()));
+
+            if (!view.getBoyamaFiyati().getText().equals("")) {
+
+                siparis.setBoyamaFiyati(Double.parseDouble(view.getBoyamaFiyati().getText()));
+            } else {
+                siparis.setBoyamaFiyati(0);
+            }
+
+            if (!view.getTutar().getText().equals("")){
+
+                siparis.setTutar(Double.parseDouble(view.getTutar().getText()));
+            } else {
+
+                siparis.setTutar(0);
+            }
+
             siparis.setMusteri((Musteri) view.getMusteriComboBox().getSelectedItem());
 
             try {
@@ -63,6 +77,7 @@ public class SiparisController {
                     "Başarılı",
                     JOptionPane.INFORMATION_MESSAGE);
 
+            view.clearFields();
         });
 
         view.getBoyananMalzemeMiktari().getDocument().addDocumentListener(new DocumentListener() {

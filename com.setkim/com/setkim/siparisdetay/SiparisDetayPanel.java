@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class SiparisDetayPanel extends JPanel {
     private JTextField textFieldMusteriAdi;
-    private JTextField textFieldBelgeNumarasi;
     private JTextArea textAreaAdres;
     private JTextField textFieldVergiDairesi;
     private JTextField textFieldVergiNo;
@@ -75,29 +74,12 @@ public class SiparisDetayPanel extends JPanel {
         musteriPanel.add(textFieldMusteriAdi, gbc_textFieldMusteriAdi);
         textFieldMusteriAdi.setColumns(10);
 
-        JLabel lblBelgeNo = new JLabel("Belge Numarası");
-        GridBagConstraints gbc_lblBelgeNo = new GridBagConstraints();
-        gbc_lblBelgeNo.anchor = GridBagConstraints.EAST;
-        gbc_lblBelgeNo.insets = new Insets(5, 5, 5, 5);
-        gbc_lblBelgeNo.gridx = 0;
-        gbc_lblBelgeNo.gridy = 2;
-        musteriPanel.add(lblBelgeNo, gbc_lblBelgeNo);
-
-        textFieldBelgeNumarasi = new JTextField();
-        GridBagConstraints gbc_textFieldBelgeNumarasi = new GridBagConstraints();
-        gbc_textFieldBelgeNumarasi.insets = new Insets(0, 0, 5, 5);
-        gbc_textFieldBelgeNumarasi.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldBelgeNumarasi.gridx = 1;
-        gbc_textFieldBelgeNumarasi.gridy = 2;
-        musteriPanel.add(textFieldBelgeNumarasi, gbc_textFieldBelgeNumarasi);
-        textFieldBelgeNumarasi.setColumns(10);
-
         JLabel lblAdres = new JLabel("Adres");
         GridBagConstraints gbc_lblAdres = new GridBagConstraints();
         gbc_lblAdres.anchor = GridBagConstraints.EAST;
         gbc_lblAdres.insets = new Insets(5, 5, 5, 5);
         gbc_lblAdres.gridx = 0;
-        gbc_lblAdres.gridy = 3;
+        gbc_lblAdres.gridy = 2;
         musteriPanel.add(lblAdres, gbc_lblAdres);
 
         textAreaAdres = new JTextArea();
@@ -105,7 +87,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_textAreaAdres.insets = new Insets(5, 5, 5, 5);
         gbc_textAreaAdres.fill = GridBagConstraints.BOTH;
         gbc_textAreaAdres.gridx = 1;
-        gbc_textAreaAdres.gridy = 3;
+        gbc_textAreaAdres.gridy = 2;
         musteriPanel.add(textAreaAdres, gbc_textAreaAdres);
 
         JLabel lblVergiDairesi = new JLabel("Vergi Dairesi");
@@ -113,7 +95,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_lblVergiDairesi.anchor = GridBagConstraints.EAST;
         gbc_lblVergiDairesi.insets = new Insets(5, 5, 5, 5);
         gbc_lblVergiDairesi.gridx = 0;
-        gbc_lblVergiDairesi.gridy = 4;
+        gbc_lblVergiDairesi.gridy = 3;
         musteriPanel.add(lblVergiDairesi, gbc_lblVergiDairesi);
 
         textFieldVergiDairesi = new JTextField();
@@ -121,7 +103,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_textFieldVergiDairesi.insets = new Insets(5, 5, 5, 5);
         gbc_textFieldVergiDairesi.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldVergiDairesi.gridx = 1;
-        gbc_textFieldVergiDairesi.gridy = 4;
+        gbc_textFieldVergiDairesi.gridy = 3;
         musteriPanel.add(textFieldVergiDairesi, gbc_textFieldVergiDairesi);
         textFieldVergiDairesi.setColumns(10);
 
@@ -130,7 +112,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_lblVergiNo.anchor = GridBagConstraints.EAST;
         gbc_lblVergiNo.insets = new Insets(5, 5, 5, 5);
         gbc_lblVergiNo.gridx = 0;
-        gbc_lblVergiNo.gridy = 5;
+        gbc_lblVergiNo.gridy = 4;
         musteriPanel.add(lblVergiNo, gbc_lblVergiNo);
 
         textFieldVergiNo = new JTextField();
@@ -138,7 +120,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_textFieldVergiNo.insets = new Insets(5, 5, 5, 5);
         gbc_textFieldVergiNo.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldVergiNo.gridx = 1;
-        gbc_textFieldVergiNo.gridy = 5;
+        gbc_textFieldVergiNo.gridy = 4;
         musteriPanel.add(textFieldVergiNo, gbc_textFieldVergiNo);
         textFieldVergiNo.setColumns(10);
 
@@ -147,7 +129,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_lblYetkili.anchor = GridBagConstraints.EAST;
         gbc_lblYetkili.insets = new Insets(5, 5, 0, 5);
         gbc_lblYetkili.gridx = 0;
-        gbc_lblYetkili.gridy = 6;
+        gbc_lblYetkili.gridy = 5;
         musteriPanel.add(lblYetkili, gbc_lblYetkili);
 
         textFieldYetkili = new JTextField();
@@ -155,7 +137,7 @@ public class SiparisDetayPanel extends JPanel {
         gbc_textFieldYetkili.insets = new Insets(5, 5, 5, 5);
         gbc_textFieldYetkili.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldYetkili.gridx = 1;
-        gbc_textFieldYetkili.gridy = 6;
+        gbc_textFieldYetkili.gridy = 5;
         musteriPanel.add(textFieldYetkili, gbc_textFieldYetkili);
         textFieldYetkili.setColumns(10);
 
@@ -465,10 +447,6 @@ public class SiparisDetayPanel extends JPanel {
 
     public JTextField getTextFieldMusteriAdi() {
         return textFieldMusteriAdi;
-    }
-
-    public JTextField getTextFieldBelgeNumarasi() {
-        return textFieldBelgeNumarasi;
     }
 
     public JTextArea getTextAreaAdres() {

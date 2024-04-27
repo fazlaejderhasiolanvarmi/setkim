@@ -3,16 +3,14 @@ package com.setkim.util.objects;
 public class Musteri {
     private int musteriNo;
     private String musteriAdi;
-    private int belgeNo;
     private String adres;
     private String vergiDairesi;
     private String vergiNo;
     private String yetkili;
 
-    public Musteri(int musteriNo, String musteriAdi, int belgeNo, String adres, String vergiDairesi, String vergiNo, String yetkili) {
+    public Musteri(int musteriNo, String musteriAdi, String adres, String vergiDairesi, String vergiNo, String yetkili) {
         this.musteriNo = musteriNo;
         this.musteriAdi = musteriAdi;
-        this.belgeNo = belgeNo;
         this.adres = adres;
         this.vergiDairesi = vergiDairesi;
         this.vergiNo = vergiNo;
@@ -36,14 +34,6 @@ public class Musteri {
 
     public void setMusteriAdi(String musteriAdi) {
         this.musteriAdi = musteriAdi;
-    }
-
-    public int getBelgeNo() {
-        return belgeNo;
-    }
-
-    public void setBelgeNo(int belgeNo) {
-        this.belgeNo = belgeNo;
     }
 
     public String getAdres() {

@@ -18,7 +18,6 @@ public class MusteriController {
 
             musteri.setMusteriNo(DatabaseObjectList.getMaxMusteriNo());
             musteri.setMusteriAdi(view.getTextFieldMusteriAdi().getText());
-            musteri.setBelgeNo(Integer.valueOf(view.getTextFieldBelgeNo().getText()));
             musteri.setAdres(view.getTextFieldAdres().getText());
             musteri.setVergiDairesi(view.getTextFieldVergiDairesi().getText());
             musteri.setVergiNo(view.getTextFieldVergiNo().getText());
@@ -31,6 +30,8 @@ public class MusteriController {
                     "Bilgiler eklendi!",
                     "Başarılı",
                     JOptionPane.INFORMATION_MESSAGE);
+
+            view.clearFields();
         });
 
     }

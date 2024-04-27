@@ -31,6 +31,8 @@ public class StokKartiController {
                     "Bilgiler eklendi!",
                     "Başarılı",
                     JOptionPane.INFORMATION_MESSAGE);
+
+            view.clearFields();
         });
     }
 
