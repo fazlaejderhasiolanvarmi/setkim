@@ -25,7 +25,7 @@ public class SiparisDetayPanel extends JPanel {
     private JTextField textFieldIrsaliyeNo;
     private JTextField textFieldFaturaNo;
     private JTextField textFieldVade;
-    private JButton btnfaturalandir;
+    private JButton btnGuncelle;
 
     public SiparisDetayPanel() {
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -435,14 +435,14 @@ public class SiparisDetayPanel extends JPanel {
         siparisBilgisiPanel.add(textFieldVade, gbc_textFieldVade);
         textFieldVade.setColumns(10);
 
-        btnfaturalandir = new JButton("Faturalandır");
+        btnGuncelle = new JButton("Bilgileri Güncelle");
         GridBagConstraints gbc_faturalandir = new GridBagConstraints();
         gbc_faturalandir.fill = GridBagConstraints.VERTICAL;
         gbc_faturalandir.gridwidth = 2;
         gbc_faturalandir.insets = new Insets(5, 5, 5, 5);
         gbc_faturalandir.gridx = 0;
         gbc_faturalandir.gridy = 1;
-        add(btnfaturalandir, gbc_faturalandir);
+        add(btnGuncelle, gbc_faturalandir);
     }
 
     public JTextField getTextFieldMusteriAdi() {
@@ -529,8 +529,8 @@ public class SiparisDetayPanel extends JPanel {
         return textFieldVade;
     }
 
-    public JButton getBtnfaturalandir() {
-        return btnfaturalandir;
+    public JButton getBtnGuncelle() {
+        return btnGuncelle;
     }
 
 }
