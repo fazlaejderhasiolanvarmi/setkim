@@ -7,9 +7,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class MusteriRaporlamaPanel extends JPanel {
+
     private JTable table;
     private JComboBox<Musteri> musteriDropdown;
-    private JButton raporlaBtn;
 
     private JRadioButton rdBtnIsTarihFilterEnabled;
     private JSpinner baslangicDateSpinner;
@@ -18,7 +18,11 @@ public class MusteriRaporlamaPanel extends JPanel {
     private JTextField txtFieldToplamBoya;
     private JTextField txtFieldToplamTutar;
 
+    private JButton raporlaBtn;
+    private JButton btnDisaAktar;
+
     public MusteriRaporlamaPanel() {
+
         setBounds(100, 100, 800, 800);
 
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -54,7 +58,8 @@ public class MusteriRaporlamaPanel extends JPanel {
         tableModel.addColumn("İrsaliye No");
         tableModel.addColumn("Fatura No");
         tableModel.addColumn("Vade");
-        tableModel.addColumn("Sipariş No"); // Gizli ama aramayı kolaylaştırsın diye var
+        tableModel.addColumn("Sipariş No"); // Gizli ama aramayı kolaylaştırsın
+        // diye var
 
         JPanel tarihPanel = new JPanel();
         GridBagConstraints gbc_tarihPanel = new GridBagConstraints();
@@ -195,50 +200,90 @@ public class MusteriRaporlamaPanel extends JPanel {
         toplamPanel.add(txtFieldToplamTutar, gbc_textField);
         txtFieldToplamTutar.setColumns(10);
 
+        JPanel btnPanel = new JPanel();
+        GridBagConstraints gbc_btnPanel = new GridBagConstraints();
+        gbc_btnPanel.insets = new Insets(0, 0, 0, 5);
+        gbc_btnPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnPanel.gridx = 2;
+        gbc_btnPanel.gridy = 5;
+        add(btnPanel, gbc_btnPanel);
+        GridBagLayout gbl_btnPanel = new GridBagLayout();
+        gbl_btnPanel.columnWidths = new int[]{0, 0, 0};
+        gbl_btnPanel.rowHeights = new int[]{0, 0};
+        gbl_btnPanel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+        gbl_btnPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+        btnPanel.setLayout(gbl_btnPanel);
+
         raporlaBtn = new JButton("Raporla");
-        GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-        gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-        gbc_btnNewButton.gridx = 2;
-        gbc_btnNewButton.gridy = 5;
-        add(raporlaBtn, gbc_btnNewButton);
+        GridBagConstraints gbc_btnRaporla = new GridBagConstraints();
+        gbc_btnRaporla.anchor = GridBagConstraints.EAST;
+        gbc_btnRaporla.insets = new Insets(0, 0, 0, 15);
+        gbc_btnRaporla.gridx = 0;
+        gbc_btnRaporla.gridy = 0;
+        btnPanel.add(raporlaBtn, gbc_btnRaporla);
+
+        btnDisaAktar = new JButton("Dışa Aktar");
+        GridBagConstraints gbc_btnDisaAktar = new GridBagConstraints();
+        gbc_btnDisaAktar.insets = new Insets(0, 15, 0, 0);
+        gbc_btnDisaAktar.anchor = GridBagConstraints.WEST;
+        gbc_btnDisaAktar.gridx = 1;
+        gbc_btnDisaAktar.gridy = 0;
+        btnPanel.add(btnDisaAktar, gbc_btnDisaAktar);
 
         baslangicDateSpinner.setEnabled(false);
         bitisDateSpinner.setEnabled(false);
     }
 
     public JTable getTable() {
+
         return table;
     }
 
+    @SuppressWarnings("rawtypes")
     public JComboBox getMusteriDropdown() {
+
         return musteriDropdown;
     }
 
-    public JButton getRaporlaBtn() {
-        return raporlaBtn;
-    }
-
     public JRadioButton getRdBtnIsTarihFilterEnabled() {
+
         return rdBtnIsTarihFilterEnabled;
     }
 
     public JSpinner getBaslangicDateSpinner() {
+
         return baslangicDateSpinner;
     }
 
     public JSpinner getBitisDateSpinner() {
+
         return bitisDateSpinner;
     }
 
     public JTextField getTxtFieldToplamIscilik() {
+
         return txtFieldToplamIscilik;
     }
 
     public JTextField getTxtFieldToplamBoya() {
+
         return txtFieldToplamBoya;
     }
 
     public JTextField getTxtFieldToplamTutar() {
+
         return txtFieldToplamTutar;
     }
+
+    public JButton getRaporlaBtn() {
+
+        return raporlaBtn;
+    }
+
+    public JButton getBtnDisaAktar() {
+
+        return btnDisaAktar;
+    }
+
+
 }

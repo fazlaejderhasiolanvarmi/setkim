@@ -1,5 +1,6 @@
 package com.setkim.raporlama.musteri;
 
+import com.setkim.raporlama.export.TableExportController;
 import com.setkim.siparisdetay.SiparisDetayController;
 import com.setkim.util.DatabaseObjectList;
 import com.setkim.util.objects.Musteri;
@@ -138,6 +139,19 @@ public class MusteriRaporlamaController {
             updateTable(musteri);
             refreshToplamFields();
 
+        });
+
+        view.getBtnDisaAktar().addActionListener(e -> {
+
+            List<Integer> seciliSiparisler = new ArrayList<>();
+
+            for (int i = 0; i < view.getTable().getModel().getRowCount(); i++) {
+
+                seciliSiparisler.add((Integer) view.getTable().getModel().getValueAt(i, 16));
+
+            }
+
+            TableExportController.siparisiDisaAktar(seciliSiparisler);
         });
     }
 

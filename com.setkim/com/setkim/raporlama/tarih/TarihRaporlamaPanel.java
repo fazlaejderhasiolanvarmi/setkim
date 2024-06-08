@@ -11,11 +11,12 @@ public class TarihRaporlamaPanel extends JPanel {
     private JScrollPane scrollPane;
     private JSpinner spinnerBaslangicTarih;
     private JSpinner spinnerBitisTarih;
-    private JButton btnFiltrele;
 
     private JTextField txtFieldIscilikSuresi;
     private JTextField txtFieldBoya;
     private JTextField txtFieldTutar;
+    private JButton btnFiltrele;
+    private JButton btnDisaAktar;
 
     public TarihRaporlamaPanel() {
 
@@ -62,12 +63,20 @@ public class TarihRaporlamaPanel extends JPanel {
         add(spinnerBitisTarih, gbc_spinnerSagTarih);
 
         btnFiltrele = new JButton("Filtrele");
-        GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-        gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnNewButton.insets = new Insets(5, 5, 5, 5);
-        gbc_btnNewButton.gridx = 6;
-        gbc_btnNewButton.gridy = 0;
-        add(btnFiltrele, gbc_btnNewButton);
+        GridBagConstraints gbc_btnFiltrele = new GridBagConstraints();
+        gbc_btnFiltrele.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnFiltrele.insets = new Insets(5, 5, 5, 5);
+        gbc_btnFiltrele.gridx = 5;
+        gbc_btnFiltrele.gridy = 0;
+        add(btnFiltrele, gbc_btnFiltrele);
+
+        btnDisaAktar = new JButton("Dışa Aktar");
+        GridBagConstraints gbc_btnDisaAktar = new GridBagConstraints();
+        gbc_btnDisaAktar.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnDisaAktar.insets = new Insets(5, 0, 5, 0);
+        gbc_btnDisaAktar.gridx = 6;
+        gbc_btnDisaAktar.gridy = 0;
+        add(btnDisaAktar, gbc_btnDisaAktar);
 
         tablePanel = new JPanel();
         GridBagConstraints gbc_tablePanel = new GridBagConstraints();
@@ -210,14 +219,24 @@ public class TarihRaporlamaPanel extends JPanel {
     }
 
     public JTextField getTxtFieldIscilikSuresi() {
+
         return txtFieldIscilikSuresi;
     }
 
     public JTextField getTxtFieldBoya() {
+
         return txtFieldBoya;
     }
 
     public JTextField getTxtFieldTutar() {
+
         return txtFieldTutar;
     }
+
+
+    public JButton getBtnDisaAktar() {
+
+        return btnDisaAktar;
+    }
+
 }

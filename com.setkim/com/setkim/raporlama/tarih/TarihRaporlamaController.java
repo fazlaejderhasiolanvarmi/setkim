@@ -1,5 +1,6 @@
 package com.setkim.raporlama.tarih;
 
+import com.setkim.raporlama.export.TableExportController;
 import com.setkim.siparisdetay.SiparisDetayController;
 import com.setkim.util.DatabaseObjectList;
 import com.setkim.util.objects.SiparisBilgisi;
@@ -12,6 +13,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -120,6 +122,27 @@ public class TarihRaporlamaController {
                         "Hata",
                         JOptionPane.INFORMATION_MESSAGE);
             }
+        });
+
+        view.getBtnDisaAktar().addActionListener(e -> {
+
+            List<Integer> seciliSiparisler = new ArrayList<>();
+
+            for (int i = 0; i < view.getTable().getModel().getRowCount(); i++) {
+
+                seciliSiparisler.add((Integer) view.getTable().getModel().getValueAt(i, 17));
+
+            }
+
+            SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
+
+            Date baslangicTarihi = (Date) view.getSpinnerBaslangicTarih().getValue();
+            Date bitisTarihi = (Date) view.getSpinnerBitisTarih().getValue();
+
+            String sheetName = f.format(baslangicTarihi) + "-" + f.format(bitisTarihi);
+
+            TableExportController.tarihRaporlamaDisaAktar(sheetName, seciliSiparisler);
+
         });
     }
 
