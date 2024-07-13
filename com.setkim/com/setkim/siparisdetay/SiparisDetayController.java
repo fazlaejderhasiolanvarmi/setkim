@@ -44,6 +44,7 @@ public class SiparisDetayController {
             siparisBilgisi.setBoyamaFiyati(Double.parseDouble(view.getTextFieldBoyamaFiyati().getText()));
             siparisBilgisi.setIscilikSuresi(Double.parseDouble(view.getTextFieldIscilikSuresi().getText()));
             siparisBilgisi.setBoyananMalzemeMiktari(Double.parseDouble(view.getTextFieldBoyananMalzemeMiktari().getText()));
+            siparisBilgisi.setAdet(Double.parseDouble(view.getTextFieldAdet().getText()));
             siparisBilgisi.setBirim(view.getTextFieldBirimi().getText());
             siparisBilgisi.setHat(Integer.parseInt(view.getTextFieldHat().getText()));
             //null
@@ -88,6 +89,7 @@ public class SiparisDetayController {
         view.getTextFieldBoyaMiktari().setText(String.valueOf(siparisBilgisi.getBoyaMiktari()));
         view.getTextFieldIscilikSuresi().setText(String.valueOf(siparisBilgisi.getIscilikSuresi()));
         view.getTextFieldBoyananMalzemeMiktari().setText(String.valueOf(siparisBilgisi.getBoyananMalzemeMiktari()));
+        view.getTextFieldAdet().setText(String.valueOf(siparisBilgisi.getAdet()));
         view.getTextFieldBirimi().setText(siparisBilgisi.getBirim());
         view.getTextFieldHat().setText(String.valueOf(siparisBilgisi.getHat()));
 

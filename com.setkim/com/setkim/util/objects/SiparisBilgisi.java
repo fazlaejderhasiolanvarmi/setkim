@@ -12,6 +12,7 @@ public class SiparisBilgisi {
     private double boyaMiktari;
     private double iscilikSuresi;
     private double boyananMalzemeMiktari;
+    private double adet;
     private String birim;
     private int hat;
     private double boyamaFiyati;
@@ -109,6 +110,14 @@ public class SiparisBilgisi {
 
     public void setBoyananMalzemeMiktari(double boyananMalzemeMiktari) {
         this.boyananMalzemeMiktari = boyananMalzemeMiktari;
+    }
+
+    public double getAdet() {
+        return adet;
+    }
+
+    public void setAdet(double adet) {
+        this.adet = adet;
     }
 
     public String getBirim() {

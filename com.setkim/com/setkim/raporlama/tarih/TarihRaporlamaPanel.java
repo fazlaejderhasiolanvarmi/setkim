@@ -102,6 +102,7 @@ public class TarihRaporlamaPanel extends JPanel {
         tableModel.addColumn("Boya Miktarı");
         tableModel.addColumn("İşçilik Süresi");
         tableModel.addColumn("Boyanan Malzeme Miktarı");
+        tableModel.addColumn("Adet");
         tableModel.addColumn("Birimi");
         tableModel.addColumn("Hat");
         tableModel.addColumn("Boyama Fiyatı");

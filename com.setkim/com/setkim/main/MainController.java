@@ -117,7 +117,7 @@ public class MainController {
                         SiparisDetayController siparisDetay = new SiparisDetayController(siparis);
 
                         JDialog siparisDetayFrame = new JDialog(frame, "Sipariş Detay", true);
-                        siparisDetayFrame.setBounds(100, 200, 800, 600);
+                        siparisDetayFrame.setBounds(100, 200, 800, 700);
                         siparisDetayFrame.add(siparisDetay.getView());
                         siparisDetayFrame.setVisible(true);
                         siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

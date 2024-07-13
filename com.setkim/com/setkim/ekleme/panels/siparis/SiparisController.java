@@ -38,6 +38,7 @@ public class SiparisController {
             siparis.setBoyaMiktari(Double.parseDouble(view.getBoyaMiktari().getText()));
             siparis.setIscilikSuresi(Double.parseDouble(view.getIscilikSuresi().getText()));
             siparis.setBoyananMalzemeMiktari(Double.parseDouble(view.getBoyananMalzemeMiktari().getText()));
+            siparis.setAdet(Double.parseDouble(view.getAdet().getText()));
             siparis.setBirim(view.getBirim().getText());
             siparis.setHat(Integer.parseInt(view.getHat().getText()));
 
@@ -48,7 +49,7 @@ public class SiparisController {
                 siparis.setBoyamaFiyati(0);
             }
 
-            if (!view.getTutar().getText().equals("")){
+            if (!view.getTutar().getText().equals("")) {
 
                 siparis.setTutar(Double.parseDouble(view.getTutar().getText()));
             } else {

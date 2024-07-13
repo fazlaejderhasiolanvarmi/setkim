@@ -121,16 +121,17 @@ public class DatabaseController {
                     siparisBilgisi.setBoyaMiktari(resultSet.getDouble(6));
                     siparisBilgisi.setIscilikSuresi(resultSet.getDouble(7));
                     siparisBilgisi.setBoyananMalzemeMiktari(resultSet.getDouble(8));
-                    siparisBilgisi.setBirim(resultSet.getString(9));
-                    siparisBilgisi.setHat(resultSet.getInt(10));
-                    siparisBilgisi.setBoyamaFiyati(resultSet.getDouble(11));
-                    siparisBilgisi.setTutar(resultSet.getDouble(12));
-                    siparisBilgisi.setMusteri(DatabaseObjectList.findMusteriWithMusteriNo(resultSet.getInt(13)));
-                    siparisBilgisi.setAlimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString(14)));
-                    siparisBilgisi.setTeslimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString(15)));
-                    siparisBilgisi.setIrsaliyeNo(resultSet.getString(16));
-                    siparisBilgisi.setFaturaNo(resultSet.getString(17));
-                    siparisBilgisi.setVade(resultSet.getInt(18));
+                    siparisBilgisi.setAdet(resultSet.getDouble(9));
+                    siparisBilgisi.setBirim(resultSet.getString(10));
+                    siparisBilgisi.setHat(resultSet.getInt(11));
+                    siparisBilgisi.setBoyamaFiyati(resultSet.getDouble(12));
+                    siparisBilgisi.setTutar(resultSet.getDouble(13));
+                    siparisBilgisi.setMusteri(DatabaseObjectList.findMusteriWithMusteriNo(resultSet.getInt(14)));
+                    siparisBilgisi.setAlimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString(15)));
+                    siparisBilgisi.setTeslimTarihi(new SimpleDateFormat("dd/MM/yyyy").parse(resultSet.getString(16)));
+                    siparisBilgisi.setIrsaliyeNo(resultSet.getString(17));
+                    siparisBilgisi.setFaturaNo(resultSet.getString(18));
+                    siparisBilgisi.setVade(resultSet.getInt(19));
 
                     siparisBilgisiList.add(siparisBilgisi);
                 }
@@ -239,9 +240,9 @@ public class DatabaseController {
 
         PreparedStatement preparedStatement;
         String query = "INSERT INTO SiparisBilgisi (Boyanan_Malzeme, Malzeme_Cinsi, Yuzey_Islem, Renk_Kodu, Boya_Miktari, Iscilik_Suresi,\n" +
-                "                            Boyanan_Malzeme_Miktari, Birimi, Hat, Boyama_Fiyati, Tutar, MusteriNo, AlimTarihi,\n" +
+                "                            Boyanan_Malzeme_Miktari, Adet, Birimi, Hat, Boyama_Fiyati, Tutar, MusteriNo, AlimTarihi,\n" +
                 "                            TeslimTarihi, IrsaliyeNo, FaturaNo, Vade)\n" +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         if (connection != null) {
 
@@ -259,16 +260,17 @@ public class DatabaseController {
                     preparedStatement.setDouble(5, siparis.getBoyaMiktari());
                     preparedStatement.setDouble(6, siparis.getIscilikSuresi());
                     preparedStatement.setDouble(7, siparis.getBoyananMalzemeMiktari());
-                    preparedStatement.setString(8, siparis.getBirim());
-                    preparedStatement.setInt(9, siparis.getHat());
-                    preparedStatement.setDouble(10, siparis.getBoyamaFiyati());
-                    preparedStatement.setDouble(11, siparis.getTutar());
-                    preparedStatement.setObject(12, siparis.getMusteri().getMusteriNo());
-                    preparedStatement.setString(13, f.format(siparis.getAlimTarihi()));
-                    preparedStatement.setString(14, f.format(siparis.getTeslimTarihi()));
-                    preparedStatement.setString(15, siparis.getIrsaliyeNo());
-                    preparedStatement.setString(16, siparis.getFaturaNo());
-                    preparedStatement.setInt(17, siparis.getVade());
+                    preparedStatement.setDouble(8, siparis.getAdet());
+                    preparedStatement.setString(9, siparis.getBirim());
+                    preparedStatement.setInt(10, siparis.getHat());
+                    preparedStatement.setDouble(11, siparis.getBoyamaFiyati());
+                    preparedStatement.setDouble(12, siparis.getTutar());
+                    preparedStatement.setObject(13, siparis.getMusteri().getMusteriNo());
+                    preparedStatement.setString(14, f.format(siparis.getAlimTarihi()));
+                    preparedStatement.setString(15, f.format(siparis.getTeslimTarihi()));
+                    preparedStatement.setString(16, siparis.getIrsaliyeNo());
+                    preparedStatement.setString(17, siparis.getFaturaNo());
+                    preparedStatement.setInt(18, siparis.getVade());
 
                     preparedStatement.addBatch();
                 }

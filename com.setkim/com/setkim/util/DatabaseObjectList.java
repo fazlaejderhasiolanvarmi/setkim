@@ -158,6 +158,7 @@ public class DatabaseObjectList {
                 row.add(siparis.getBoyaMiktari());
                 row.add(siparis.getIscilikSuresi());
                 row.add(siparis.getBoyananMalzemeMiktari());
+                row.add(siparis.getAdet());
                 row.add(siparis.getBirim());
                 row.add(siparis.getHat());
                 row.add(siparis.getBoyamaFiyati());
@@ -191,6 +192,7 @@ public class DatabaseObjectList {
             row.add(siparis.getBoyaMiktari());
             row.add(siparis.getIscilikSuresi());
             row.add(siparis.getBoyananMalzemeMiktari());
+            row.add(siparis.getAdet());
             row.add(siparis.getBirim());
             row.add(siparis.getHat());
             row.add(siparis.getBoyamaFiyati());
@@ -252,8 +254,8 @@ public class DatabaseObjectList {
         for (Object obj : siparisListOfMusteri) {
 
             List<Object> siparis = (List<Object>) obj;
-            
-            Date teslimTarihi = (Date) siparis.get(12);
+
+            Date teslimTarihi = (Date) siparis.get(13);
 
             if (teslimTarihi.after(baslangicTarihi) && teslimTarihi.before(bitisTarihi)) {
                 filteredSiparisListOfMusteri.add(obj);

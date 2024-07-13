@@ -34,7 +34,7 @@ public class TarihRaporlamaController {
 
         JTable table = view.getTable();
 
-        table.removeColumn(table.getColumnModel().getColumn(17)); // Sipariş No Gizlemecilik
+        table.removeColumn(table.getColumnModel().getColumn(18)); // Sipariş No Gizlemecilik
 
         List<Object> tableData = DatabaseObjectList.getTarihFiltrelemeTable();
 
@@ -62,8 +62,8 @@ public class TarihRaporlamaController {
         };
 
         // Burası acaba Date.class mı olsa?
-        table.getColumnModel().getColumn(12).setCellRenderer(dateRenderer);
         table.getColumnModel().getColumn(13).setCellRenderer(dateRenderer);
+        table.getColumnModel().getColumn(14).setCellRenderer(dateRenderer);
 
         // Teknik olarak bu da bi listener
         table.addMouseListener(new MouseAdapter() {
@@ -74,7 +74,7 @@ public class TarihRaporlamaController {
 
                 if (e.getClickCount() >= 2 && selectedRow != -1) {
 
-                    int siparisNo = (int) table.getModel().getValueAt(selectedRow, 17);
+                    int siparisNo = (int) table.getModel().getValueAt(selectedRow, 18);
 
                     SiparisBilgisi siparis = DatabaseObjectList.findSiparisWithSiparisNo(siparisNo);
 
@@ -82,7 +82,7 @@ public class TarihRaporlamaController {
                         SiparisDetayController siparisDetayController = new SiparisDetayController(siparis);
 
                         JDialog siparisDetayFrame = new JDialog((JFrame) SwingUtilities.getWindowAncestor(view), "Sipariş Detay", true);
-                        siparisDetayFrame.setBounds(100, 200, 800, 600);
+                        siparisDetayFrame.setBounds(100, 200, 800, 700);
                         siparisDetayFrame.add(siparisDetayController.getView());
                         siparisDetayFrame.setVisible(true);
                         siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -130,7 +130,7 @@ public class TarihRaporlamaController {
 
             for (int i = 0; i < view.getTable().getModel().getRowCount(); i++) {
 
-                seciliSiparisler.add((Integer) view.getTable().getModel().getValueAt(i, 17));
+                seciliSiparisler.add((Integer) view.getTable().getModel().getValueAt(i, 18));
 
             }
 
@@ -148,7 +148,7 @@ public class TarihRaporlamaController {
 
     private Object[] siparisToObjectArray(SiparisBilgisi siparis) {
 
-        Object[] objectArray = new Object[18];
+        Object[] objectArray = new Object[19];
 
         objectArray[0] = siparis.getMusteri().getMusteriAdi();
         objectArray[1] = siparis.getBoyananMalzeme();
@@ -158,16 +158,17 @@ public class TarihRaporlamaController {
         objectArray[5] = siparis.getBoyaMiktari();
         objectArray[6] = siparis.getIscilikSuresi();
         objectArray[7] = siparis.getBoyananMalzemeMiktari();
-        objectArray[8] = siparis.getBirim();
-        objectArray[9] = siparis.getHat();
-        objectArray[10] = siparis.getBoyamaFiyati();
-        objectArray[11] = siparis.getTutar();
-        objectArray[12] = siparis.getAlimTarihi();
-        objectArray[13] = siparis.getTeslimTarihi();
-        objectArray[14] = siparis.getIrsaliyeNo();
-        objectArray[15] = siparis.getFaturaNo();
-        objectArray[16] = siparis.getVade();
-        objectArray[17] = siparis.getSiparisNo();
+        objectArray[8] = siparis.getAdet();
+        objectArray[9] = siparis.getBirim();
+        objectArray[10] = siparis.getHat();
+        objectArray[11] = siparis.getBoyamaFiyati();
+        objectArray[12] = siparis.getTutar();
+        objectArray[13] = siparis.getAlimTarihi();
+        objectArray[14] = siparis.getTeslimTarihi();
+        objectArray[15] = siparis.getIrsaliyeNo();
+        objectArray[16] = siparis.getFaturaNo();
+        objectArray[17] = siparis.getVade();
+        objectArray[18] = siparis.getSiparisNo();
 
         return objectArray;
     }
@@ -195,7 +196,7 @@ public class TarihRaporlamaController {
         for (int i = 0; i < rowCount; i++) {
             toplamIscilikSuresi += (double) table.getValueAt(i, 6);
             toplamBoyaMiktari += (double) table.getValueAt(i, 5);
-            toplamTutar += (double) table.getValueAt(i, 11);
+            toplamTutar += (double) table.getValueAt(i, 12);
 
         }
         view.getTxtFieldBoya().setText(String.valueOf(toplamBoyaMiktari));

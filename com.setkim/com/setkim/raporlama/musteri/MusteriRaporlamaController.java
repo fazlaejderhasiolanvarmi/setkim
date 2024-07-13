@@ -64,10 +64,10 @@ public class MusteriRaporlamaController {
         };
 
         // Tek tek column almak yerine Date.class mı olsa bi bakınılsın
-        table.getColumnModel().getColumn(11).setCellRenderer(dateRenderer);
         table.getColumnModel().getColumn(12).setCellRenderer(dateRenderer);
+        table.getColumnModel().getColumn(13).setCellRenderer(dateRenderer);
 
-        table.removeColumn(table.getColumnModel().getColumn(16));
+        table.removeColumn(table.getColumnModel().getColumn(17));
 
         table.addMouseListener(new MouseAdapter() {
             @Override
@@ -79,7 +79,7 @@ public class MusteriRaporlamaController {
 
                     if (selectedRow != -1) {
 
-                        int siparisNo = (int) table.getModel().getValueAt(selectedRow, 16);
+                        int siparisNo = (int) table.getModel().getValueAt(selectedRow, 17);
 
                         SiparisBilgisi siparis = DatabaseObjectList.findSiparisWithSiparisNo(siparisNo);
 
@@ -88,7 +88,7 @@ public class MusteriRaporlamaController {
                             SiparisDetayController siparisDetayController = new SiparisDetayController(siparis);
 
                             JDialog siparisDetayFrame = new JDialog((JFrame) SwingUtilities.getWindowAncestor(view), "Sipariş Detay", true);
-                            siparisDetayFrame.setBounds(100, 200, 800, 600);
+                            siparisDetayFrame.setBounds(100, 200, 800, 700);
                             siparisDetayFrame.add(siparisDetayController.getView());
                             siparisDetayFrame.setVisible(true);
                             siparisDetayFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -147,7 +147,7 @@ public class MusteriRaporlamaController {
 
             for (int i = 0; i < view.getTable().getModel().getRowCount(); i++) {
 
-                seciliSiparisler.add((Integer) view.getTable().getModel().getValueAt(i, 16));
+                seciliSiparisler.add((Integer) view.getTable().getModel().getValueAt(i, 17));
 
             }
 
@@ -167,7 +167,7 @@ public class MusteriRaporlamaController {
         for (int i = 0; i < rowCount; i++) {
             toplamIscilikSuresi += (double) table.getValueAt(i, 5);
             toplamBoyaMiktari += (double) table.getValueAt(i, 4);
-            toplamTutar += (double) table.getValueAt(i, 10);
+            toplamTutar += (double) table.getValueAt(i, 11);
 
         }
         view.getTxtFieldToplamBoya().setText(String.valueOf(toplamBoyaMiktari));
