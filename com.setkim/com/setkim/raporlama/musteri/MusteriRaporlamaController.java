@@ -180,7 +180,7 @@ public class MusteriRaporlamaController {
         JTable table = view.getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        List<Object> bilgiler = DatabaseObjectList.getSiparisListOfMusteri(musteri);
+        List<Object> bilgiler;
 
         if (view.getRdBtnIsTarihFilterEnabled().isSelected()) {
             bilgiler = DatabaseObjectList.getSiparisListOfMusteriWithDate(musteri, (Date) view.getBaslangicDateSpinner().getValue(), (Date) view.getBitisDateSpinner().getValue());
@@ -202,14 +202,6 @@ public class MusteriRaporlamaController {
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setDefaultEditor(Object.class, null);
-    }
-
-    private List<Object> filterListWithDate() {
-        List<Object> filteredList = new ArrayList<>();
-
-        // TODO
-
-        return filteredList;
     }
 
     public MusteriRaporlamaPanel getView() {

@@ -214,12 +214,12 @@ public class DatabaseObjectList {
 
         for (SiparisBilgisi siparis : siparisBilgisiList) {
 
-            if (siparis.getAlimTarihi().after(baslangicTarihi) && siparis.getAlimTarihi().before(bitisTarihi)) {
+            if (siparis.getTeslimTarihi().after(baslangicTarihi) && siparis.getTeslimTarihi().before(bitisTarihi)) {
 
                 filteredSiparisList.add(siparis);
 
-            } else if (siparis.getAlimTarihi().equals(baslangicTarihi) || siparis.getAlimTarihi().equals(bitisTarihi)) {
-                // Alım tarihiyle aynı tarihse onu da almak için equals attım
+            } else if (siparis.getTeslimTarihi().equals(baslangicTarihi) || siparis.getTeslimTarihi().equals(bitisTarihi)) {
+                // Teslim tarihiyle aynı tarihse onu da almak için equals attım
 
                 filteredSiparisList.add(siparis);
             }
@@ -252,13 +252,12 @@ public class DatabaseObjectList {
         for (Object obj : siparisListOfMusteri) {
 
             List<Object> siparis = (List<Object>) obj;
-
-            Date alimTarihi = (Date) siparis.get(11);
+            
             Date teslimTarihi = (Date) siparis.get(12);
 
-            if (alimTarihi.after(baslangicTarihi) && teslimTarihi.before(bitisTarihi)) {
+            if (teslimTarihi.after(baslangicTarihi) && teslimTarihi.before(bitisTarihi)) {
                 filteredSiparisListOfMusteri.add(obj);
-            } else if (alimTarihi.equals(baslangicTarihi) || teslimTarihi.equals(bitisTarihi)) {
+            } else if (teslimTarihi.equals(baslangicTarihi) || teslimTarihi.equals(bitisTarihi)) {
                 filteredSiparisListOfMusteri.add(obj);
             }
 
